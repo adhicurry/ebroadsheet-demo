@@ -607,10 +607,11 @@
     }
     .newsletter-title {
       font-family: 'Pinyon Script', cursive;
-      font-size: 2.25rem;
+      font-size: 2.4rem;
       color: var(--text-main);
       margin-bottom: 9px;
       font-weight: 400;
+      
       letter-spacing: -0.02em;
     }
     .newsletter-tagline {
@@ -774,11 +775,400 @@
     .contact-list {
       list-style: none;
       margin: 0;
-      pa
+      padding: 0;
+      font-size: 15px;
+    }
+    .contact-list li {
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      font-size: 17px;
+      color: #383838;
+    }
+    .contact-icon {
+      vertical-align: text-bottom;
+      margin-right: 8px;
+      width: 19px;
+      height: 19px;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .contact-tiptext {
+      max-width: 300px;
+      background: var(--accent-fade08);
+      color: var(--accent);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 18px 15px 15px 22px;
+      border-radius: 7px;
+      margin-top: 19px;
+      box-shadow: 0 4px 20px 0 rgba(139,26,26,0.02);
+    }
+    @media (max-width: 830px) {
+      .contact-inner { flex-direction: column; gap: 22px; }
+      .contact-tiptext { margin-top: 12px; }
+    }
+    /* FOOTER */
+    .footer-top-stripe {
+      width: 100%;
+      height: 3px;
+      background: var(--accent);
+      position: relative;
+      top: 0;
+      left: 0;
+    }
+    .footer {
+      background: var(--footer-bg);
+      color: #fafafa;
+      padding: 62px 0 33px 0;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      border-top: none;
+      position: relative;
+      z-index: 3;
+    }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 22px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 38px 24px;
+    }
+    .footer-block {
+      min-width: 220px;
+      margin-bottom: 18px;
+    }
+    .footer-logo {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 2rem;
+      color: #fff;
+      font-weight: 400;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin: 9px 0 2px 0;
+      justify-content: center;
+    }
+    .footer-link {
+      color: #ddd;
+      text-decoration: none;
+      transition: color 0.22s;
+      font-size: 14px;
+    }
+    .footer-link:hover {
+      color: #fff;
+    }
+    .footer-social {
+      margin-top: 13px;
+      display: flex;
+      gap: 13px;
+    }
+    .footer-social a {
+      display: inline-block;
+      color: #fafafa;
+      opacity: 0.76;
+      transition: opacity 0.16s;
+    }
+    .footer-social a:hover {
+      opacity: 1;
+    }
+    .footer-copyright {
+      margin-top: 36px;
+      font-size: 14px;
+      color: #acacac;
+      text-align: center;
+      width: 100%;
+      letter-spacing: 0.02em;
+      display: block;
+    }
+    .footer-right {
+      font-size: 15px;
+      color: #ccc;
+      line-height: 1.69;
+    }
+    .back-to-top {
+      display: block;
+      color: var(--accent);
+      text-align: right;
+      font-size: 15px;
+      margin-top: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.22s;
+    }
+    .back-to-top:hover { color: #fff; text-decoration: underline; }
+    @media (max-width: 900px) {
+      .footer-inner { flex-direction: column; gap: 30px; align-items: flex-start; }
+      .footer-block { min-width: unset; width: 100%; }
+    }
+    /* ARTICLE MODAL */
+    .article-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: rgba(20,10,10,0.55);
+      backdrop-filter: blur(2px);
+      overflow-y: auto;
+    }
+    .article-modal-overlay.open { display: block; }
+    .article-modal {
+      background: var(--white);
+      max-width: 740px;
+      margin: 60px auto 80px auto;
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.22);
+      position: relative;
+      animation: modalIn 0.22s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .article-modal-close {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      background: none;
+      border: none;
+      font-size: 26px;
+      cursor: pointer;
+      color: var(--meta);
+      line-height: 1;
+      z-index: 10;
+      transition: color 0.18s;
+    }
+    .article-modal-close:hover { color: var(--accent); }
+    .article-modal-img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+    }
+    .article-modal-body {
+      padding: 38px 44px 44px 44px;
+    }
+    .article-modal-category {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .article-modal-title {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 2.5rem;
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+    .article-modal-meta {
+      font-size: 14px;
+      color: var(--meta);
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--divider);
+      padding-bottom: 20px;
+    }
+    .article-modal-content {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #2e2e2e;
+    }
+    .article-modal-content p { margin: 0 0 18px 0; }
+    .article-modal-placeholder {
+      display: inline-block;
+      background: var(--accent-fade08);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: 4px;
+      border: 1px dashed rgba(139,26,26,0.25);
+      margin-top: 8px;
+    }
+    @media (max-width: 680px) {
+      .article-modal { margin: 0; border-radius: 0; min-height: 100vh; }
+      .article-modal-body { padding: 28px 20px 36px 20px; }
+      .article-modal-img { height: 200px; }
+      .article-modal-title { font-size: 1.55rem; }
+    }
+    /* INFO MODAL (Current Issue / Archive) */
+    .info-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: rgba(20,10,10,0.55);
+      backdrop-filter: blur(2px);
+      align-items: center;
+      justify-content: center;
+    }
+    .info-modal-overlay.open { display: flex; }
+    .info-modal {
+      background: var(--white);
+      max-width: 480px;
+      width: 92%;
+      border-radius: 6px;
+      padding: 44px 40px 40px 40px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+      position: relative;
+      animation: modalIn 0.22s ease;
+      text-align: center;
+    }
+    .info-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--meta);
+      transition: color 0.18s;
+    }
+    .info-modal-close:hover { color: var(--accent); }
+    .info-modal-icon { font-size: 2.4rem; margin-bottom: 14px; }
+    .info-modal-title {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 1.9rem;
+      font-weight: 400;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+    .info-modal-desc {
+      font-size: 15.5px;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+    .info-modal-badge {
+      display: inline-block;
+      background: var(--accent-fade08);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 18px;
+      border-radius: 4px;
+      border: 1px dashed rgba(139,26,26,0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="top-stripe"></div>
 
-... [OUTPUT TRUNCATED - 15350 chars omitted out of 65350 total] ...
+  <!-- ARTICLE MODAL -->
+  <div class="article-modal-overlay" id="articleModalOverlay" role="dialog" aria-modal="true" aria-labelledby="articleModalTitle">
+    <div class="article-modal" id="articleModal">
+      <button class="article-modal-close" id="articleModalClose" aria-label="Close article">&times;</button>
+      <img class="article-modal-img" id="articleModalImg" src="" alt="">
+      <div class="article-modal-body">
+        <div class="article-modal-category" id="articleModalCategory"></div>
+        <div class="article-modal-title" id="articleModalTitle"></div>
+        <div class="article-modal-meta" id="articleModalMeta"></div>
+        <div class="article-modal-content" id="articleModalContent"></div>
+      </div>
+    </div>
+  </div>
 
-orner remains stubbornly blighted. The plaza at the edge of Centre Street, adjacent to the Brooklyn Bridge, has become overrun with food and souvenir vendors — many of whom were evicted from the Brooklyn Bridge walkway by then-Mayor Adams in 2024 and simply relocated to the plaza.\n\nIn a survey conducted by CB1's Urban Planning Fellow Jonathan Stirling, more than 60 percent of respondents described moving through the space as 'difficult' or 'very difficult.' More than 80 percent suggested 'managing or relocating vendors' as a prime area of improvement.\n\nMr. Stirling described it as both a design and a management problem — the pavement is broken, a construction fence has been there for years, and enforcement is nearly absent. He urged CB1 to explore a formal partnership between the Parks Department and a nonprofit, similar to the Battery Conservancy model.">
+  <!-- INFO MODAL (Current Issue / Archive) -->
+  <div class="info-modal-overlay" id="infoModalOverlay" role="dialog" aria-modal="true">
+    <div class="info-modal">
+      <button class="info-modal-close" id="infoModalClose" aria-label="Close">&times;</button>
+      <div class="info-modal-icon" id="infoModalIcon"></div>
+      <div class="info-modal-title" id="infoModalTitle"></div>
+      <div class="info-modal-desc" id="infoModalDesc"></div>
+      <div class="info-modal-badge" id="infoModalBadge"></div>
+    </div>
+  </div>
+  <nav class="nav" role="navigation">
+    <div class="nav-logo">
+      <span class="nav-logo-monogram">B</span>
+      <div class="nav-logo-text">
+        <span class="nav-logo-main">The Broadsheet</span>
+        <span class="nav-logo-sub">Lower Manhattan's Newspaper · Est. 1997</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#" class="nav-link active">Home</a>
+      <a href="#current" class="nav-link">Current Issue</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#" class="nav-link" data-info="archive">Archive</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <a href="#newsletter" class="nav-link">Subscribe</a>
+    </div>
+    <button class="nav-hamburger" id="navToggle" aria-label="Open menu">
+      <svg viewBox="0 0 28 28"><rect width="28" height="4" y="2" rx="2"></rect><rect width="28" height="4" y="12" rx="2"></rect><rect width="28" height="4" y="22" rx="2"></rect></svg>
+    </button>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#" class="nav-link active">Home</a>
+      <a href="#current" class="nav-link">Current Issue</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#" class="nav-link" data-info="archive">Archive</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <a href="#newsletter" class="nav-link">Subscribe</a>
+    </div>
+  </nav>
+  <section class="hero" id="hero">
+    <div class="hero-divider-top"><hr></div>
+    <div class="hero-inner">
+      <span class="section-label">City Hall</span>
+      <h1 class="hero-headline">Four Yeses, Six Maybes, and Thirty Nos</h1>
+      <p class="hero-excerpt">Most Common City Hall Answer to CB1's Wish List Is 'Get Lost'</p>
+      <div class="hero-meta">By Matthew Fenton &middot; Vol. 30 No. 9 &middot; May 16–31, 2026</div>
+      <a href="#latest" class="hero-readmore">Read More &rarr;</a>
+    </div>
+    <div class="hero-gradient"></div>
+  </section>
+  <section class="grid-section" id="latest">
+    <div class="grid-section-inner">
+      <span class="section-label" style="margin-bottom:37px;">Latest Stories</span>
+      <div class="articles-grid">
+        <div class="article-card featured"
+          data-article="true"
+          data-title="Four Yeses, Six Maybes, and Thirty Nos"
+          data-category="City Hall"
+          data-meta="By Matthew Fenton &middot; May 16, 2026"
+          data-img="https://images.pexels.com/photos/1486222/pexels-photo-1486222.jpeg?auto=compress&cs=tinysrgb&w=600"
+          data-excerpt="Most Common City Hall Answer to CB1's Wish List Is 'Get Lost'"
+          data-body="Community Board 1 recently received official replies to the 40 budget requests it submitted to the Mamdani administration for spending priorities in Lower Manhattan in fiscal year 2027, which begins July 1.\n\nThe City answered 'yes' on four requests — including a crosswalk and pedestrian safety improvements near P.S. 150, beautification of Barnett Newman Triangle in Tribeca, and an ADA-accessible beach get-down at the Brooklyn Bridge. Six proposals received a 'maybe' of various diplomatic flavors. The remaining 30 were denied, including proposals for a new public library, an outdoor public pool, and improvements at Bowling Green Park, City Hall Park, Duane Park, and Collect Pond Park.\n\nThe City's reply to CB1's request for funding the Estuarium at Pier 26 in Hudson River Park read: 'the agency does not understand the request as written and requires more clarification' — a particularly puzzling response given that the Estuarium is a longstanding, well-documented local priority.">
+          <img class="article-img" src="https://images.pexels.com/photos/1486222/pexels-photo-1486222.jpeg?auto=compress&cs=tinysrgb&w=600" alt="City Hall, Lower Manhattan">
+          <span class="section-label">City Hall</span>
+          <div class="article-headline">Four Yeses, Six Maybes, and Thirty Nos</div>
+          <div class="article-excerpt">Most Common City Hall Answer to CB1's Wish List Is 'Get Lost'</div>
+          <div class="article-meta">By Matthew Fenton &middot; May 16, 2026</div>
+          <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
+        </div>
+        <div class="article-card"
+          data-article="true"
+          data-title="DOE on AI School in FiDi: NVM"
+          data-category="Education"
+          data-meta="By Matthew Fenton &middot; May 16, 2026"
+          data-img="https://images.pexels.com/photos/2305190/pexels-photo-2305190.jpeg?auto=compress&cs=tinysrgb&w=600"
+          data-excerpt="Local Parents and Community Leaders Push Back as DOE Withdraws Controversial AI High School Proposal"
+          data-body="The City's Department of Education has withdrawn its controversial proposal to create a new high school in the Financial District with a curriculum focused on artificial intelligence, rather than expand an existing, highly regarded middle school, as many local families want.\n\nAt the April 29 meeting of the Panel for Educational Policy, Schools Chancellor Kamar Samuels announced: 'I want to acknowledge that some of the proposals that were intended for tonight's agenda have been pulled down — specifically the Next Generation High School proposal.'\n\nThe announcement came after a wave of pushback from parents at the Lower Manhattan Community Middle School (LMC) at 26 Broadway, who want to expand their school through grade 12. Community Board 1 had also passed a resolution urging the DOE to reconsider. Parent leader Anne Hager called it 'a huge relief,' adding: 'this is a vestige of the Adams/Banks administration and how they managed major decisions about our schools.'">
+          <img class="article-img" src="https://images.pexels.com/photos/2305190/pexels-photo-2305190.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Lower Manhattan school building">
+          <span class="section-label">Education</span>
+          <div class="article-headline">DOE on AI School in FiDi: NVM</div>
+          <div class="article-excerpt">Local Parents and Community Leaders Push Back as DOE Withdraws Controversial AI High School Proposal</div>
+          <div class="article-meta">By Matthew Fenton &middot; May 16, 2026</div>
+          <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
+        </div>
+        <div class="article-card"
+          data-article="true"
+          data-title="(Too Many) Caps For Sale"
+          data-category="Community"
+          data-meta="By Matthew Fenton, Photo by Cora Fung &middot; May 16, 2026"
+          data-img="https://images.pexels.com/photos/317140/pexels-photo-317140.jpeg?auto=compress&cs=tinysrgb&w=600"
+          data-excerpt="City Hall Park Advocates Want Fewer Vendors Crowding the East Plaza"
+          data-body="While much of City Hall Park enjoys a renaissance thanks to nonprofits such as the City Hall Park Conservancy, one corner remains stubbornly blighted. The plaza at the edge of Centre Street, adjacent to the Brooklyn Bridge, has become overrun with food and souvenir vendors — many of whom were evicted from the Brooklyn Bridge walkway by then-Mayor Adams in 2024 and simply relocated to the plaza.\n\nIn a survey conducted by CB1's Urban Planning Fellow Jonathan Stirling, more than 60 percent of respondents described moving through the space as 'difficult' or 'very difficult.' More than 80 percent suggested 'managing or relocating vendors' as a prime area of improvement.\n\nMr. Stirling described it as both a design and a management problem — the pavement is broken, a construction fence has been there for years, and enforcement is nearly absent. He urged CB1 to explore a formal partnership between the Parks Department and a nonprofit, similar to the Battery Conservancy model.">
           <img class="article-img" src="https://images.pexels.com/photos/317140/pexels-photo-317140.jpeg?auto=compress&cs=tinysrgb&w=600" alt="City Hall Park plaza">
           <span class="section-label">Community</span>
           <div class="article-headline">(Too Many) Caps For Sale</div>
