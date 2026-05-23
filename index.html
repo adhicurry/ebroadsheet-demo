@@ -728,10 +728,188 @@
       .footer-inner { flex-direction: column; gap: 30px; align-items: flex-start; }
       .footer-block { min-width: unset; width: 100%; }
     }
+    /* ARTICLE MODAL */
+    .article-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: rgba(20,10,10,0.55);
+      backdrop-filter: blur(2px);
+      overflow-y: auto;
+    }
+    .article-modal-overlay.open { display: block; }
+    .article-modal {
+      background: var(--white);
+      max-width: 740px;
+      margin: 60px auto 80px auto;
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.22);
+      position: relative;
+      animation: modalIn 0.22s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .article-modal-close {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      background: none;
+      border: none;
+      font-size: 26px;
+      cursor: pointer;
+      color: var(--meta);
+      line-height: 1;
+      z-index: 10;
+      transition: color 0.18s;
+    }
+    .article-modal-close:hover { color: var(--accent); }
+    .article-modal-img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+    }
+    .article-modal-body {
+      padding: 38px 44px 44px 44px;
+    }
+    .article-modal-category {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .article-modal-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+    .article-modal-meta {
+      font-size: 14px;
+      color: var(--meta);
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--divider);
+      padding-bottom: 20px;
+    }
+    .article-modal-content {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #2e2e2e;
+    }
+    .article-modal-content p { margin: 0 0 18px 0; }
+    .article-modal-placeholder {
+      display: inline-block;
+      background: var(--accent-fade08);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: 4px;
+      border: 1px dashed rgba(139,26,26,0.25);
+      margin-top: 8px;
+    }
+    @media (max-width: 680px) {
+      .article-modal { margin: 0; border-radius: 0; min-height: 100vh; }
+      .article-modal-body { padding: 28px 20px 36px 20px; }
+      .article-modal-img { height: 200px; }
+      .article-modal-title { font-size: 1.55rem; }
+    }
+    /* INFO MODAL (Current Issue / Archive) */
+    .info-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: rgba(20,10,10,0.55);
+      backdrop-filter: blur(2px);
+      align-items: center;
+      justify-content: center;
+    }
+    .info-modal-overlay.open { display: flex; }
+    .info-modal {
+      background: var(--white);
+      max-width: 480px;
+      width: 92%;
+      border-radius: 6px;
+      padding: 44px 40px 40px 40px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+      position: relative;
+      animation: modalIn 0.22s ease;
+      text-align: center;
+    }
+    .info-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--meta);
+      transition: color 0.18s;
+    }
+    .info-modal-close:hover { color: var(--accent); }
+    .info-modal-icon { font-size: 2.4rem; margin-bottom: 14px; }
+    .info-modal-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+    .info-modal-desc {
+      font-size: 15.5px;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+    .info-modal-badge {
+      display: inline-block;
+      background: var(--accent-fade08);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 18px;
+      border-radius: 4px;
+      border: 1px dashed rgba(139,26,26,0.3);
+    }
   </style>
 </head>
 <body>
   <div class="top-stripe"></div>
+
+  <!-- ARTICLE MODAL -->
+  <div class="article-modal-overlay" id="articleModalOverlay" role="dialog" aria-modal="true" aria-labelledby="articleModalTitle">
+    <div class="article-modal" id="articleModal">
+      <button class="article-modal-close" id="articleModalClose" aria-label="Close article">&times;</button>
+      <img class="article-modal-img" id="articleModalImg" src="" alt="">
+      <div class="article-modal-body">
+        <div class="article-modal-category" id="articleModalCategory"></div>
+        <div class="article-modal-title" id="articleModalTitle"></div>
+        <div class="article-modal-meta" id="articleModalMeta"></div>
+        <div class="article-modal-content" id="articleModalContent"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INFO MODAL (Current Issue / Archive) -->
+  <div class="info-modal-overlay" id="infoModalOverlay" role="dialog" aria-modal="true">
+    <div class="info-modal">
+      <button class="info-modal-close" id="infoModalClose" aria-label="Close">&times;</button>
+      <div class="info-modal-icon" id="infoModalIcon"></div>
+      <div class="info-modal-title" id="infoModalTitle"></div>
+      <div class="info-modal-desc" id="infoModalDesc"></div>
+      <div class="info-modal-badge" id="infoModalBadge"></div>
+    </div>
+  </div>
   <nav class="nav" role="navigation">
     <div class="nav-logo">
       <span class="nav-logo-main">The Broadsheet</span>
@@ -739,9 +917,9 @@
     </div>
     <div class="nav-links">
       <a href="#" class="nav-link active">Home</a>
-      <a href="#" class="nav-link">Current Issue</a>
+      <a href="#" class="nav-link" data-info="issue">Current Issue</a>
       <a href="#about" class="nav-link">About</a>
-      <a href="#" class="nav-link">Archive</a>
+      <a href="#" class="nav-link" data-info="archive">Archive</a>
       <a href="#contact" class="nav-link">Contact</a>
       <a href="#newsletter" class="nav-link">Subscribe</a>
     </div>
@@ -750,9 +928,9 @@
     </button>
     <div class="mobile-nav" id="mobileNav">
       <a href="#" class="nav-link active">Home</a>
-      <a href="#" class="nav-link">Current Issue</a>
+      <a href="#" class="nav-link" data-info="issue">Current Issue</a>
       <a href="#about" class="nav-link">About</a>
-      <a href="#" class="nav-link">Archive</a>
+      <a href="#" class="nav-link" data-info="archive">Archive</a>
       <a href="#contact" class="nav-link">Contact</a>
       <a href="#newsletter" class="nav-link">Subscribe</a>
     </div>
@@ -772,53 +950,95 @@
     <div class="grid-section-inner">
       <span class="section-label" style="margin-bottom:37px;">Latest Stories</span>
       <div class="articles-grid">
-        <div class="article-card featured">
+        <div class="article-card featured"
+          data-article="true"
+          data-title="The Revel is in the Retails"
+          data-category="Local Economy"
+          data-meta="By Matthew Fenton &middot; May 21, 2026"
+          data-img="https://images.pexels.com/photos/317140/pexels-photo-317140.jpeg?auto=compress&cs=tinysrgb&w=600"
+          data-excerpt="Downtown Storefront Incubator Program Selects Six Concepts for Summer Debut."
+          data-body="Lower Manhattan's Downtown Storefront Incubator Program has selected six new retail concepts to debut this summer, bringing fresh energy to commercial corridors that have seen significant turnover since 2020.\n\nThe selected businesses span food, fashion, and community services — each awarded a subsidized six-month lease in high-visibility ground-floor spaces along Greenwich Street and Broadway.\n\nOrganizers say the program received more than 80 applications this cycle, its highest ever, signaling renewed entrepreneurial interest in the area.">
           <img class="article-img" src="https://images.pexels.com/photos/317140/pexels-photo-317140.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Downtown storefronts">
           <span class="section-label">Local Economy</span>
           <div class="article-headline">The Revel is in the Retails</div>
           <div class="article-excerpt">Downtown Storefront Incubator Program Selects Six Concepts for Summer Debut.</div>
           <div class="article-meta">By Matthew Fenton &middot; May 21, 2026</div>
-          <a class="article-readlink" href="#">Read &rarr;</a>
+          <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
         </div>
-        <div class="article-card">
+        <div class="article-card"
+          data-article="true"
+          data-title="Riding the Current"
+          data-category="Transit"
+          data-meta="By Cora Fung &middot; May 21, 2026"
+          data-img="https://images.pexels.com/photos/12880839/pexels-photo-12880839.jpeg?auto=compress&cs=tinysrgb&w=600"
+          data-excerpt="Proposed Law Would Spur New York City's Transition to Electric Ferries."
+          data-body="A bill introduced in Albany this week would require the New York City Ferry system to transition its entire fleet to electric vessels by 2035, part of a broader push to reduce emissions on the waterfront.\n\nThe proposed legislation, co-sponsored by two Lower Manhattan state legislators, would also establish a dedicated fund for charging infrastructure along the East River and Hudson piers.\n\nThe NYC Ferry system currently carries over 10 million passengers annually. Advocates say an electric transition would cut noise pollution in waterfront neighborhoods like Battery Park City and Seaport significantly.">
           <img class="article-img" src="https://images.pexels.com/photos/12880839/pexels-photo-12880839.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ferry on the river">
           <span class="section-label">Transit</span>
           <div class="article-headline">Riding the Current</div>
           <div class="article-excerpt">Proposed Law Would Spur New York City's Transition to Electric Ferries.</div>
           <div class="article-meta">By Cora Fung &middot; May 21, 2026</div>
-          <a class="article-readlink" href="#">Read &rarr;</a>
+          <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
         </div>
-        <div class="article-card">
+        <div class="article-card"
+          data-article="true"
+          data-title="Diversity, Equity, or Exclusion?"
+          data-category="Education"
+          data-meta="By Brian Rogers &middot; May 20, 2026"
+          data-img="https://images.pexels.com/photos/2305190/pexels-photo-2305190.jpeg?auto=compress&cs=tinysrgb&w=600"
+          data-excerpt="Lawsuit Alleges that Stuyvesant High School Illegally Considers Race in Admissions Decisions."
+          data-body="A federal lawsuit filed this week alleges that Stuyvesant High School, one of New York City's elite specialized schools, has engaged in racially discriminatory admissions practices in violation of the Equal Protection Clause.\n\nThe suit was brought by a coalition of families whose children were denied admission despite test scores that would have qualified them under the school's stated criteria. The plaintiffs claim that supplementary criteria introduced in 2022 have been applied unevenly along racial lines.\n\nThe New York City Department of Education declined to comment, citing pending litigation. Stuyvesant's student body is among the most closely watched in the country for demographic representation debates.">
           <img class="article-img" src="https://images.pexels.com/photos/2305190/pexels-photo-2305190.jpeg?auto=compress&cs=tinysrgb&w=600" alt="School building">
           <span class="section-label">Education</span>
           <div class="article-headline">Diversity, Equity, or Exclusion?</div>
           <div class="article-excerpt">Lawsuit Alleges that Stuyvesant High School Illegally Considers Race in Admissions Decisions.</div>
           <div class="article-meta">By Brian Rogers &middot; May 20, 2026</div>
-          <a class="article-readlink" href="#">Read &rarr;</a>
+          <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
         </div>
-        <div class="article-card">
+        <div class="article-card"
+          data-article="true"
+          data-title="When Loyalty is the New Currency, Larceny is the New Counterfeiting"
+          data-category="Crime & Business"
+          data-meta="By Matthew Fenton &middot; May 18, 2026"
+          data-img="https://images.pexels.com/photos/913200/pexels-photo-913200.jpeg?auto=compress&cs=tinysrgb&w=600"
+          data-excerpt="Founder of FiDi-Based Financial Tech Company Pleads Guilty to Securities Fraud."
+          data-body="The founder of a Financial District-based fintech startup pleaded guilty Monday to two counts of securities fraud, admitting he falsified revenue figures to attract investors during multiple funding rounds between 2021 and 2023.\n\nProsecutors say the scheme raised over $14 million from at least 40 investors, most of whom were misled by fabricated customer metrics embedded in pitch decks and financial statements.\n\nSentencing is scheduled for September. The founder faces up to 20 years in federal prison under the terms of his plea agreement. The company, which once employed 34 people in a Water Street office, ceased operations in January.">
           <img class="article-img" src="https://images.pexels.com/photos/913200/pexels-photo-913200.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Financial District">
           <span class="section-label">Crime & Business</span>
           <div class="article-headline">When Loyalty is the New Currency, Larceny is the New Counterfeiting</div>
           <div class="article-excerpt">Founder of FiDi-Based Financial Tech Company Pleads Guilty to Securities Fraud.</div>
           <div class="article-meta">By Matthew Fenton &middot; May 18, 2026</div>
-          <a class="article-readlink" href="#">Read &rarr;</a>
+          <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
         </div>
-        <div class="article-card">
+        <div class="article-card"
+          data-article="true"
+          data-title="A Seventh Moment of Silence"
+          data-category="Community"
+          data-meta="By Isabella Simko &middot; May 17, 2026"
+          data-img="https://images.pexels.com/photos/7317718/pexels-photo-7317718.jpeg?auto=compress&cs=tinysrgb&w=600"
+          data-excerpt="Upcoming Anniversary Ceremony will Acknowledge People Who have Died of 9/11 Illnesses."
+          data-body="Lower Manhattan community leaders are preparing for the seventh annual ceremony honoring victims who have died from illnesses linked to the toxic dust and debris of September 11, 2001 — a growing population whose losses often go unacknowledged in official commemorations.\n\nThe ceremony, held at a memorial plaza near the World Trade Center site, will include seven moments of silence — one for each year of the expanded observance — and remarks from first responders, survivors, and family members.\n\nOrganizers estimate that more than 4,000 people have died from 9/11-related illnesses since the attack, a number that continues to rise. The event is open to the public.">
           <img class="article-img" src="https://images.pexels.com/photos/7317718/pexels-photo-7317718.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Memorial ceremony">
           <span class="section-label">Community</span>
           <div class="article-headline">A Seventh Moment of Silence</div>
           <div class="article-excerpt">Upcoming Anniversary Ceremony will Acknowledge People Who have Died of 9/11 Illnesses.</div>
-          <div class="article-meta">By Alison Simko &middot; May 17, 2026</div>
-          <a class="article-readlink" href="#">Read &rarr;</a>
+          <div class="article-meta">By Isabella Simko &middot; May 17, 2026</div>
+          <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
         </div>
-        <div class="article-card">
+        <div class="article-card"
+          data-article="true"
+          data-title="Come Sail Away"
+          data-category="Harbor Life"
+          data-meta="By Matthew Fenton &middot; Editor"
+          data-img="https://images.pexels.com/photos/13121940/pexels-photo-13121940.jpeg?auto=compress&cs=tinysrgb&w=600"
+          data-excerpt="A Pair of Historic Vessels Offer Summer Boating in New York Harbor."
+          data-body="Two historic sailing vessels — the schooner Pioneer and the sloop Clearwater — will offer public sailing excursions in New York Harbor this summer, giving Lower Manhattan residents a rare chance to experience the waterway as it was navigated centuries ago.\n\nThe Pioneer, berthed at Pier 16 at the South Street Seaport, runs half-day excursions on weekends from Memorial Day through Labor Day. The Clearwater, typically based on the Hudson, is making a special series of stops at Pier 25 in Tribeca through August.\n\nTickets range from $35 to $75 per person. Both organizations offer reduced rates for students and seniors, and group charters are available.">
           <img class="article-img" src="https://images.pexels.com/photos/13121940/pexels-photo-13121940.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Sailboat in harbor">
           <span class="section-label">Harbor Life</span>
           <div class="article-headline">Come Sail Away</div>
           <div class="article-excerpt">A Pair of Historic Vessels Offer Summer Boating in New York Harbor.</div>
           <div class="article-meta">By Matthew Fenton &middot; Editor</div>
-          <a class="article-readlink" href="#">Read &rarr;</a>
+          <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
         </div>
       </div>
     </div>
@@ -845,7 +1065,7 @@
       </div>
       <div class="about-staff">
         <span class="about-staff-label">Editor:</span> Matthew Fenton &nbsp;&nbsp;
-        <span class="about-staff-label">Publisher:</span> Alison Simko &nbsp;&nbsp;
+        <span class="about-staff-label">Publisher:</span> Isabella Simko &nbsp;&nbsp;
         <span class="about-staff-label">Contributors:</span> Cora Fung, Brian Rogers
       </div>
       <div class="about-neighborhoods"><span style="color:var(--accent);font-weight:500">Neighborhoods we cover:</span> Battery Park City, Tribeca, South Street Seaport, Financial District.</div>
@@ -877,9 +1097,9 @@
       <div class="footer-block">
         <nav class="footer-nav">
           <a href="#" class="footer-link">Home</a>
-          <a href="#" class="footer-link">Current Issue</a>
+          <a href="#" class="footer-link" data-info="issue">Current Issue</a>
           <a href="#about" class="footer-link">About</a>
-          <a href="#" class="footer-link">Archive</a>
+          <a href="#" class="footer-link" data-info="archive">Archive</a>
           <a href="#contact" class="footer-link">Contact</a>
           <a href="#newsletter" class="footer-link">Subscribe</a>
         </nav>
@@ -950,6 +1170,103 @@
       cards.forEach(card => observer.observe(card));
     }
     window.addEventListener('DOMContentLoaded', fadeInCards);
+
+    // ── ARTICLE MODAL ──────────────────────────────────────────────────────────
+    const articleOverlay = document.getElementById('articleModalOverlay');
+    const articleModal   = document.getElementById('articleModal');
+
+    function openArticleModal(card) {
+      document.getElementById('articleModalCategory').textContent = card.dataset.category || '';
+      document.getElementById('articleModalTitle').textContent    = card.dataset.title    || '';
+      document.getElementById('articleModalMeta').textContent     = card.dataset.meta     || '';
+      const img = document.getElementById('articleModalImg');
+      img.src = card.dataset.img || '';
+      img.alt = card.dataset.title || '';
+      // Build body paragraphs + placeholder badge
+      const body     = card.dataset.body || '';
+      const excerptEl = document.getElementById('articleModalContent');
+      excerptEl.innerHTML = '';
+      body.split('\n\n').forEach(para => {
+        if (!para.trim()) return;
+        const p = document.createElement('p');
+        p.textContent = para.trim();
+        excerptEl.appendChild(p);
+      });
+      const badge = document.createElement('div');
+      badge.className = 'article-modal-placeholder';
+      badge.textContent = '📝 Full article coming soon — placeholder for demo';
+      excerptEl.appendChild(badge);
+      articleOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeArticleModal() {
+      articleOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Clicking a "Read →" link or anywhere on an article card opens modal
+    document.querySelectorAll('[data-article="true"]').forEach(card => {
+      card.addEventListener('click', function(e) {
+        e.preventDefault();
+        openArticleModal(card);
+      });
+    });
+
+    document.getElementById('articleModalClose').addEventListener('click', closeArticleModal);
+    articleOverlay.addEventListener('click', function(e) {
+      if (e.target === articleOverlay) closeArticleModal();
+    });
+
+    // ── INFO MODAL (Current Issue / Archive) ──────────────────────────────────
+    const infoOverlay = document.getElementById('infoModalOverlay');
+    const infoData = {
+      issue: {
+        icon: '📰',
+        title: 'Current Issue',
+        desc:  'The latest print edition of The Broadsheet — covering Battery Park City, Tribeca, South Street Seaport, and the Financial District. Pick up a copy at newsstands across Lower Manhattan, or subscribe to have it delivered.',
+        badge: 'Digital edition coming soon'
+      },
+      archive: {
+        icon: '🗂️',
+        title: 'Archive',
+        desc:  'Browse every issue of The Broadsheet going back to 1997. Our full archive covers nearly three decades of Lower Manhattan history — from the World Trade Center attacks to the waterfront renaissance of the 2010s and beyond.',
+        badge: 'Full archive coming soon'
+      }
+    };
+
+    function openInfoModal(type) {
+      const d = infoData[type];
+      if (!d) return;
+      document.getElementById('infoModalIcon').textContent  = d.icon;
+      document.getElementById('infoModalTitle').textContent = d.title;
+      document.getElementById('infoModalDesc').textContent  = d.desc;
+      document.getElementById('infoModalBadge').textContent = d.badge;
+      infoOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeInfoModal() {
+      infoOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('[data-info]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        openInfoModal(this.dataset.info);
+      });
+    });
+
+    document.getElementById('infoModalClose').addEventListener('click', closeInfoModal);
+    infoOverlay.addEventListener('click', function(e) {
+      if (e.target === infoOverlay) closeInfoModal();
+    });
+
+    // Close any modal on Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') { closeArticleModal(); closeInfoModal(); }
+    });
   </script>
 </body>
 </html>
