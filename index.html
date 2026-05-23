@@ -394,6 +394,162 @@
       outline: none;
     }
     .article-readlink:hover { color: #641616; text-decoration: underline; }
+    /* CURRENT ISSUE PREVIEW */
+    .current-issue {
+      background: var(--white);
+      padding: 72px 0 54px 0;
+      border-top: 3px solid var(--accent);
+    }
+    .current-issue-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+    .current-issue-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .current-issue-vol {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 14px;
+      color: var(--meta);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .current-issue-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px 24px;
+    }
+    @media (max-width: 1000px) { .current-issue-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 580px) { .current-issue-grid { grid-template-columns: 1fr; } }
+    .current-issue-card {
+      border-top: 2px solid var(--divider);
+      padding-top: 18px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .current-issue-card:hover { border-top-color: var(--accent); }
+    .current-issue-card .section-label { font-size: 12px; margin-bottom: 8px; }
+    .current-issue-card-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+    .current-issue-card-deck {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .current-issue-card-read {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
+    .current-issue-banner {
+      background: var(--accent-fade08);
+      border: 1px solid rgba(139,26,26,0.15);
+      border-radius: 4px;
+      padding: 10px 18px;
+      font-size: 14px;
+      color: var(--accent);
+      font-family: 'Inter', Arial, sans-serif;
+      margin-top: 32px;
+      display: inline-block;
+    }
+    /* RIVERWATCH */
+    .riverwatch {
+      background: var(--section-alt);
+      padding: 64px 0 52px 0;
+    }
+    .riverwatch-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+    .riverwatch-note {
+      font-size: 13px;
+      color: #888;
+      font-style: italic;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .riverwatch-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14.5px;
+      font-family: 'Inter', Arial, sans-serif;
+    }
+    .riverwatch-table th {
+      text-align: left;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0 12px 10px 0;
+      border-bottom: 1px solid var(--divider);
+    }
+    .riverwatch-table td {
+      padding: 11px 12px 11px 0;
+      border-bottom: 1px solid var(--divider);
+      color: var(--text-main);
+      vertical-align: top;
+    }
+    .riverwatch-table tr:last-child td { border-bottom: none; }
+    .riverwatch-source {
+      font-size: 12px;
+      color: #999;
+      margin-top: 12px;
+    }
+    .riverwatch-source a { color: #999; text-decoration: underline; }
+    /* CLASSIFIEDS */
+    .classifieds {
+      background: var(--section-cream);
+      padding: 64px 0 52px 0;
+    }
+    .classifieds-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+    .classifieds-note {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 28px;
+      font-family: 'Inter', Arial, sans-serif;
+    }
+    .classifieds-note strong { color: var(--accent); }
+    .classifieds-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px 28px;
+    }
+    @media (max-width: 860px) { .classifieds-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .classifieds-grid { grid-template-columns: 1fr; } }
+    .classified-item {
+      border-top: 2px solid var(--divider);
+      padding-top: 14px;
+    }
+    .classified-item .section-label { font-size: 11px; margin-bottom: 6px; }
+    .classified-item-body {
+      font-size: 14.5px;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+    .classified-item-body a { color: var(--accent); }
     /* NEWSLETTER SIGNUP */
     .newsletter {
       background: var(--section-cream);
@@ -917,7 +1073,7 @@
     </div>
     <div class="nav-links">
       <a href="#" class="nav-link active">Home</a>
-      <a href="#" class="nav-link" data-info="issue">Current Issue</a>
+      <a href="#current" class="nav-link">Current Issue</a>
       <a href="#about" class="nav-link">About</a>
       <a href="#" class="nav-link" data-info="archive">Archive</a>
       <a href="#contact" class="nav-link">Contact</a>
@@ -928,7 +1084,7 @@
     </button>
     <div class="mobile-nav" id="mobileNav">
       <a href="#" class="nav-link active">Home</a>
-      <a href="#" class="nav-link" data-info="issue">Current Issue</a>
+      <a href="#current" class="nav-link">Current Issue</a>
       <a href="#about" class="nav-link">About</a>
       <a href="#" class="nav-link" data-info="archive">Archive</a>
       <a href="#contact" class="nav-link">Contact</a>
@@ -938,10 +1094,10 @@
   <section class="hero" id="hero">
     <div class="hero-divider-top"><hr></div>
     <div class="hero-inner">
-      <span class="section-label">Downtown News</span>
-      <h1 class="hero-headline">Come Sail Away</h1>
-      <p class="hero-excerpt">A Pair of Historic Vessels Offer Summer Boating in New York Harbor.</p>
-      <div class="hero-meta">By Matthew Fenton &middot; Editor</div>
+      <span class="section-label">City Hall</span>
+      <h1 class="hero-headline">Four Yeses, Six Maybes, and Thirty Nos</h1>
+      <p class="hero-excerpt">Most Common City Hall Answer to CB1's Wish List Is 'Get Lost'</p>
+      <div class="hero-meta">By Matthew Fenton &middot; Vol. 30 No. 9 &middot; May 16–31, 2026</div>
       <a href="#latest" class="hero-readmore">Read More &rarr;</a>
     </div>
     <div class="hero-gradient"></div>
@@ -952,97 +1108,224 @@
       <div class="articles-grid">
         <div class="article-card featured"
           data-article="true"
-          data-title="The Revel is in the Retails"
-          data-category="Local Economy"
-          data-meta="By Matthew Fenton &middot; May 21, 2026"
-          data-img="https://images.pexels.com/photos/317140/pexels-photo-317140.jpeg?auto=compress&cs=tinysrgb&w=600"
-          data-excerpt="Downtown Storefront Incubator Program Selects Six Concepts for Summer Debut."
-          data-body="Lower Manhattan's Downtown Storefront Incubator Program has selected six new retail concepts to debut this summer, bringing fresh energy to commercial corridors that have seen significant turnover since 2020.\n\nThe selected businesses span food, fashion, and community services — each awarded a subsidized six-month lease in high-visibility ground-floor spaces along Greenwich Street and Broadway.\n\nOrganizers say the program received more than 80 applications this cycle, its highest ever, signaling renewed entrepreneurial interest in the area.">
-          <img class="article-img" src="https://images.pexels.com/photos/317140/pexels-photo-317140.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Downtown storefronts">
-          <span class="section-label">Local Economy</span>
-          <div class="article-headline">The Revel is in the Retails</div>
-          <div class="article-excerpt">Downtown Storefront Incubator Program Selects Six Concepts for Summer Debut.</div>
-          <div class="article-meta">By Matthew Fenton &middot; May 21, 2026</div>
+          data-title="Four Yeses, Six Maybes, and Thirty Nos"
+          data-category="City Hall"
+          data-meta="By Matthew Fenton &middot; May 16, 2026"
+          data-img="https://images.pexels.com/photos/1486222/pexels-photo-1486222.jpeg?auto=compress&cs=tinysrgb&w=600"
+          data-excerpt="Most Common City Hall Answer to CB1's Wish List Is 'Get Lost'"
+          data-body="Community Board 1 recently received official replies to the 40 budget requests it submitted to the Mamdani administration for spending priorities in Lower Manhattan in fiscal year 2027, which begins July 1.\n\nThe City answered 'yes' on four requests — including a crosswalk and pedestrian safety improvements near P.S. 150, beautification of Barnett Newman Triangle in Tribeca, and an ADA-accessible beach get-down at the Brooklyn Bridge. Six proposals received a 'maybe' of various diplomatic flavors. The remaining 30 were denied, including proposals for a new public library, an outdoor public pool, and improvements at Bowling Green Park, City Hall Park, Duane Park, and Collect Pond Park.\n\nThe City's reply to CB1's request for funding the Estuarium at Pier 26 in Hudson River Park read: 'the agency does not understand the request as written and requires more clarification' — a particularly puzzling response given that the Estuarium is a longstanding, well-documented local priority.">
+          <img class="article-img" src="https://images.pexels.com/photos/1486222/pexels-photo-1486222.jpeg?auto=compress&cs=tinysrgb&w=600" alt="City Hall, Lower Manhattan">
+          <span class="section-label">City Hall</span>
+          <div class="article-headline">Four Yeses, Six Maybes, and Thirty Nos</div>
+          <div class="article-excerpt">Most Common City Hall Answer to CB1's Wish List Is 'Get Lost'</div>
+          <div class="article-meta">By Matthew Fenton &middot; May 16, 2026</div>
           <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
         </div>
         <div class="article-card"
           data-article="true"
-          data-title="Riding the Current"
-          data-category="Transit"
-          data-meta="By Cora Fung &middot; May 21, 2026"
-          data-img="https://images.pexels.com/photos/12880839/pexels-photo-12880839.jpeg?auto=compress&cs=tinysrgb&w=600"
-          data-excerpt="Proposed Law Would Spur New York City's Transition to Electric Ferries."
-          data-body="A bill introduced in Albany this week would require the New York City Ferry system to transition its entire fleet to electric vessels by 2035, part of a broader push to reduce emissions on the waterfront.\n\nThe proposed legislation, co-sponsored by two Lower Manhattan state legislators, would also establish a dedicated fund for charging infrastructure along the East River and Hudson piers.\n\nThe NYC Ferry system currently carries over 10 million passengers annually. Advocates say an electric transition would cut noise pollution in waterfront neighborhoods like Battery Park City and Seaport significantly.">
-          <img class="article-img" src="https://images.pexels.com/photos/12880839/pexels-photo-12880839.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ferry on the river">
-          <span class="section-label">Transit</span>
-          <div class="article-headline">Riding the Current</div>
-          <div class="article-excerpt">Proposed Law Would Spur New York City's Transition to Electric Ferries.</div>
-          <div class="article-meta">By Cora Fung &middot; May 21, 2026</div>
-          <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
-        </div>
-        <div class="article-card"
-          data-article="true"
-          data-title="Diversity, Equity, or Exclusion?"
+          data-title="DOE on AI School in FiDi: NVM"
           data-category="Education"
-          data-meta="By Brian Rogers &middot; May 20, 2026"
+          data-meta="By Matthew Fenton &middot; May 16, 2026"
           data-img="https://images.pexels.com/photos/2305190/pexels-photo-2305190.jpeg?auto=compress&cs=tinysrgb&w=600"
-          data-excerpt="Lawsuit Alleges that Stuyvesant High School Illegally Considers Race in Admissions Decisions."
-          data-body="A federal lawsuit filed this week alleges that Stuyvesant High School, one of New York City's elite specialized schools, has engaged in racially discriminatory admissions practices in violation of the Equal Protection Clause.\n\nThe suit was brought by a coalition of families whose children were denied admission despite test scores that would have qualified them under the school's stated criteria. The plaintiffs claim that supplementary criteria introduced in 2022 have been applied unevenly along racial lines.\n\nThe New York City Department of Education declined to comment, citing pending litigation. Stuyvesant's student body is among the most closely watched in the country for demographic representation debates.">
-          <img class="article-img" src="https://images.pexels.com/photos/2305190/pexels-photo-2305190.jpeg?auto=compress&cs=tinysrgb&w=600" alt="School building">
+          data-excerpt="Local Parents and Community Leaders Push Back as DOE Withdraws Controversial AI High School Proposal"
+          data-body="The City's Department of Education has withdrawn its controversial proposal to create a new high school in the Financial District with a curriculum focused on artificial intelligence, rather than expand an existing, highly regarded middle school, as many local families want.\n\nAt the April 29 meeting of the Panel for Educational Policy, Schools Chancellor Kamar Samuels announced: 'I want to acknowledge that some of the proposals that were intended for tonight's agenda have been pulled down — specifically the Next Generation High School proposal.'\n\nThe announcement came after a wave of pushback from parents at the Lower Manhattan Community Middle School (LMC) at 26 Broadway, who want to expand their school through grade 12. Community Board 1 had also passed a resolution urging the DOE to reconsider. Parent leader Anne Hager called it 'a huge relief,' adding: 'this is a vestige of the Adams/Banks administration and how they managed major decisions about our schools.'">
+          <img class="article-img" src="https://images.pexels.com/photos/2305190/pexels-photo-2305190.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Lower Manhattan school building">
           <span class="section-label">Education</span>
-          <div class="article-headline">Diversity, Equity, or Exclusion?</div>
-          <div class="article-excerpt">Lawsuit Alleges that Stuyvesant High School Illegally Considers Race in Admissions Decisions.</div>
-          <div class="article-meta">By Brian Rogers &middot; May 20, 2026</div>
+          <div class="article-headline">DOE on AI School in FiDi: NVM</div>
+          <div class="article-excerpt">Local Parents and Community Leaders Push Back as DOE Withdraws Controversial AI High School Proposal</div>
+          <div class="article-meta">By Matthew Fenton &middot; May 16, 2026</div>
           <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
         </div>
         <div class="article-card"
           data-article="true"
-          data-title="When Loyalty is the New Currency, Larceny is the New Counterfeiting"
-          data-category="Crime & Business"
-          data-meta="By Matthew Fenton &middot; May 18, 2026"
-          data-img="https://images.pexels.com/photos/913200/pexels-photo-913200.jpeg?auto=compress&cs=tinysrgb&w=600"
-          data-excerpt="Founder of FiDi-Based Financial Tech Company Pleads Guilty to Securities Fraud."
-          data-body="The founder of a Financial District-based fintech startup pleaded guilty Monday to two counts of securities fraud, admitting he falsified revenue figures to attract investors during multiple funding rounds between 2021 and 2023.\n\nProsecutors say the scheme raised over $14 million from at least 40 investors, most of whom were misled by fabricated customer metrics embedded in pitch decks and financial statements.\n\nSentencing is scheduled for September. The founder faces up to 20 years in federal prison under the terms of his plea agreement. The company, which once employed 34 people in a Water Street office, ceased operations in January.">
-          <img class="article-img" src="https://images.pexels.com/photos/913200/pexels-photo-913200.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Financial District">
-          <span class="section-label">Crime & Business</span>
-          <div class="article-headline">When Loyalty is the New Currency, Larceny is the New Counterfeiting</div>
-          <div class="article-excerpt">Founder of FiDi-Based Financial Tech Company Pleads Guilty to Securities Fraud.</div>
-          <div class="article-meta">By Matthew Fenton &middot; May 18, 2026</div>
-          <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
-        </div>
-        <div class="article-card"
-          data-article="true"
-          data-title="A Seventh Moment of Silence"
+          data-title="(Too Many) Caps For Sale"
           data-category="Community"
-          data-meta="By Isabella Simko &middot; May 17, 2026"
-          data-img="https://images.pexels.com/photos/7317718/pexels-photo-7317718.jpeg?auto=compress&cs=tinysrgb&w=600"
-          data-excerpt="Upcoming Anniversary Ceremony will Acknowledge People Who have Died of 9/11 Illnesses."
-          data-body="Lower Manhattan community leaders are preparing for the seventh annual ceremony honoring victims who have died from illnesses linked to the toxic dust and debris of September 11, 2001 — a growing population whose losses often go unacknowledged in official commemorations.\n\nThe ceremony, held at a memorial plaza near the World Trade Center site, will include seven moments of silence — one for each year of the expanded observance — and remarks from first responders, survivors, and family members.\n\nOrganizers estimate that more than 4,000 people have died from 9/11-related illnesses since the attack, a number that continues to rise. The event is open to the public.">
-          <img class="article-img" src="https://images.pexels.com/photos/7317718/pexels-photo-7317718.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Memorial ceremony">
+          data-meta="By Matthew Fenton, Photo by Cora Fung &middot; May 16, 2026"
+          data-img="https://images.pexels.com/photos/317140/pexels-photo-317140.jpeg?auto=compress&cs=tinysrgb&w=600"
+          data-excerpt="City Hall Park Advocates Want Fewer Vendors Crowding the East Plaza"
+          data-body="While much of City Hall Park enjoys a renaissance thanks to nonprofits such as the City Hall Park Conservancy, one corner remains stubbornly blighted. The plaza at the edge of Centre Street, adjacent to the Brooklyn Bridge, has become overrun with food and souvenir vendors — many of whom were evicted from the Brooklyn Bridge walkway by then-Mayor Adams in 2024 and simply relocated to the plaza.\n\nIn a survey conducted by CB1's Urban Planning Fellow Jonathan Stirling, more than 60 percent of respondents described moving through the space as 'difficult' or 'very difficult.' More than 80 percent suggested 'managing or relocating vendors' as a prime area of improvement.\n\nMr. Stirling described it as both a design and a management problem — the pavement is broken, a construction fence has been there for years, and enforcement is nearly absent. He urged CB1 to explore a formal partnership between the Parks Department and a nonprofit, similar to the Battery Conservancy model.">
+          <img class="article-img" src="https://images.pexels.com/photos/317140/pexels-photo-317140.jpeg?auto=compress&cs=tinysrgb&w=600" alt="City Hall Park plaza">
           <span class="section-label">Community</span>
-          <div class="article-headline">A Seventh Moment of Silence</div>
-          <div class="article-excerpt">Upcoming Anniversary Ceremony will Acknowledge People Who have Died of 9/11 Illnesses.</div>
-          <div class="article-meta">By Isabella Simko &middot; May 17, 2026</div>
+          <div class="article-headline">(Too Many) Caps For Sale</div>
+          <div class="article-excerpt">City Hall Park Advocates Want Fewer Vendors Crowding the East Plaza</div>
+          <div class="article-meta">By Matthew Fenton, Photo by Cora Fung &middot; May 16, 2026</div>
           <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
         </div>
         <div class="article-card"
           data-article="true"
           data-title="Come Sail Away"
           data-category="Harbor Life"
-          data-meta="By Matthew Fenton &middot; Editor"
+          data-meta="By Matthew Fenton &middot; May 16, 2026"
           data-img="https://images.pexels.com/photos/13121940/pexels-photo-13121940.jpeg?auto=compress&cs=tinysrgb&w=600"
-          data-excerpt="A Pair of Historic Vessels Offer Summer Boating in New York Harbor."
-          data-body="Two historic sailing vessels — the schooner Pioneer and the sloop Clearwater — will offer public sailing excursions in New York Harbor this summer, giving Lower Manhattan residents a rare chance to experience the waterway as it was navigated centuries ago.\n\nThe Pioneer, berthed at Pier 16 at the South Street Seaport, runs half-day excursions on weekends from Memorial Day through Labor Day. The Clearwater, typically based on the Hudson, is making a special series of stops at Pier 25 in Tribeca through August.\n\nTickets range from $35 to $75 per person. Both organizations offer reduced rates for students and seniors, and group charters are available.">
-          <img class="article-img" src="https://images.pexels.com/photos/13121940/pexels-photo-13121940.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Sailboat in harbor">
+          data-excerpt="A Pair of Historic Vessels Offer Summer Boating in New York Harbor"
+          data-body="Two vessels from the South Street Seaport Museum's historic working fleet — the 1885 schooner Pioneer and the 1930 tugboat W.O. Decker, both moored at Pier 16 — have embarked on their 2026 sailing season.\n\nPioneer is the oldest working boat of any kind in New York Harbor and the only iron-hulled American merchant sailing vessel still in existence. Built of riveted iron plates in Marcus Hook, Pennsylvania, she plied the Delaware River carrying sand and heavy cargo. W.O. Decker, now listed on the National Register of Historic Places, was built in Long Island City and later hauled coal barges along the Housatonic River and pulled steel beams into place for bridges on the New Jersey Turnpike.\n\nW.O. Decker departs at 1:45pm and 2:45pm on Saturdays and Sundays; tickets $25–$40. Pioneer's daytime sails depart at 1pm and 4pm on Saturdays and Sundays, priced from $5 to $50. Pioneer also offers sunset sails on Fridays, Saturdays, and Sundays at $15–$70. More info at southstreetseaportmuseum.org/visit/sails_cruises/">
+          <img class="article-img" src="https://images.pexels.com/photos/13121940/pexels-photo-13121940.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Historic sailboat in harbor">
           <span class="section-label">Harbor Life</span>
           <div class="article-headline">Come Sail Away</div>
-          <div class="article-excerpt">A Pair of Historic Vessels Offer Summer Boating in New York Harbor.</div>
-          <div class="article-meta">By Matthew Fenton &middot; Editor</div>
+          <div class="article-excerpt">A Pair of Historic Vessels Offer Summer Boating in New York Harbor</div>
+          <div class="article-meta">By Matthew Fenton &middot; May 16, 2026</div>
+          <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
+        </div>
+        <div class="article-card"
+          data-article="true"
+          data-title="The Write Stuff"
+          data-category="Arts &amp; Culture"
+          data-meta="The Broadsheet &middot; May 16, 2026"
+          data-img="https://images.pexels.com/photos/46274/pexels-photo-46274.jpeg?auto=compress&cs=tinysrgb&w=600"
+          data-excerpt="Seaport Museum Opens Rare Constitutional Documents Exhibit on May 27"
+          data-body="On May 27, the South Street Seaport Museum will open a new exhibit, 'The Promise of Liberty: Words That Shaped a Nation,' a showing of rare and historical documents marking a defining moment ahead of America's upcoming 250th anniversary.\n\nThe exhibit will include a rare copy of the 1787 'Official Edition' of the United States Constitution, made available by financier and philanthropist Ken Griffin. One of just 14 surviving copies, this document was printed for delegates to the Constitutional Convention and Confederation Congress.\n\nAdditional highlights include a rare July 1776 broadside of the Declaration of Independence and a 1789 printing of the Bill of Rights owned by one of the Representatives who helped shape it in the First Federal Congress. Tickets: $10. southstreetseaportmuseum.org/promise-of-liberty/">
+          <img class="article-img" src="https://images.pexels.com/photos/46274/pexels-photo-46274.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Historic documents exhibit">
+          <span class="section-label">Arts &amp; Culture</span>
+          <div class="article-headline">The Write Stuff</div>
+          <div class="article-excerpt">Seaport Museum Opens Rare Constitutional Documents Exhibit on May 27</div>
+          <div class="article-meta">The Broadsheet &middot; May 16, 2026</div>
+          <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
+        </div>
+        <div class="article-card"
+          data-article="true"
+          data-title="Ebony and Ivory"
+          data-category="Events"
+          data-meta="The Broadsheet &middot; May 16, 2026"
+          data-img="https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg?auto=compress&cs=tinysrgb&w=600"
+          data-excerpt="Sing for Hope Brings 25 Artist-Designed Pianos to Fosun Plaza on May 18"
+          data-body="Sing for Hope, an arts nonprofit, will kick off its 25th anniversary year on Monday, May 18, with the return of its signature activation: Sing for Hope Pianos NYC, at Fosun Plaza at 28 Liberty Street.\n\nFrom 9am to 3pm, the space will become an interactive, open-air gallery where members of the public are invited to play and engage with 25 new artist-designed Sing for Hope pianos. At noon, the Sing for Hope HandaHarmony Youth Chorus — young people ages six to 18 — will perform with the Marching Cobras.\n\nAfter the event, the Sing for Hope pianos will be deployed to New York City parks and public spaces across all five boroughs for a three-week citywide residency. More info: singforhope.org/pianos/nyc26">
+          <img class="article-img" src="https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Piano in public space">
+          <span class="section-label">Events</span>
+          <div class="article-headline">Ebony and Ivory</div>
+          <div class="article-excerpt">Sing for Hope Brings 25 Artist-Designed Pianos to Fosun Plaza on May 18</div>
+          <div class="article-meta">The Broadsheet &middot; May 16, 2026</div>
           <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
         </div>
       </div>
     </div>
   </section>
+  <!-- CURRENT ISSUE PREVIEW -->
+  <section class="current-issue" id="current">
+    <div class="current-issue-inner">
+      <div class="current-issue-header">
+        <span class="section-label">Current Issue</span>
+        <span class="current-issue-vol">Volume 30, Number 9 &nbsp;&middot;&nbsp; May 16&ndash;31, 2026 &nbsp;&middot;&nbsp; Published every two weeks</span>
+      </div>
+      <div class="current-issue-grid">
+        <div class="current-issue-card">
+          <span class="section-label">City Hall</span>
+          <div class="current-issue-card-title">Four Yeses, Six Maybes, and Thirty Nos</div>
+          <div class="current-issue-card-deck">Most Common City Hall Answer to CB1's Wish List Is 'Get Lost'</div>
+          <button class="current-issue-card-read"
+            data-article="true"
+            data-title="Four Yeses, Six Maybes, and Thirty Nos"
+            data-category="City Hall"
+            data-meta="By Matthew Fenton &middot; May 16, 2026"
+            data-img="https://images.pexels.com/photos/1486222/pexels-photo-1486222.jpeg?auto=compress&cs=tinysrgb&w=600"
+            data-excerpt="Most Common City Hall Answer to CB1's Wish List Is 'Get Lost'"
+            data-body="Community Board 1 recently received official replies to the 40 budget requests it submitted to the Mamdani administration for spending priorities in Lower Manhattan in fiscal year 2027.\n\nThe City answered 'yes' on four requests. Six proposals received a 'maybe.' The remaining 30 were denied, including proposals for a new public library, outdoor pool, and park improvements. The City's reply to CB1's request for funding the Estuarium at Pier 26 read: 'the agency does not understand the request as written' — a puzzling response given that the Estuarium is a longstanding local priority.">Read full story &rarr;</button>
+        </div>
+        <div class="current-issue-card">
+          <span class="section-label">Education</span>
+          <div class="current-issue-card-title">DOE on AI School in FiDi: NVM</div>
+          <div class="current-issue-card-deck">Local Parents and Community Leaders Push Back as DOE Withdraws Controversial AI High School Proposal</div>
+          <button class="current-issue-card-read"
+            data-article="true"
+            data-title="DOE on AI School in FiDi: NVM"
+            data-category="Education"
+            data-meta="By Matthew Fenton &middot; May 16, 2026"
+            data-img="https://images.pexels.com/photos/2305190/pexels-photo-2305190.jpeg?auto=compress&cs=tinysrgb&w=600"
+            data-excerpt="Local Parents and Community Leaders Push Back"
+            data-body="The Department of Education has withdrawn its controversial proposal to create a new AI-focused high school in the Financial District, after pushback from parents at the Lower Manhattan Community Middle School at 26 Broadway.\n\nChancellor Kamar Samuels: 'We heard you loud and clear, and we are listening.' Parent leader Anne Hager called it 'a huge relief.'">Read full story &rarr;</button>
+        </div>
+        <div class="current-issue-card">
+          <span class="section-label">Community</span>
+          <div class="current-issue-card-title">(Too Many) Caps For Sale</div>
+          <div class="current-issue-card-deck">City Hall Park Advocates Want Fewer Vendors Crowding the East Plaza</div>
+          <button class="current-issue-card-read"
+            data-article="true"
+            data-title="(Too Many) Caps For Sale"
+            data-category="Community"
+            data-meta="By Matthew Fenton, Photo by Cora Fung &middot; May 16, 2026"
+            data-img="https://images.pexels.com/photos/317140/pexels-photo-317140.jpeg?auto=compress&cs=tinysrgb&w=600"
+            data-excerpt="City Hall Park Advocates Want Fewer Vendors Crowding the East Plaza"
+            data-body="The east plaza of City Hall Park has been overrun with vendors displaced from the Brooklyn Bridge walkway since 2024. A CB1 survey found 60% of users describe navigating the space as 'difficult.' CB1's Urban Planning Fellow urged a Battery Conservancy-style partnership to restore order and fund maintenance.">Read full story &rarr;</button>
+        </div>
+        <div class="current-issue-card">
+          <span class="section-label">Harbor Life</span>
+          <div class="current-issue-card-title">Come Sail Away</div>
+          <div class="current-issue-card-deck">Pioneer and W.O. Decker Embark on 2026 Season at Pier 16</div>
+          <button class="current-issue-card-read"
+            data-article="true"
+            data-title="Come Sail Away"
+            data-category="Harbor Life"
+            data-meta="By Matthew Fenton &middot; May 16, 2026"
+            data-img="https://images.pexels.com/photos/13121940/pexels-photo-13121940.jpeg?auto=compress&cs=tinysrgb&w=600"
+            data-excerpt="A Pair of Historic Vessels Offer Summer Boating in New York Harbor"
+            data-body="The 1885 schooner Pioneer and the 1930 tugboat W.O. Decker have both embarked on their 2026 sailing seasons from Pier 16 at South Street Seaport. Pioneer is the oldest working boat of any kind in New York Harbor. Public sails are available weekends; tickets from $5. See southstreetseaportmuseum.org/visit/sails_cruises/ for details.">Read full story &rarr;</button>
+        </div>
+      </div>
+      <div class="current-issue-banner">&#128240; Next issue: May 31, 2026 &nbsp;&middot;&nbsp; Ad deadline: May 27 &nbsp;&middot;&nbsp; Published every two weeks</div>
+    </div>
+  </section>
+
+  <!-- RIVERWATCH -->
+  <section class="riverwatch" id="riverwatch">
+    <div class="riverwatch-inner">
+      <span class="section-label" style="margin-bottom:18px;">RiverWatch</span>
+      <p class="riverwatch-note">Cruise ships navigate through New York Harbor on their way to and from the midtown Passenger Ship Terminal, Cape Liberty Cruise Port in Bayonne, NJ, and the docks in Red Hook, Brooklyn. Estimated times are based on sighting histories, published schedules, and intuition &mdash; they are also subject to tides, fog, winds, freak waves, hurricanes, and the whims of upper management.</p>
+      <table class="riverwatch-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Ship</th>
+            <th>Arriving</th>
+            <th>Departing</th>
+            <th>Dock</th>
+            <th>Destination</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>May 16</td><td>Norwegian Aqua</td><td>6:15am</td><td>4:45pm</td><td>Manhattan</td><td>Bermuda</td></tr>
+          <tr><td>May 17</td><td>ACL American Patriot</td><td>6:30am</td><td>3:30pm</td><td>Brooklyn</td><td>Boston</td></tr>
+          <tr><td>May 23</td><td>Norwegian Aqua</td><td>6:15am</td><td>4:45pm</td><td>Manhattan</td><td>Bermuda</td></tr>
+          <tr><td>May 28</td><td>Carnival Venezia</td><td>6:30am</td><td>3:30pm</td><td>Bayonne</td><td>Halifax</td></tr>
+          <tr><td>May 29</td><td>Queen Mary 2</td><td>6:00am</td><td>5:30pm</td><td>Brooklyn</td><td>Le Havre, Paris</td></tr>
+        </tbody>
+      </table>
+      <div class="riverwatch-source">Source: <a href="https://www.worldshipny.com" target="_blank" rel="noopener">worldshipny.com</a></div>
+    </div>
+  </section>
+
+  <!-- CLASSIFIEDS -->
+  <section class="classifieds" id="classifieds">
+    <div class="classifieds-inner">
+      <span class="section-label" style="margin-bottom:12px;">Classifieds &amp; Personals</span>
+      <p class="classifieds-note"><strong>Respectable Employment &amp; Services &nbsp;&middot;&nbsp; Items for Sale</strong><br>Up to 25 words. Six placements. FREE. Write to <a href="mailto:editor@ebroadsheet.com" style="color:var(--accent);">editor@ebroadsheet.com</a></p>
+      <div class="classifieds-grid">
+        <div class="classified-item">
+          <span class="section-label">Community</span>
+          <div class="classified-item-body"><strong>Senior Walking Group</strong> &mdash; Looking to create a walking group for seniors on Tuesdays or Thursdays around noon in Rockefeller Park and north Battery Park City. Please reach out <a href="mailto:rvc212@hotmail.com">rvc212@hotmail.com</a></div>
+        </div>
+        <div class="classified-item">
+          <span class="section-label">For Sale</span>
+          <div class="classified-item-body"><strong>Small, Beautiful Paintings</strong> for sale ($50&ndash;$100) by local artist Owen Gray. Landscapes painted in NYC and Italy. Independence Plaza, 310 Greenwich St. Text Jane, <a href="tel:646-334-5726">646-334-5726</a>, for appointment.</div>
+        </div>
+        <div class="classified-item">
+          <span class="section-label">Wildlife</span>
+          <div class="classified-item-body"><strong>Baby Falcon Alert</strong> &mdash; First Lower Manhattan baby falcon in years! See the one-month-old miracle on the live Falcon Cam at the top of 55 Water Street. <a href="https://55water.com/falcon-cam" target="_blank" rel="noopener">55water.com/falcon-cam</a></div>
+        </div>
+        <div class="classified-item">
+          <span class="section-label">Rental</span>
+          <div class="classified-item-body"><strong>Berkshire Rental</strong> &mdash; One level, 4 bedroom, steps from the lake with a large screened-in porch. Hiking, swimming, fishing, watersports and close to cultural activities. <a href="https://24downsroad.com" target="_blank" rel="noopener">24downsroad.com</a></div>
+        </div>
+        <div class="classified-item">
+          <span class="section-label">Services</span>
+          <div class="classified-item-body"><strong>Notary Public in BPC</strong> &mdash; Text Paula at <a href="tel:917-836-8802">917-836-8802</a></div>
+        </div>
+        <div class="classified-item">
+          <span class="section-label">Services</span>
+          <div class="classified-item-body"><strong>Pet Sitter &amp; End-of-Life Pet Doula</strong> &mdash; Caring for Lower Manhattan pets since 1998. Call/text Laura at <a href="tel:646-450-2337">646-450-2337</a>; send a message via <a href="https://CityCats.nyc" target="_blank" rel="noopener">CityCats.nyc</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="newsletter" id="newsletter">
     <div class="newsletter-rule-top"><hr></div>
     <div class="newsletter-inner">
@@ -1065,8 +1348,8 @@
       </div>
       <div class="about-staff">
         <span class="about-staff-label">Editor:</span> Matthew Fenton &nbsp;&nbsp;
-        <span class="about-staff-label">Publisher:</span> Isabella Simko &nbsp;&nbsp;
-        <span class="about-staff-label">Contributors:</span> Cora Fung, Brian Rogers
+        <span class="about-staff-label">Publisher:</span> Alison Simko &nbsp;&nbsp;
+        <span class="about-staff-label">Contributors:</span> Cora Fung, Grace Glukhov, Isabella Seepersaud
       </div>
       <div class="about-neighborhoods"><span style="color:var(--accent);font-weight:500">Neighborhoods we cover:</span> Battery Park City, Tribeca, South Street Seaport, Financial District.</div>
     </div>
@@ -1097,7 +1380,7 @@
       <div class="footer-block">
         <nav class="footer-nav">
           <a href="#" class="footer-link">Home</a>
-          <a href="#" class="footer-link" data-info="issue">Current Issue</a>
+          <a href="#current" class="footer-link">Current Issue</a>
           <a href="#about" class="footer-link">About</a>
           <a href="#" class="footer-link" data-info="archive">Archive</a>
           <a href="#contact" class="footer-link">Contact</a>
