@@ -109,6 +109,9 @@
       border-bottom: 2px solid var(--accent);
       color: var(--accent);
     }
+    .mobile-nav {
+      display: none;
+    }
     /* Hamburger (mobile) */
     .nav-hamburger {
       display: none;
@@ -318,6 +321,21 @@
       opacity: 1;
       transform: none;
       transition: opacity 0.6s ease, transform 0.5s cubic-bezier(.5,1.5,.55,.96);
+    }
+    .article-card img.article-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 3px;
+      margin-bottom: 14px;
+      filter: saturate(0.85);
+      transition: filter 0.3s;
+    }
+    .article-card:hover img.article-img {
+      filter: saturate(1);
+    }
+    .article-card.featured img.article-img {
+      height: 220px;
     }
     .article-card:hover {
       box-shadow: 0 11px 30px 0 rgba(139,26,26,0.10);
@@ -755,6 +773,7 @@
       <span class="section-label" style="margin-bottom:37px;">Latest Stories</span>
       <div class="articles-grid">
         <div class="article-card featured">
+          <img class="article-img" src="https://images.pexels.com/photos/317140/pexels-photo-317140.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Downtown storefronts">
           <span class="section-label">Local Economy</span>
           <div class="article-headline">The Revel is in the Retails</div>
           <div class="article-excerpt">Downtown Storefront Incubator Program Selects Six Concepts for Summer Debut.</div>
@@ -762,6 +781,7 @@
           <a class="article-readlink" href="#">Read &rarr;</a>
         </div>
         <div class="article-card">
+          <img class="article-img" src="https://images.pexels.com/photos/12880839/pexels-photo-12880839.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ferry on the river">
           <span class="section-label">Transit</span>
           <div class="article-headline">Riding the Current</div>
           <div class="article-excerpt">Proposed Law Would Spur New York City's Transition to Electric Ferries.</div>
@@ -769,6 +789,7 @@
           <a class="article-readlink" href="#">Read &rarr;</a>
         </div>
         <div class="article-card">
+          <img class="article-img" src="https://images.pexels.com/photos/2305190/pexels-photo-2305190.jpeg?auto=compress&cs=tinysrgb&w=600" alt="School building">
           <span class="section-label">Education</span>
           <div class="article-headline">Diversity, Equity, or Exclusion?</div>
           <div class="article-excerpt">Lawsuit Alleges that Stuyvesant High School Illegally Considers Race in Admissions Decisions.</div>
@@ -776,6 +797,7 @@
           <a class="article-readlink" href="#">Read &rarr;</a>
         </div>
         <div class="article-card">
+          <img class="article-img" src="https://images.pexels.com/photos/913200/pexels-photo-913200.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Financial District">
           <span class="section-label">Crime & Business</span>
           <div class="article-headline">When Loyalty is the New Currency, Larceny is the New Counterfeiting</div>
           <div class="article-excerpt">Founder of FiDi-Based Financial Tech Company Pleads Guilty to Securities Fraud.</div>
@@ -783,6 +805,7 @@
           <a class="article-readlink" href="#">Read &rarr;</a>
         </div>
         <div class="article-card">
+          <img class="article-img" src="https://images.pexels.com/photos/7317718/pexels-photo-7317718.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Memorial ceremony">
           <span class="section-label">Community</span>
           <div class="article-headline">A Seventh Moment of Silence</div>
           <div class="article-excerpt">Upcoming Anniversary Ceremony will Acknowledge People Who have Died of 9/11 Illnesses.</div>
@@ -790,6 +813,7 @@
           <a class="article-readlink" href="#">Read &rarr;</a>
         </div>
         <div class="article-card">
+          <img class="article-img" src="https://images.pexels.com/photos/13121940/pexels-photo-13121940.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Sailboat in harbor">
           <span class="section-label">Harbor Life</span>
           <div class="article-headline">Come Sail Away</div>
           <div class="article-excerpt">A Pair of Historic Vessels Offer Summer Boating in New York Harbor.</div>
