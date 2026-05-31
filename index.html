@@ -760,108 +760,93 @@
       color: #bbb;
     }
 
-    /* ─── Artwork Integration ─── */
+    /* ─── NYT-Inspired Image Integration ─── */
 
-    /* Cover art strip below masthead */
-    .cover-art-strip {
-      position: relative;
-      height: 460px;
+    /* Hero with large top image */
+    .hero { border-top: 3px solid #111; }
+    .hero-image-wrap {
+      width: 100%;
+      aspect-ratio: 16/7;
       overflow: hidden;
-      border-bottom: 2px solid #111;
+      margin-bottom: 0;
     }
-    .cover-art-strip img {
+    .hero-image-wrap img {
       width: 100%; height: 100%; object-fit: cover; display: block;
     }
-    .cover-art-strip-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
-      display: flex; align-items: flex-end; padding: 32px 40px;
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid #ddd;
     }
-    .cover-art-strip-caption {
-      color: #fff;
-    }
-    .cover-art-strip-caption .label {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(255,255,255,0.7); margin: 0 0 6px 0;
-    }
-    .cover-art-strip-caption .title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 22px; font-weight: 600; margin: 0 0 4px 0;
-    }
-    .cover-art-strip-caption .artist {
-      font-family: Georgia, serif; font-style: italic;
-      font-size: 13px; color: rgba(255,255,255,0.75); margin: 0;
-    }
+    .hero-text { padding: 28px 32px 32px 0; border-right: 1px solid #ddd; }
+    .hero-image { padding: 28px 0 32px 32px; }
 
-    /* Story tiles with background images */
-    .story-tile {
-      position: relative; overflow: hidden;
-      background-color: #1a1a1a;
+    /* Story cards — photo above text (NYT style) */
+    .card {
+      display: flex;
+      flex-direction: column;
     }
-    .story-tile-bg {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center;
-      opacity: 0.45;
-      transition: opacity 0.3s ease;
-    }
-    .story-tile:hover .story-tile-bg { opacity: 0.55; }
-    .story-tile-content {
-      position: relative; z-index: 1;
-      padding: 28px 28px 32px;
-      color: #fff;
-      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 100%);
-      min-height: 280px;
-      display: flex; flex-direction: column; justify-content: flex-end;
-    }
-    .story-tile-content .section-label { color: rgba(255,255,255,0.65); }
-    .story-tile-content h2,
-    .story-tile-content h3 { color: #fff; }
-    .story-tile-content p { color: rgba(255,255,255,0.82); }
-    .story-tile-content .byline { color: rgba(255,255,255,0.55); }
-
-    /* Inline art pullout — between sections */
-    .art-pullout {
-      display: flex; gap: 0;
-      border-top: 1px solid #111; border-bottom: 1px solid #111;
-      margin: 0;
-    }
-    .art-pullout-img {
-      flex: 0 0 38%;
+    .card-image {
+      width: 100%;
+      aspect-ratio: 3/2;
       overflow: hidden;
+      flex-shrink: 0;
     }
+    .card-image img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.4s ease;
+    }
+    .card:hover .card-image img { transform: scale(1.03); }
+    .card-content { flex: 1; padding: 16px 20px 20px; }
+
+    /* Art pullout — image left, quote right */
+    .art-pullout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 2px solid #111;
+      border-bottom: 1px solid #111;
+    }
+    .art-pullout-img { overflow: hidden; }
     .art-pullout-img img {
-      width: 100%; height: 100%; object-fit: cover; display: block; min-height: 260px;
+      width: 100%; height: 100%; object-fit: cover; display: block; min-height: 300px;
     }
     .art-pullout-text {
-      flex: 1; padding: 32px 36px;
+      padding: 40px 48px;
       display: flex; flex-direction: column; justify-content: center;
       background: #FEFDF9;
       border-left: 1px solid #111;
     }
-    .art-pullout-text .pullout-quote {
+    .art-pullout-text blockquote {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 24px; font-weight: 600; line-height: 1.35;
-      color: #111; margin: 0 0 14px 0;
+      font-size: 26px; font-weight: 600; line-height: 1.35;
+      color: #111; margin: 0 0 16px 0; padding: 0;
+      border: none;
     }
-    .art-pullout-text .pullout-credit {
+    .art-pullout-text cite {
       font-family: Georgia, serif; font-style: italic;
-      font-size: 13px; color: #888; margin: 0;
+      font-size: 13px; color: #888;
     }
 
     /* Full-width atmospheric divider */
     .art-divider {
-      height: 300px; overflow: hidden; position: relative;
-      border-top: 2px solid #111;
+      position: relative;
+      height: 280px; overflow: hidden;
+      border-top: 2px solid #111; border-bottom: 1px solid #111;
     }
-    .art-divider img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-    }
+    .art-divider img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .art-divider-label {
-      position: absolute; bottom: 20px; right: 28px;
+      position: absolute; bottom: 16px; right: 24px;
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-style: italic; font-size: 12px;
-      color: rgba(255,255,255,0.7);
+      color: rgba(255,255,255,0.75);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+
+    /* Image captions */
+    .img-caption {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic; font-size: 12px; color: #888;
+      padding: 5px 0 0; line-height: 1.5;
     }
 
   </style>
@@ -902,24 +887,11 @@
     </div>
   </header>
 
-
-  <!-- COVER ART STRIP -->
-  <div class="cover-art-strip">
-    <img src="https://i0.wp.com/www.ebroadsheet.com/wp-content/uploads/2024/01/Broadsheet_B.Ireland.jpeg?fit=640%2C267&ssl=1" alt="Broadsheet cover art">
-    <div class="cover-art-strip-overlay">
-      <div class="cover-art-strip-caption">
-        <p class="label">This Issue's Art</p>
-        <p class="title">Lower Manhattan in Ink</p>
-        <p class="artist">B. Ireland &middot; Original work for The Broadsheet</p>
-      </div>
-    </div>
-  </div>
-
   <!-- CURRENT ISSUE HERO -->
-  <section class="hero" id="current" style="position:relative;overflow:hidden;">
+  <section class="hero" id="current">
     <div class="page">
-      <div style="position:absolute;inset:0;background-image:url('https://i0.wp.com/www.ebroadsheet.com/wp-content/uploads/2026/05/IMG_3102.jpg?fit=1280%2C1055&ssl=1');background-size:cover;background-position:center;opacity:0.12;z-index:0;"></div>
-        <div class="hero-inner" style="position:relative;z-index:1;">
+    <div class="hero-image-wrap"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1400&q=80" alt="Lower Manhattan"></div>
+      <div class="hero-inner">
         <div class="hero-text">
           <div class="hero-label">
             <span class="section-label" style="letter-spacing:0.18em;">CURRENT ISSUE</span>
@@ -1076,7 +1048,7 @@
 
   <!-- ART DIVIDER -->
   <div class="art-divider">
-    <img src="https://i0.wp.com/www.ebroadsheet.com/wp-content/uploads/2026/05/911cloudView-from-Above.jpg?fit=1280%2C960&ssl=1" alt="Lower Manhattan aerial view">
+    <img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=1600&q=80" alt="New York City aerial">
     <span class="art-divider-label">Lower Manhattan</span>
   </div>
 
