@@ -188,8 +188,8 @@
     }
     .hero-inner {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0 40px;
+      grid-template-columns: 2fr 3fr;
+      gap: 40px;
       align-items: start;
     }
     .hero-text { padding-bottom: 32px; }
@@ -724,13 +724,30 @@
 
   <!-- NAV -->
   <nav class="nav" role="navigation">
+    <button class="nav-hamburger" aria-label="Menu" onclick="this.classList.toggle('open')" style="background:none;border:none;cursor:pointer;padding:4px 8px;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center;">
+      <span style="display:block;width:22px;height:2px;background:#111;"></span>
+      <span style="display:block;width:22px;height:2px;background:#111;"></span>
+      <span style="display:block;width:22px;height:2px;background:#111;"></span>
+    </button>
     <a href="#" class="nav-link">Home</a>
     <a href="#current" class="nav-link">Current Issue</a>
     <a href="#advertise" class="nav-link">Advertise</a>
     <a href="#about" class="nav-link">About</a>
     <a href="#archive" class="nav-link">Archive</a>
     <a href="#contact" class="nav-link">Contact Us</a>
-    <span class="nav-ornament">◎</span>
+    <span class="nav-ornament">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Instagram" style="vertical-align:middle;display:inline-block;">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+    </span>
+    <button class="nav-search" aria-label="Search" style="background:none;border:none;cursor:pointer;padding:4px 6px;margin-left:4px;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+    </button>
   </nav>
 
   <!-- MASTHEAD -->
@@ -756,8 +773,9 @@
       <div class="hero-inner">
         <div class="hero-text">
           <div class="hero-label">
-            <span class="section-label">Current Issue &nbsp;·&nbsp; May 21, 2026</span>
+            <span class="section-label" style="letter-spacing:0.18em;">CURRENT ISSUE</span>
           </div>
+          <div class="hero-date" style="font-size:13px; color:#555; margin-bottom:10px; font-family:serif; letter-spacing:0.04em;">May 21, 2026</div>
           <hr class="rule" style="margin-bottom:16px;">
           <h1 class="hero-headline">Come Sail Away</h1>
           <p class="hero-deck">A Pair of Historic Vessels Offer Summer Boating in New York Harbor</p>
@@ -971,6 +989,10 @@
         <div class="footer-heading">Subscribe</div>
         <p class="footer-desc">Receive the BroadsheetDAILY — delivered every weekday morning.</p>
         <form class="footer-subscribe-form" onsubmit="return false;">
+          <div style="display:flex;gap:8px;margin-bottom:8px;">
+            <input type="text" placeholder="First name" style="flex:1;background:#222;border:1px solid #444;color:#EEE;padding:8px 10px;font-size:13px;font-family:inherit;">
+            <input type="text" placeholder="Last name" style="flex:1;background:#222;border:1px solid #444;color:#EEE;padding:8px 10px;font-size:13px;font-family:inherit;">
+          </div>
           <input type="email" placeholder="Your email">
           <button type="submit">Subscribe</button>
         </form>
@@ -981,7 +1003,7 @@
         <p class="footer-desc" id="contact">Editor: Matthew Fenton &nbsp;·&nbsp; Publisher: Alison Simko<br>395 South End Ave, NYC 10280<br><a href="mailto:alison@ebroadsheet.com" style="color:#CCC;">alison@ebroadsheet.com</a></p>
       </div>
     </div>
-    <div class="footer-copyright">© 1997–2026 The Broadsheet. All rights reserved.</div>
+    <div class="footer-copyright">© 2026 The Broadsheet. All rights reserved.</div>
   </footer>
 
   <script>
