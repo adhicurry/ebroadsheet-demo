@@ -759,6 +759,176 @@
       text-transform: uppercase;
       color: #bbb;
     }
+
+    /* ─── Artwork Sections ─── */
+    .cover-art {
+      border-top: 2px solid #111;
+      border-bottom: 1px solid #111;
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      background: #FEFDF9;
+    }
+    .cover-art-image {
+      flex: 0 0 52%;
+      background: #e8e4dc;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid #111;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover-art-image-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: #999;
+    }
+    .cover-art-image-placeholder svg {
+      opacity: 0.35;
+    }
+    .cover-art-caption {
+      flex: 1;
+      padding: 36px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .cover-art-label {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #888;
+      margin: 0 0 14px 0;
+    }
+    .cover-art-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1.25;
+      color: #111;
+      margin: 0 0 12px 0;
+    }
+    .cover-art-artist {
+      font-family: 'Bodoni Moda', Georgia, serif;
+      font-style: italic;
+      font-size: 15px;
+      color: #555;
+      margin: 0 0 16px 0;
+    }
+    .cover-art-desc {
+      font-family: Georgia, serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #444;
+      margin: 0;
+    }
+
+    /* Inline story art */
+    .story-art {
+      border: 1px solid #ccc;
+      background: #f0ede6;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 0 16px 0;
+    }
+    .story-art-label {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    /* Art showcase section */
+    .art-showcase {
+      padding: 48px 0;
+      border-top: 2px solid #111;
+      background: #FEFDF9;
+    }
+    .art-showcase-header {
+      padding: 0 40px 32px;
+      border-bottom: 1px solid #111;
+      margin-bottom: 32px;
+    }
+    .art-showcase-header h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #111;
+      margin: 0 0 6px 0;
+    }
+    .art-showcase-header p {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 15px;
+      color: #666;
+      margin: 0;
+    }
+    .art-showcase-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 0;
+      border-top: 1px solid #111;
+    }
+    .art-showcase-item {
+      border-right: 1px solid #111;
+      border-bottom: 1px solid #111;
+    }
+    .art-showcase-item:last-child {
+      border-right: none;
+    }
+    .art-showcase-item.featured {
+      grid-row: 1 / 3;
+      border-right: 1px solid #111;
+    }
+    .art-frame {
+      background: #e8e4dc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 240px;
+    }
+    .art-frame.tall {
+      min-height: 480px;
+    }
+    .art-frame-placeholder {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+    .art-item-meta {
+      padding: 16px 20px 20px;
+      border-top: 1px solid #ddd;
+    }
+    .art-item-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: #111;
+      margin: 0 0 4px 0;
+    }
+    .art-item-artist {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 13px;
+      color: #777;
+      margin: 0;
+    }
+
   </style>
 </head>
 <body>
@@ -796,6 +966,27 @@
       <hr class="rule--double">
     </div>
   </header>
+
+
+  <!-- COVER ART -->
+  <div class="cover-art">
+    <div class="cover-art-image">
+      <div class="cover-art-image-placeholder">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="4" width="56" height="56" rx="2" stroke="#999" stroke-width="1.5"/>
+          <circle cx="22" cy="22" r="7" stroke="#999" stroke-width="1.5"/>
+          <path d="M4 44 L18 30 L28 42 L38 32 L60 52" stroke="#999" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#aaa;">Cover Art</span>
+      </div>
+    </div>
+    <div class="cover-art-caption">
+      <p class="cover-art-label">Featured Artwork</p>
+      <h2 class="cover-art-title">Untitled — Lower Manhattan at Dusk</h2>
+      <p class="cover-art-artist">Artist Name &middot; Mixed Media</p>
+      <p class="cover-art-desc">A contributing artist's vision of the streets and waterways that define this neighborhood. Original works submitted to The Broadsheet celebrate the creative culture of Lower Manhattan.</p>
+    </div>
+  </div>
 
   <!-- CURRENT ISSUE HERO -->
   <section class="hero" id="current">
@@ -953,6 +1144,52 @@
     </div>
   </div>
 
+
+
+  <!-- ART SHOWCASE -->
+  <section class="art-showcase">
+    <div class="art-showcase-header">
+      <h2>Art &amp; Culture</h2>
+      <p>Original works by artists of Lower Manhattan</p>
+    </div>
+    <div class="art-showcase-grid">
+      <div class="art-showcase-item featured">
+        <div class="art-frame tall"><span class="art-frame-placeholder">Featured Work</span></div>
+        <div class="art-item-meta">
+          <p class="art-item-title">Featured Piece</p>
+          <p class="art-item-artist">Artist Name &middot; Medium</p>
+        </div>
+      </div>
+      <div class="art-showcase-item">
+        <div class="art-frame"><span class="art-frame-placeholder">Artwork</span></div>
+        <div class="art-item-meta">
+          <p class="art-item-title">Artwork Title</p>
+          <p class="art-item-artist">Artist Name &middot; Medium</p>
+        </div>
+      </div>
+      <div class="art-showcase-item">
+        <div class="art-frame"><span class="art-frame-placeholder">Artwork</span></div>
+        <div class="art-item-meta">
+          <p class="art-item-title">Artwork Title</p>
+          <p class="art-item-artist">Artist Name &middot; Medium</p>
+        </div>
+      </div>
+      <div class="art-showcase-item">
+        <div class="art-frame"><span class="art-frame-placeholder">Artwork</span></div>
+        <div class="art-item-meta">
+          <p class="art-item-title">Artwork Title</p>
+          <p class="art-item-artist">Artist Name &middot; Medium</p>
+        </div>
+      </div>
+      <div class="art-showcase-item" style="border-right:none;">
+        <div class="art-frame"><span class="art-frame-placeholder">Artwork</span></div>
+        <div class="art-item-meta">
+          <p class="art-item-title">Artwork Title</p>
+          <p class="art-item-artist">Artist Name &middot; Medium</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ADVERTISING SECTION -->
   <section class="ad-section">
