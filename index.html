@@ -716,6 +716,51 @@
       max-width: 728px;
       margin: 0 auto;
     }
+
+    /* ─── Advertising Section ─── */
+    .ad-section {
+      padding: 48px 40px;
+      border-top: 2px solid #111;
+      background: #FEFDF9;
+    }
+    .ad-section-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #555;
+      text-align: center;
+      margin: 0 0 28px 0;
+    }
+    .ad-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .ad-box {
+      border: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 140px;
+      background: #fff;
+    }
+    .ad-box.ad-wide {
+      grid-column: 1 / -1;
+      min-height: 120px;
+    }
+    .ad-placeholder {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #bbb;
+    }
   </style>
 </head>
 <body>
@@ -916,6 +961,19 @@
       </div>
     </div>
   </div>
+
+
+  <!-- ADVERTISING SECTION -->
+  <section class="ad-section">
+    <p class="ad-section-title">Advertisement</p>
+    <div class="ad-grid">
+      <div class="ad-box"><span class="ad-placeholder">Place Ad Here</span></div>
+      <div class="ad-box"><span class="ad-placeholder">Place Ad Here</span></div>
+      <div class="ad-box"><span class="ad-placeholder">Place Ad Here</span></div>
+      <div class="ad-box"><span class="ad-placeholder">Place Ad Here</span></div>
+      <div class="ad-box ad-wide"><span class="ad-placeholder">Place Ad Here</span></div>
+    </div>
+  </section>
 
   <!-- FOOTER (light background, 4 columns) -->
   <footer class="footer" id="archive">
