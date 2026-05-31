@@ -96,6 +96,13 @@
       top: 0;
       z-index: 100;
     }
+    .nav-edge {
+      position: absolute;
+      display: flex;
+      align-items: center;
+    }
+    .nav-edge--left { left: 20px; }
+    .nav-edge--right { right: 20px; gap: 10px; }
     .nav-link {
       font-family: 'Inter', Arial, sans-serif;
       font-size: 10.5px;
@@ -110,25 +117,36 @@
     }
     .nav-link:hover { border-bottom-color: #111; text-decoration: none; }
     .nav-ornament { font-size: 16px; color: #111; line-height: 1; }
-    /* mobile hamburger */
     .nav-hamburger {
-      display: none;
       background: none;
       border: none;
       cursor: pointer;
-      position: absolute;
-      right: 20px;
+      padding: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: center;
+      justify-content: center;
     }
     .nav-hamburger span {
       display: block;
       width: 22px;
       height: 2px;
       background: #111;
-      margin: 4px 0;
+    }
+    .nav-search {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 6px;
+      color: #111;
+      display: flex;
+      align-items: center;
     }
     @media (max-width: 720px) {
       .nav { justify-content: center; flex-wrap: wrap; gap: 16px 20px; padding: 10px 14px; }
       .nav-link { font-size: 9px; letter-spacing: 0.14em; }
+      .nav-edge--left, .nav-edge--right { display: none; }
     }
 
     /* ─── MASTHEAD ─────────────────────────────────────────────── */
@@ -257,40 +275,52 @@
       justify-content: space-between;
       margin-bottom: 16px;
     }
-    .latest-list { list-style: none; }
-    .latest-item {
+    .latest-list {
+      list-style: none;
       display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 0 20px;
-      padding: 18px 0;
-      border-top: 1px solid #ccc;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
     }
-    .latest-item:first-child { border-top: none; }
-    .latest-item-photo .photo-placeholder { height: 80px; }
+    .latest-item {
+      display: flex;
+      flex-direction: column;
+      padding: 18px 0 24px 20px;
+      border-left: 1px solid #ccc;
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+    .latest-item:first-child { border-left: none; padding-left: 0; }
+    .latest-item:hover { background: #F0EDE6; }
+    .latest-item-photo { margin-bottom: 12px; }
+    .latest-item-photo .photo-placeholder { height: 110px; }
     .latest-item-meta {
       font-family: 'Inter', Arial, sans-serif;
       font-size: 9.5px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: #777;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
     .latest-item-headline {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 17px;
+      font-size: 15px;
       font-weight: 700;
       line-height: 1.25;
       color: #111;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      flex: 1;
     }
     .latest-item-deck {
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: 15px;
+      font-size: 14px;
       color: #444;
       line-height: 1.4;
     }
+    @media (max-width: 860px) {
+      .latest-list { grid-template-columns: repeat(3, 1fr); }
+    }
     @media (max-width: 560px) {
-      .latest-item { grid-template-columns: 80px 1fr; gap: 0 12px; }
+      .latest-list { grid-template-columns: repeat(2, 1fr); }
     }
 
     /* ─── UPCOMING EVENTS ──────────────────────────────────────── */
@@ -360,237 +390,225 @@
     }
 
     /* ─── MAN ON THE STREET ────────────────────────────────────── */
-    .mot {
-      padding: 28px 0 0;
-      border-bottom: 1px solid #111;
-    }
-    .mot-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0 40px;
-      padding-bottom: 28px;
-    }
-    .mot-photo .photo-placeholder { height: 260px; }
-    .mot-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding-bottom: 4px;
-    }
-    .mot-pullquote {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(20px, 3vw, 30px);
-      font-style: italic;
-      line-height: 1.4;
-      color: #111;
-      border-left: 3px solid #111;
-      padding-left: 18px;
-      margin-bottom: 12px;
-    }
-    .mot-attribution {
-      font-family: 'Inter', Arial, sans-serif;
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #777;
-      padding-left: 21px;
-    }
-    @media (max-width: 680px) {
-      .mot-inner { grid-template-columns: 1fr; gap: 20px 0; }
-    }
+    /* (removed — merged into three-panel row below) */
 
     /* ─── SUBSCRIBE STRIP ──────────────────────────────────────── */
-    .subscribe-strip {
+    /* (removed — merged into three-panel row below) */
+
+    /* ─── THREE-PANEL ROW (Events | MoT | Stay Connected) ─────── */
+    .three-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-top: 1px solid #111;
       border-bottom: 1px solid #111;
-      padding: 36px 0;
-      text-align: center;
     }
-    .subscribe-strip-title {
+    .three-panel-col {
+      padding: 24px 28px 28px;
+      border-right: 1px solid #111;
+    }
+    .three-panel-col:last-child { border-right: none; }
+    .three-panel-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    /* Stay Connected col */
+    .stay-connected-title {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(20px, 3vw, 28px);
+      font-size: clamp(18px, 2vw, 24px);
       font-weight: 400;
+      line-height: 1.25;
       color: #111;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
-    .subscribe-strip-sub {
+    .stay-connected-sub {
       font-family: 'EB Garamond', Georgia, serif;
       font-style: italic;
-      font-size: 17px;
+      font-size: 16px;
       color: #555;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .stay-connected-form {
+      display: flex;
+      gap: 0;
       margin-bottom: 20px;
     }
-    .subscribe-form {
-      display: flex;
-      justify-content: center;
-      gap: 0;
-      max-width: 440px;
-      margin: 0 auto;
-    }
-    .subscribe-form input[type=email] {
+    .stay-connected-form input[type=email] {
       flex: 1;
       border: 1px solid #111;
       border-right: none;
-      padding: 10px 14px;
+      padding: 9px 12px;
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: 16px;
+      font-size: 15px;
       background: #FEFDF9;
       color: #111;
       outline: none;
       border-radius: 0;
+      min-width: 0;
     }
-    .subscribe-form input[type=email]::placeholder { color: #999; }
-    .subscribe-form button {
+    .stay-connected-form input[type=email]::placeholder { color: #999; }
+    .stay-connected-form button {
       background: #111;
       color: #FEFDF9;
       border: 1px solid #111;
-      padding: 10px 22px;
+      padding: 9px 16px;
       font-family: 'Inter', Arial, sans-serif;
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       cursor: pointer;
       border-radius: 0;
       transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
     }
-    .subscribe-form button:hover { background: #FEFDF9; color: #111; }
+    .stay-connected-form button:hover { background: #FEFDF9; color: #111; }
+    .stay-connected-photo .photo-placeholder { height: 180px; }
+    /* MoT photo full height */
+    .mot-photo-full .photo-placeholder { height: 320px; }
+    @media (max-width: 860px) {
+      .three-panel { grid-template-columns: 1fr 1fr; }
+      .three-panel-col:nth-child(2) { border-right: none; }
+      .three-panel-col:nth-child(3) { grid-column: 1 / -1; border-right: none; border-top: 1px solid #111; }
+    }
+    @media (max-width: 560px) {
+      .three-panel { grid-template-columns: 1fr; }
+      .three-panel-col { border-right: none; border-top: 1px solid #111; }
+      .three-panel-col:first-child { border-top: none; }
+    }
 
     /* ─── BOTTOM PANELS (Current Issue + Archive) ──────────────── */
-    .bottom-panels {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-bottom: 1px solid #111;
-    }
-    .bottom-panel {
-      padding: 28px 0;
-    }
-    .bottom-panel:first-child {
-      border-right: 1px solid #111;
-      padding-right: 32px;
-    }
-    .bottom-panel:last-child { padding-left: 32px; }
-    .bottom-panel-label { margin-bottom: 14px; }
-    .bottom-panel .photo-placeholder { height: 200px; }
-    @media (max-width: 560px) {
-      .bottom-panels { grid-template-columns: 1fr; }
-      .bottom-panel:first-child { border-right: none; border-bottom: 1px solid #111; padding-right: 0; }
-      .bottom-panel:last-child { padding-left: 0; }
-    }
+    /* (removed — now part of footer) */
 
     /* ─── ARCHIVE DROPDOWN ─────────────────────────────────────── */
-    .archive-bar {
-      padding: 20px 0;
-      border-bottom: 1px solid #111;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .archive-bar select {
-      border: 1px solid #111;
-      background: #FEFDF9;
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 15px;
-      color: #111;
-      padding: 6px 10px;
-      border-radius: 0;
-      outline: none;
-      cursor: pointer;
-    }
+    /* (removed — now part of footer) */
 
     /* ─── FOOTER ───────────────────────────────────────────────── */
     .footer {
-      background: #111;
-      color: #EEE;
-      padding: 44px 0 28px;
+      background: #FEFDF9;
+      color: #111;
+      border-top: 3px solid #111;
+      padding: 36px 0 0;
     }
     .footer-inner {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 32px 40px;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 0;
     }
+    .footer-col {
+      padding: 0 32px 36px 0;
+      border-right: 1px solid #CCC;
+    }
+    .footer-col:last-child { border-right: none; padding-right: 0; padding-left: 32px; }
+    .footer-col:not(:first-child):not(:last-child) { padding-left: 32px; }
+    .footer-col:nth-child(2) { padding-left: 32px; }
     .footer-heading {
       font-family: 'Inter', Arial, sans-serif;
       font-size: 9.5px;
       font-weight: 700;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: #EEE;
-      margin-bottom: 14px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid #444;
+      color: #111;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #111;
     }
     .footer-nav-list { list-style: none; }
     .footer-nav-list li { margin-bottom: 8px; }
     .footer-nav-list a {
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: 15px;
-      color: #CCC;
+      font-size: 16px;
+      color: #111;
       text-decoration: none;
     }
-    .footer-nav-list a:hover { color: #FFF; text-decoration: underline; }
-    .footer-ornament {
-      font-size: 22px;
-      color: #555;
-      margin-top: 8px;
+    .footer-nav-list a:hover { text-decoration: underline; }
+    .footer-instagram {
+      margin-top: 16px;
+      color: #111;
+    }
+    .footer-archive-select {
+      border: 1px solid #999;
+      background: #FEFDF9;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 15px;
+      color: #111;
+      padding: 8px 10px;
+      border-radius: 0;
+      outline: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    .footer-archive-label {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #777;
+      margin-bottom: 10px;
       display: block;
     }
     .footer-subscribe-form {
       display: flex;
-      gap: 0;
+      flex-direction: column;
+      gap: 8px;
       margin-top: 4px;
     }
-    .footer-subscribe-form input[type=email] {
-      flex: 1;
-      border: 1px solid #444;
-      border-right: none;
-      background: #1a1a1a;
-      color: #EEE;
-      padding: 8px 10px;
+    .footer-subscribe-form input {
+      width: 100%;
+      border: 1px solid #999;
+      background: #FEFDF9;
+      color: #111;
+      padding: 9px 12px;
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: 14px;
+      font-size: 15px;
       outline: none;
       border-radius: 0;
-      min-width: 0;
     }
-    .footer-subscribe-form input[type=email]::placeholder { color: #666; }
+    .footer-subscribe-form input::placeholder { color: #999; }
     .footer-subscribe-form button {
-      background: #EEE;
-      color: #111;
-      border: 1px solid #EEE;
-      padding: 8px 14px;
+      background: #111;
+      color: #FEFDF9;
+      border: 1px solid #111;
+      padding: 11px 14px;
       font-family: 'Inter', Arial, sans-serif;
       font-size: 9px;
       font-weight: 700;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       cursor: pointer;
       border-radius: 0;
       transition: background 0.15s, color 0.15s;
+      width: 100%;
     }
-    .footer-subscribe-form button:hover { background: #111; color: #EEE; }
-    .footer-desc {
+    .footer-subscribe-form button:hover { background: #333; }
+    .footer-subscribe-desc {
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: 14px;
-      color: #999;
-      line-height: 1.6;
-      margin-bottom: 10px;
+      font-size: 15px;
+      color: #555;
+      line-height: 1.5;
+      margin-bottom: 12px;
     }
     .footer-copyright {
       max-width: 1200px;
-      margin: 32px auto 0;
-      padding: 16px 24px 0;
-      border-top: 1px solid #333;
+      margin: 0 auto;
+      padding: 16px 24px;
+      border-top: 1px solid #CCC;
       font-family: 'Inter', Arial, sans-serif;
       font-size: 10px;
       letter-spacing: 0.1em;
-      color: #666;
+      color: #777;
       text-align: center;
     }
-    @media (max-width: 780px) {
+    @media (max-width: 860px) {
       .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-col { border-right: none; padding: 0 0 28px 0 !important; border-bottom: 1px solid #CCC; }
+      .footer-col:last-child { border-bottom: none; }
     }
     @media (max-width: 500px) {
       .footer-inner { grid-template-columns: 1fr; }
@@ -724,30 +742,34 @@
 
   <!-- NAV -->
   <nav class="nav" role="navigation">
-    <button class="nav-hamburger" aria-label="Menu" onclick="this.classList.toggle('open')" style="background:none;border:none;cursor:pointer;padding:4px 8px;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center;">
-      <span style="display:block;width:22px;height:2px;background:#111;"></span>
-      <span style="display:block;width:22px;height:2px;background:#111;"></span>
-      <span style="display:block;width:22px;height:2px;background:#111;"></span>
-    </button>
+    <div class="nav-edge nav-edge--left">
+      <button class="nav-hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
     <a href="#" class="nav-link">Home</a>
     <a href="#current" class="nav-link">Current Issue</a>
     <a href="#advertise" class="nav-link">Advertise</a>
     <a href="#about" class="nav-link">About</a>
     <a href="#archive" class="nav-link">Archive</a>
     <a href="#contact" class="nav-link">Contact Us</a>
-    <span class="nav-ornament">
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Instagram" style="vertical-align:middle;display:inline-block;">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-        <circle cx="12" cy="12" r="4"/>
-        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-      </svg>
-    </span>
-    <button class="nav-search" aria-label="Search" style="background:none;border:none;cursor:pointer;padding:4px 6px;margin-left:4px;">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="11" cy="11" r="8"/>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-      </svg>
-    </button>
+    <div class="nav-edge nav-edge--right">
+      <span class="nav-ornament">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Instagram" style="vertical-align:middle;display:inline-block;">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+      </span>
+      <button class="nav-search" aria-label="Search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+    </div>
   </nav>
 
   <!-- MASTHEAD -->
@@ -802,71 +824,61 @@
           data-category="Business"
           data-meta="May 21, 2026"
           data-body="Downtown's Storefront Incubator Program has selected six new retail concepts for a summer debut across Lower Manhattan. The program, run by the Downtown Alliance, gives emerging entrepreneurs a chance to lease storefronts at reduced rates for a 90-day trial period.\n\nThis year's cohort includes a zero-waste home goods shop, a Caribbean bakery, a vintage map dealer, a bespoke stationery studio, a plant-based bodega, and a local sports memorabilia collector. Storefronts are expected to open between June 15 and July 1.">
-          <div class="latest-item-photo"><div class="photo-placeholder" style="height:80px;">Insert Photo</div></div>
-          <div class="latest-item-body">
-            <div class="latest-item-meta">May 21, 2026</div>
-            <div class="latest-item-headline">The Revel is in the Retails</div>
-            <div class="latest-item-deck">Downtown Storefront Incubator Program Selects Six Concepts for Summer Debut</div>
-          </div>
+          <div class="latest-item-photo"><div class="photo-placeholder" style="height:110px;">Insert Photo</div></div>
+          <div class="latest-item-meta">May 21, 2026</div>
+          <div class="latest-item-headline">The Revel is in the Retails</div>
+          <div class="latest-item-deck">Downtown Storefront Incubator Program Selects Six Concepts for Summer Debut</div>
         </li>
         <li class="latest-item"
           data-headline="Riding the Current"
           data-category="Transportation"
           data-meta="May 21, 2026"
           data-body="A proposed state law would create new incentives for New York City to accelerate its transition to electric-powered ferries on the East River and in New York Harbor.\n\nThe bill, sponsored by State Senator Brian Kavanagh and Assemblymember Yuh-Line Niou, would require the city to electrify at least 30 percent of its ferry fleet by 2030 and 100 percent by 2035. Advocates say it would dramatically cut emissions in waterfront neighborhoods that already bear a disproportionate pollution burden.">
-          <div class="latest-item-photo"><div class="photo-placeholder" style="height:80px;">Insert Photo</div></div>
-          <div class="latest-item-body">
-            <div class="latest-item-meta">May 21, 2026</div>
-            <div class="latest-item-headline">Riding the Current</div>
-            <div class="latest-item-deck">Proposed Law Would Spur New York City's Transition to Electric Ferries</div>
-          </div>
+          <div class="latest-item-photo"><div class="photo-placeholder" style="height:110px;">Insert Photo</div></div>
+          <div class="latest-item-meta">May 21, 2026</div>
+          <div class="latest-item-headline">Riding the Current</div>
+          <div class="latest-item-deck">Proposed Law Would Spur New York City's Transition to Electric Ferries</div>
         </li>
         <li class="latest-item"
           data-headline="Diversity, Equity, or Exclusion?"
           data-category="Education"
           data-meta="May 20, 2026"
           data-body="A lawsuit filed in federal court alleges that Stuyvesant High School's admissions process illegally considers race as a factor, in violation of the Supreme Court's 2023 ruling in Students for Fair Admissions v. Harvard.\n\nThe plaintiffs, represented by a coalition of parent groups, argue that the school's outreach and recruitment programs effectively constitute race-conscious admissions by targeting students from specific ZIP codes and schools with high minority enrollment. The city's Law Department says it intends to defend the admissions policy.">
-          <div class="latest-item-photo"><div class="photo-placeholder" style="height:80px;">Insert Photo</div></div>
-          <div class="latest-item-body">
-            <div class="latest-item-meta">May 20, 2026</div>
-            <div class="latest-item-headline">Diversity, Equity, or Exclusion?</div>
-            <div class="latest-item-deck">Lawsuit Alleges that Stuyvesant High School Illegally Considers Race in Admissions Decisions</div>
-          </div>
+          <div class="latest-item-photo"><div class="photo-placeholder" style="height:110px;">Insert Photo</div></div>
+          <div class="latest-item-meta">May 20, 2026</div>
+          <div class="latest-item-headline">Diversity, Equity, or Exclusion?</div>
+          <div class="latest-item-deck">Lawsuit Alleges that Stuyvesant High School Illegally Considers Race in Admissions Decisions</div>
         </li>
         <li class="latest-item"
           data-headline="When Loyalty is the New Currency, Larceny is the New Counterfeiting"
           data-category="Crime"
           data-meta="May 18, 2026"
           data-body="The founder of a Financial District-based financial technology company pleaded guilty last week to federal securities fraud charges, admitting he defrauded investors out of more than $4 million by falsifying revenue figures and customer contracts.\n\nThe defendant, whose firm marketed a loyalty-points exchange platform to regional banks, faces up to 20 years in prison. Sentencing is scheduled for September. Federal prosecutors said the case is part of a broader crackdown on fintech fraud in New York.">
-          <div class="latest-item-photo"><div class="photo-placeholder" style="height:80px;">Insert Photo</div></div>
-          <div class="latest-item-body">
-            <div class="latest-item-meta">May 18, 2026</div>
-            <div class="latest-item-headline">When Loyalty is the New Currency, Larceny is the New Counterfeiting</div>
-            <div class="latest-item-deck">Founder of FiDi-Based Financial Tech Company Pleads Guilty to Securities Fraud</div>
-          </div>
+          <div class="latest-item-photo"><div class="photo-placeholder" style="height:110px;">Insert Photo</div></div>
+          <div class="latest-item-meta">May 18, 2026</div>
+          <div class="latest-item-headline">When Loyalty is the New Currency, Larceny is the New Counterfeiting</div>
+          <div class="latest-item-deck">Founder of FiDi-Based Financial Tech Company Pleads Guilty to Securities Fraud</div>
         </li>
         <li class="latest-item"
           data-headline="A Seventh Moment of Silence"
           data-category="Community"
           data-meta="May 17, 2026"
           data-body="An upcoming ceremony at the National September 11 Memorial will, for the first time, include a seventh moment of silence — one dedicated specifically to the thousands of people who have died of illnesses caused by exposure to the toxic dust cloud that engulfed Lower Manhattan after the 2001 attacks.\n\nThe addition was approved following years of advocacy by first responder and survivor groups, who argued that the illness deaths deserve the same formal recognition as those who died on the day itself. More than 4,000 people have died of 9/11-related illnesses to date.">
-          <div class="latest-item-photo"><div class="photo-placeholder" style="height:80px;">Insert Photo</div></div>
-          <div class="latest-item-body">
-            <div class="latest-item-meta">May 17, 2026</div>
-            <div class="latest-item-headline">A Seventh Moment of Silence</div>
-            <div class="latest-item-deck">Upcoming Anniversary Ceremony will Acknowledge People Who have Died of 9/11 Illnesses</div>
-          </div>
+          <div class="latest-item-photo"><div class="photo-placeholder" style="height:110px;">Insert Photo</div></div>
+          <div class="latest-item-meta">May 17, 2026</div>
+          <div class="latest-item-headline">A Seventh Moment of Silence</div>
+          <div class="latest-item-deck">Upcoming Anniversary Ceremony will Acknowledge People Who have Died of 9/11 Illnesses</div>
         </li>
       </ul>
     </div>
   </section>
 
-  <!-- UPCOMING EVENTS -->
-  <section class="events" id="events">
-    <div class="page" style="padding-top:28px; padding-bottom:28px;">
-      <div class="section-header">
-        <span class="section-label" style="font-size:12px; letter-spacing:0.2em;">Upcoming Events</span>
-        <a href="#" class="view-all">View Full Calendar &rarr;</a>
+  <!-- THREE-PANEL ROW: Events | Man on the Street | Stay Connected -->
+  <div class="three-panel">
+    <!-- Col 1: Upcoming Events (reuse existing events section content) -->
+    <div class="three-panel-col">
+      <div class="three-panel-header">
+        <span class="section-label" style="font-size:11px; letter-spacing:0.2em;">Upcoming Events</span>
       </div>
       <hr class="rule--thick" style="margin-bottom:0;">
       <ul class="events-list">
@@ -878,8 +890,8 @@
           <div>
             <div class="events-name">Seaport Museum Family Day</div>
             <div class="events-detail">11:00 AM – 4:00 PM</div>
+            <div class="events-venue" style="text-align:left; padding-top:2px;">Seaport Museum</div>
           </div>
-          <div class="events-venue">Seaport Museum</div>
         </li>
         <li class="events-item">
           <div class="events-date-block">
@@ -889,8 +901,8 @@
           <div>
             <div class="events-name">Memorial Day Ceremony</div>
             <div class="events-detail">11:00 AM</div>
+            <div class="events-venue" style="text-align:left; padding-top:2px;">Battery Park</div>
           </div>
-          <div class="events-venue">Battery Park</div>
         </li>
         <li class="events-item">
           <div class="events-date-block">
@@ -900,80 +912,59 @@
           <div>
             <div class="events-name">Ales &amp; Tales: NYC Brewing History</div>
             <div class="events-detail">6:30 PM</div>
+            <div class="events-venue" style="text-align:left; padding-top:2px;">Fraunces Tavern</div>
           </div>
-          <div class="events-venue">Fraunces Tavern</div>
         </li>
       </ul>
+      <a href="#" class="view-all" style="display:inline-block; margin-top:16px;">View Full Calendar &rarr;</a>
     </div>
-  </section>
 
-  <!-- MAN ON THE STREET -->
-  <section class="mot" id="mot">
-    <div class="page">
-      <div class="section-header" style="padding-top:28px;">
-        <span class="section-label" style="font-size:12px; letter-spacing:0.2em;">Man on the Street</span>
+    <!-- Col 2: Man on the Street -->
+    <div class="three-panel-col">
+      <div class="three-panel-header">
+        <span class="section-label" style="font-size:11px; letter-spacing:0.2em;">Man on the Street</span>
         <a href="#" class="view-all">View All Interviews &rarr;</a>
       </div>
-      <hr class="rule--thick" style="margin-bottom:20px;">
-      <div class="mot-inner">
-        <div class="mot-photo">
-          <div class="photo-placeholder" style="height:260px;">Insert Photo</div>
-        </div>
-        <div class="mot-text">
-          <blockquote class="mot-pullquote">"This neighborhood has changed so much — but the people still look out for each other."</blockquote>
-          <div class="mot-attribution">— Battery Park City resident</div>
-        </div>
+      <hr class="rule--thick" style="margin-bottom:16px;">
+      <div class="mot-photo-full">
+        <div class="photo-placeholder" style="height:320px;">Insert Photo</div>
       </div>
     </div>
-  </section>
 
-  <!-- SUBSCRIBE STRIP -->
-  <section class="subscribe-strip" id="subscribe">
-    <div class="page">
-      <hr class="rule" style="margin-bottom:28px;">
-      <p class="subscribe-strip-title">Stay Connected to Lower Manhattan</p>
-      <p class="subscribe-strip-sub">News, neighborhood stories, and events delivered to you.</p>
-      <form class="subscribe-form" onsubmit="return false;">
-        <input type="email" placeholder="Enter your email address">
+    <!-- Col 3: Stay Connected -->
+    <div class="three-panel-col">
+      <p class="stay-connected-title">Stay Connected<br>to Lower Manhattan</p>
+      <p class="stay-connected-sub">News, neighborhood stories,<br>and events delivered to you.</p>
+      <form class="stay-connected-form subscribe-form" onsubmit="return false;">
+        <input type="email" placeholder="Your email">
         <button type="submit">Subscribe</button>
       </form>
-      <hr class="rule" style="margin-top:28px;">
-    </div>
-  </section>
-
-  <!-- BOTTOM PANELS: Current Issue + Archive -->
-  <section class="bottom-panels">
-    <div class="page" style="display:contents;">
-      <div class="bottom-panel" style="padding-left:24px;">
-        <div class="bottom-panel-label"><span class="section-label">Current Issue</span></div>
-        <div class="photo-placeholder" style="height:200px;">Insert Photo</div>
+      <div class="stay-connected-photo">
+        <div class="photo-placeholder" style="height:180px;">Insert Photo</div>
       </div>
-      <div class="bottom-panel" style="padding-right:24px;">
-        <div class="bottom-panel-label"><span class="section-label">Archive</span></div>
-        <div class="photo-placeholder" style="height:200px;">Insert Photo</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ARCHIVE DROPDOWN -->
-  <div class="archive-bar" id="archive">
-    <div class="page" style="display:flex; align-items:center; gap:16px; padding-top:0; padding-bottom:0;">
-      <span class="section-label">Archive</span>
-      <select>
-        <option>Select Month</option>
-        <option>May 2026</option>
-        <option>April 2026</option>
-        <option>March 2026</option>
-        <option>February 2026</option>
-        <option>January 2026</option>
-      </select>
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="footer">
+  <!-- FOOTER (light background, 4 columns) -->
+  <footer class="footer" id="archive">
     <div class="footer-inner">
-      <div>
+      <div class="footer-col">
+        <div class="footer-heading">Current Issue</div>
+        <div class="photo-placeholder" style="height:200px;">Insert Photo</div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-heading">Archive</div>
+        <span class="footer-archive-label">Archive</span>
+        <select class="footer-archive-select">
+          <option>Select Month</option>
+          <option>May 2026</option>
+          <option>April 2026</option>
+          <option>March 2026</option>
+          <option>February 2026</option>
+          <option>January 2026</option>
+        </select>
+      </div>
+      <div class="footer-col" id="contact">
         <div class="footer-heading">Navigate</div>
         <ul class="footer-nav-list">
           <li><a href="#">Home</a></li>
@@ -983,24 +974,23 @@
           <li><a href="#archive">Archive</a></li>
           <li><a href="#contact">Contact Us</a></li>
         </ul>
-        <span class="footer-ornament">◎</span>
+        <div class="footer-instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-label="Instagram">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
       </div>
-      <div>
+      <div class="footer-col" id="about">
         <div class="footer-heading">Subscribe</div>
-        <p class="footer-desc">Receive the BroadsheetDAILY — delivered every weekday morning.</p>
+        <p class="footer-subscribe-desc">To receive the BroadsheetDAILY</p>
         <form class="footer-subscribe-form" onsubmit="return false;">
-          <div style="display:flex;gap:8px;margin-bottom:8px;">
-            <input type="text" placeholder="First name" style="flex:1;background:#222;border:1px solid #444;color:#EEE;padding:8px 10px;font-size:13px;font-family:inherit;">
-            <input type="text" placeholder="Last name" style="flex:1;background:#222;border:1px solid #444;color:#EEE;padding:8px 10px;font-size:13px;font-family:inherit;">
-          </div>
-          <input type="email" placeholder="Your email">
+          <input type="email" placeholder="Email">
+          <input type="text" placeholder="First Name">
+          <input type="text" placeholder="Last Name">
           <button type="submit">Subscribe</button>
         </form>
-      </div>
-      <div id="about">
-        <div class="footer-heading">About</div>
-        <p class="footer-desc">The Broadsheet is Lower Manhattan's independent newspaper, covering Battery Park City, Tribeca, South Street Seaport, and the Financial District since 1997.</p>
-        <p class="footer-desc" id="contact">Editor: Matthew Fenton &nbsp;·&nbsp; Publisher: Alison Simko<br>395 South End Ave, NYC 10280<br><a href="mailto:alison@ebroadsheet.com" style="color:#CCC;">alison@ebroadsheet.com</a></p>
       </div>
     </div>
     <div class="footer-copyright">© 2026 The Broadsheet. All rights reserved.</div>
@@ -1067,7 +1057,7 @@
         const btn = this.querySelector('button');
         const orig = btn.textContent;
         btn.textContent = 'Thank you!';
-        this.querySelector('input').value = '';
+        this.querySelectorAll('input').forEach(inp => inp.value = '');
         setTimeout(() => btn.textContent = orig, 2000);
       });
     });
