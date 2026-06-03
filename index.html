@@ -4,1576 +4,1395 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Broadsheet – Lower Manhattan's Newspaper</title>
-  <meta name="description" content="The Broadsheet – Lower Manhattan's independent newspaper since 1997. Coverage of Battery Park City, Tribeca, Seaport, FiDi and beyond.">
+  <meta name="description" content="The Broadsheet – Lower Manhattan's independent newspaper since 1997.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@400;500;600;700&display=swap&family=Tangerine:wght@400;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,600&family=Bodoni+Moda:ital,wght@1,400;1,600" rel="stylesheet">
   <style>
-    :root {
-      --primary-bg: #FAFAFA;
-      --white: #FFF;
-      --section-alt: #F5F5F5;
-      --section-cream: #F0EDE8;
-      --text-main: #1a1a1a;
-      --accent: #8B1A1A;
-      --accent-fade08: rgba(139, 26, 26, 0.08);
-      --footer-bg: #111;
-      --divider: #E5E5E5;
-      --meta: #666;
-      --fade-gradient: linear-gradient(to bottom, transparent 65%, #fafafa 100%);
-    }
-    html {
-      scroll-behavior: smooth;
-      background: var(--primary-bg);
-      color: var(--text-main);
-    }
-    html, body {
+    /* ─── RESET & BASE ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.7;
+      background: #FFFFFF;
+      color: #111111;
       overflow-x: hidden;
     }
-    body {
-      margin: 0;
+    a { color: #111111; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── UTILITY ──────────────────────────────────────────────── */
+    .rule { border: none; border-top: 1px solid #111; margin: 0; }
+    .rule--thick { border-top-width: 3px; }
+    .rule--double {
+      border-top: 3px solid #111;
+      border-bottom: 1px solid #111;
+      height: 5px;
+      background: transparent;
+    }
+    .section-label {
       font-family: 'Inter', Arial, sans-serif;
-      font-size: 18px;
-      line-height: 1.75;
-      background: var(--primary-bg);
-      color: var(--text-main);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #111;
     }
-    a {
-      color: var(--accent);
-      text-decoration-thickness: 2px;
-      transition: color 0.25s;
+    .view-all {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #111;
+      text-decoration: none;
+      white-space: nowrap;
     }
-    a:hover,
-    .nav-link:focus {
-      color: #641616;
-    }
-    /* Top accent stripe */
-    .top-stripe {
+    .view-all:hover { text-decoration: underline; }
+
+    /* INSERT PHOTO placeholder */
+    .photo-placeholder {
+      background: #DDDDDD;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #888;
       width: 100%;
-      height: 3px;
-      background: var(--accent);
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 222;
     }
-    /* NAVIGATION */
-    .nav {
-      width: 100%;
-      box-sizing: border-box;
-      position: sticky;
-      top: 3px;
-      z-index: 10;
-      background: var(--white);
-      border-bottom: 1px solid var(--divider);
+
+    /* ─── TOP DATE BAR ─────────────────────────────────────────── */
+    .datebar {
+      background: #FFFFFF;
+      border-bottom: 1px solid #111;
+      padding: 5px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 24px;
-      min-height: 76px;
-      margin-top: 3px;
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #555;
     }
-    .nav-logo {
+
+    /* ─── NAV ──────────────────────────────────────────────────── */
+    .nav {
+      background: #FFFFFF;
+      border-bottom: 1px solid #111;
+      padding: 12px 24px;
       display: flex;
-      flex-direction: row;
       align-items: center;
-      gap: 10px;
-      margin-right: 24px;
-      line-height: 1.2;
+      justify-content: center;
+      gap: 32px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    .nav-logo-monogram {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 3.2rem;
-      color: var(--accent);
-      line-height: 1;
-      user-select: none;
+    .nav-edge {
+      position: absolute;
+      display: flex;
+      align-items: center;
     }
-    .nav-logo-text {
+    .nav-edge--left { left: 20px; }
+    .nav-edge--right { right: 20px; gap: 10px; }
+    .nav-link {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #111;
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .nav-link:hover { border-bottom-color: #111; text-decoration: none; }
+    .nav-ornament { font-size: 16px; color: #111; line-height: 1; }
+    .nav-hamburger {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
       display: flex;
       flex-direction: column;
+      gap: 5px;
+      align-items: center;
       justify-content: center;
     }
-    .nav-logo-main {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 1.85rem;
-      font-weight: 400;
-      color: var(--text-main);
-      letter-spacing: 0.01em;
-      line-height: 1.1;
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #111;
     }
-    .nav-logo-sub {
-      font-size: 0.72rem;
-      color: var(--meta);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-family: 'Inter', Arial, sans-serif;
-    }
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      font-size: 14.5px;
-      font-weight: 500;
-      font-family: 'Inter', Arial, sans-serif;
-      flex-shrink: 1;
-      min-width: 0;
-    }
-    .nav-link {
-      color: var(--text-main);
-      text-decoration: none;
-      padding: 4px 0 2px 0;
-      border-bottom: 2px solid transparent;
-      transition: border 0.25s,color 0.25s;
-      position: relative;
-    }
-    .nav-link.active,
-    .nav-link:hover {
-      border-bottom: 2px solid var(--accent);
-      color: var(--accent);
-    }
-    .mobile-nav {
-      display: none;
-    }
-    /* Hamburger (mobile) */
-    .nav-hamburger {
-      display: none;
+    .nav-search {
       background: none;
       border: none;
       cursor: pointer;
-      padding: 10px;
-      margin-left: 16px;
+      padding: 4px 6px;
+      color: #111;
+      display: flex;
+      align-items: center;
     }
-    .nav-hamburger svg {
+    @media (max-width: 720px) {
+      .nav { justify-content: center; flex-wrap: wrap; gap: 16px 20px; padding: 10px 14px; }
+      .nav-link { font-size: 9px; letter-spacing: 0.14em; }
+      .nav-edge--left, .nav-edge--right { display: none; }
+    }
+
+    /* ─── MASTHEAD ─────────────────────────────────────────────── */
+    .masthead {
+      text-align: center;
+      padding: 36px 24px 28px;
+      border-bottom: 1px solid #111;
+      background: #FFFFFF;
+    }
+    .masthead-the {
+      font-family: 'Tangerine', cursive;
+      font-style: normal;
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: #111;
       display: block;
-      width: 28px;
-      height: 28px;
-      fill: var(--text-main);
+      margin-bottom: -4px;
     }
-    @media (max-width: 900px) {
-      .nav {
-        padding: 0 10px;
-        min-height: 56px;
-      }
-      .nav-logo-main {
-        font-size: 1.45rem;
-      }
-      .nav-links {
-        gap: 17px;
-        font-size: 14px;
-      }
+    .masthead-title {
+      font-family: 'Tangerine', cursive;
+      font-size: clamp(72px, 14vw, 130px);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: none;
+      color: #111;
+      line-height: 1;
+      display: block;
     }
-    @media (max-width: 670px) {
-      .nav-links {
-        display: none;
-      }
-      .nav-hamburger {
-        display: block;
-      }
-      .mobile-nav {
-        display: none;
-        position: absolute;
-        right: 0;
-        top: 59px;
-        background: var(--white);
-        border-bottom: 1px solid var(--divider);
-        border-left: 1px solid var(--divider);
-        min-width: 180px;
-        z-index: 99;
-        font-size: 16px;
-        box-shadow: 0 9px 22px rgba(0,0,0,0.07);
-      }
-      .mobile-nav.open {
-        display: flex;
-        flex-direction: column;
-        animation: fadein 0.18s;
-      }
-      .mobile-nav .nav-link {
-        padding: 13px 18px;
-        border: none;
-      }
-      @keyframes fadein {
-        from { opacity: 0;transform: translateY(-10px); }
-        to { opacity: 1;transform: translateY(0); }
-      }
+    .masthead-est {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #555;
+      display: block;
+      margin-top: 6px;
     }
-    /* HERO SECTION */
+    .masthead-rules {
+      max-width: 900px;
+      margin: 18px auto 0;
+    }
+    .masthead-rules .rule--double { margin-bottom: 0; }
+
+    /* ─── PAGE WRAPPER ─────────────────────────────────────────── */
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─── CURRENT ISSUE HERO ───────────────────────────────────── */
     .hero {
-      background: var(--white);
-      padding: 72px 0 48px 0;
-      border-bottom: none;
-      position: relative;
-    }
-    .hero-divider-top {
-      max-width: 840px;
-      margin: 0 auto 8px auto;
-      padding: 0 22px;
-    }
-    .hero-divider-top hr {
-      border: none;
-      border-top: 1px solid var(--accent);
-      height: 1px;
-      margin: 0 0 5px 0;
-      background: none;
+      padding: 32px 0 0;
+      border-bottom: 1px solid #111;
     }
     .hero-inner {
-      max-width: 840px;
-      margin: 0 auto;
-      padding: 0 22px;
-      position: relative;
-      z-index: 2;
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      gap: 40px;
+      align-items: start;
     }
-    .hero-gradient {
-      position: absolute;
-      left: 0; right: 0; bottom: 0;
-      height: 46px;
-      pointer-events: none;
-      background: linear-gradient(to bottom, transparent 30%, #fafafa 100%);
-      width: 100%;
-      z-index: 1;
+    .hero-text { padding-bottom: 32px; }
+    .hero-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
     }
-    .section-label {
-      color: var(--accent);
-      font-family: 'Inter',Arial,sans-serif;
-      font-size: 15px;
-      letter-spacing: 0.15em;
+    .hero-date {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      font-weight: 700;
-      margin-bottom: 20px;
-      display: inline-block;
-      position: relative;
-    }
-    .section-label::before {
-      content: '\00B7 '; /* dot separator */
-      color: var(--accent);
-      margin-right: 0.26em;
-      font-size: 1.07em;
-      opacity: 0.9;
-      font-weight: bold;
+      color: #555;
     }
     .hero-headline {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 72px;
-      font-weight: 400;
-      line-height: 1.13;
-      color: var(--text-main);
-      margin: 0 0 18px 0;
-      letter-spacing: -0.03em;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: #111;
+      margin-bottom: 12px;
     }
-    @media (max-width: 900px) {
-      .hero-headline { font-size: 39px; }
-    }
-    .hero-excerpt {
-      font-size: 22px;
+    .hero-deck {
+      font-family: 'Bodoni Moda', Georgia, serif;
+      font-size: 19px;
+      font-style: italic;
       color: #333;
-      margin-bottom: 22px;
-      margin-top: 0;
-      max-width: 95%;
-      font-family: 'Inter', Arial, sans-serif;
-    }
-    .hero-meta {
-      color: var(--meta);
-      font-size: 14px;
-      margin-bottom: 8px;
-      letter-spacing: 0.01em;
+      margin-bottom: 18px;
+      line-height: 1.5;
     }
     .hero-readmore {
-      display: inline-block;
-      margin-top: 6px;
-      color: var(--accent);
-      font-weight: 600;
-      font-size: 17px;
-      text-decoration: none;
-      transition: color 0.25s;
-    }
-    .hero-readmore:hover { color: #641616; text-decoration: underline; }
-    /* ARTICLE GRID */
-    .grid-section {
-      background: var(--section-alt);
-      padding: 72px 0 54px 0;
-      border-bottom: none;
-    }
-    .grid-section-inner {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 22px;
-    }
-    .articles-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 40px 34px;
-      margin-top: 31px;
-    }
-    /* Make first card span cols */
-    .articles-grid .article-card.featured {
-      grid-column: span 2;
-      min-height: 300px;
-      background: var(--white);
-    }
-    @media (max-width: 1100px) {
-      .articles-grid { grid-template-columns: repeat(2, 1fr); }
-      .articles-grid .article-card.featured { grid-column: span 2; }
-    }
-    @media (max-width: 900px) {
-      .articles-grid {
-        gap: 21px 13px;
-      }
-    }
-    @media (max-width: 780px) {
-      .articles-grid { grid-template-columns: 1fr; }
-      .grid-section { padding: 52px 0 38px 0; }
-      .articles-grid .article-card.featured { grid-column: span 1; }
-    }
-    .article-card {
-      background: var(--white);
-      border-radius: 5px;
-      border: none;
-      border-top: 3px solid var(--accent);
-      display: flex;
-      flex-direction: column;
-      padding: 32px 24px 24px 24px;
-      box-shadow: 0 6px 22px 0 rgba(139,26,26,0.07);
-      transition: box-shadow 0.25s, transform 0.19s, border-color 0.19s;
-      cursor: pointer;
-      min-height: 235px;
-      position: relative;
-      opacity: 0;
-      transform: translateY(36px); /* for fade-in */
-    }
-    .article-card.fade-in {
-      opacity: 1;
-      transform: none;
-      transition: opacity 0.6s ease, transform 0.5s cubic-bezier(.5,1.5,.55,.96);
-    }
-    .article-card img.article-img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 3px;
-      margin-bottom: 14px;
-      filter: saturate(0.85);
-      transition: filter 0.3s;
-    }
-    .article-card:hover img.article-img {
-      filter: saturate(1);
-    }
-    .article-card.featured img.article-img {
-      height: 220px;
-    }
-    .article-card:hover {
-      box-shadow: 0 11px 30px 0 rgba(139,26,26,0.10);
-      transform: translateY(-5px) scale(1.016);
-      border-top-color: #c32121;
-    }
-    .article-card .section-label {
-      font-size: 13.2px;
-      margin-bottom: 8px;
-      letter-spacing: 0.17em;
-      background: var(--accent-fade08);
-      padding: 2px 8px 2px 10px;
-      border-radius: 7px;
-      box-shadow: none;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-    .article-headline {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 23px;
-      font-weight: 700;
-      margin: 0 0 12px 0;
-      line-height: 1.22;
-      color: var(--text-main);
-      letter-spacing: -0.01em;
-    }
-    .article-excerpt {
-      font-size: 17px;
       font-family: 'Inter', Arial, sans-serif;
-      color: #353535;
-      margin: 0 0 18px 0;
-      line-clamp: 2;
-      -webkit-line-clamp: 2;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-    }
-    .article-meta {
-      font-size: 14px;
-      color: var(--meta);
-      margin-bottom: 8px;
-    }
-    .article-readlink {
-      margin-top: 17px;
-      font-weight: 600;
-      color: var(--accent);
-      font-size: 16px;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #111;
       text-decoration: none;
-      transition: color 0.25s;
-      letter-spacing: 0.01em;
-      align-self: flex-start;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      outline: none;
+      border-bottom: 1px solid #111;
+      padding-bottom: 1px;
     }
-    .article-readlink:hover { color: #641616; text-decoration: underline; }
-    /* CURRENT ISSUE PREVIEW */
-    .current-issue {
-      background: var(--white);
-      padding: 72px 0 54px 0;
-      border-top: 3px solid var(--accent);
+    .hero-readmore:hover { text-decoration: none; background: #111; color: #FFFFFF; padding: 1px 4px; }
+    .hero-photo {
+      border-left: 1px solid #111;
+      padding-left: 40px;
+      padding-bottom: 32px;
     }
-    .current-issue-inner {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 22px;
+    .hero-photo .photo-placeholder { height: 320px; }
+    @media (max-width: 780px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-photo { border-left: none; border-top: 1px solid #111; padding-left: 0; padding-top: 20px; }
+      .hero-photo .photo-placeholder { height: 220px; }
     }
-    .current-issue-header {
+
+    /* ─── THE LATEST ───────────────────────────────────────────── */
+    .latest {
+      padding: 28px 0 0;
+      border-bottom: 1px solid #111;
+    }
+    .section-header {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 32px;
+      margin-bottom: 16px;
     }
-    .current-issue-vol {
-      font-family: 'Inter', Arial, sans-serif;
-      font-size: 14px;
-      color: var(--meta);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-    .current-issue-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 28px 24px;
-    }
-    @media (max-width: 1000px) { .current-issue-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 580px) { .current-issue-grid { grid-template-columns: 1fr; } }
-    .current-issue-card {
-      border-top: 2px solid var(--divider);
-      padding-top: 18px;
-      cursor: pointer;
-      transition: border-color 0.2s;
-    }
-    .current-issue-card:hover { border-top-color: var(--accent); }
-    .current-issue-card .section-label { font-size: 12px; margin-bottom: 8px; }
-    .current-issue-card-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 18px;
-      font-weight: 700;
-      line-height: 1.3;
-      color: var(--text-main);
-      margin-bottom: 8px;
-    }
-    .current-issue-card-deck {
-      font-size: 14px;
-      color: #555;
-      line-height: 1.5;
-      margin-bottom: 10px;
-    }
-    .current-issue-card-read {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--accent);
-      background: none;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-    }
-    .current-issue-banner {
-      background: var(--accent-fade08);
-      border: 1px solid rgba(139,26,26,0.15);
-      border-radius: 4px;
-      padding: 10px 18px;
-      font-size: 14px;
-      color: var(--accent);
-      font-family: 'Inter', Arial, sans-serif;
-      margin-top: 32px;
-      display: inline-block;
-    }
-    /* RIVERWATCH */
-    .riverwatch {
-      background: var(--section-alt);
-      padding: 64px 0 52px 0;
-    }
-    .riverwatch-inner {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 22px;
-    }
-    .riverwatch-note {
-      font-size: 13px;
-      color: #888;
-      font-style: italic;
-      margin-bottom: 20px;
-      line-height: 1.5;
-    }
-    .riverwatch-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14.5px;
-      font-family: 'Inter', Arial, sans-serif;
-    }
-    .riverwatch-table th {
-      text-align: left;
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0 12px 10px 0;
-      border-bottom: 1px solid var(--divider);
-    }
-    .riverwatch-table td {
-      padding: 11px 12px 11px 0;
-      border-bottom: 1px solid var(--divider);
-      color: var(--text-main);
-      vertical-align: top;
-    }
-    .riverwatch-table tr:last-child td { border-bottom: none; }
-    .riverwatch-source {
-      font-size: 12px;
-      color: #999;
-      margin-top: 12px;
-    }
-    .riverwatch-source a { color: #999; text-decoration: underline; }
-    /* CLASSIFIEDS */
-    .classifieds {
-      background: var(--section-cream);
-      padding: 64px 0 52px 0;
-    }
-    .classifieds-inner {
-      max-width: 1060px;
-      margin: 0 auto;
-      padding: 0 22px;
-    }
-    .classifieds-note {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 28px;
-      font-family: 'Inter', Arial, sans-serif;
-    }
-    .classifieds-note strong { color: var(--accent); }
-    .classifieds-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px 28px;
-    }
-    @media (max-width: 860px) { .classifieds-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 540px) { .classifieds-grid { grid-template-columns: 1fr; } }
-    .classified-item {
-      border-top: 2px solid var(--divider);
-      padding-top: 14px;
-    }
-    .classified-item .section-label { font-size: 11px; margin-bottom: 6px; }
-    .classified-item-body {
-      font-size: 14.5px;
-      color: var(--text-main);
-      line-height: 1.6;
-    }
-    .classified-item-body a { color: var(--accent); }
-    /* NEWSLETTER SIGNUP */
-    .newsletter {
-      background: var(--section-cream);
-      padding: 72px 0 46px 0;
-      border-bottom: none;
-      position: relative;
-      z-index: 1;
-      overflow: hidden;
-    }
-    .newsletter-rule-top,
-    .newsletter-rule-bottom {
-      max-width: 520px;
-      margin: 0 auto 24px auto;
-      padding: 0 22px;
-    }
-    .newsletter-rule-bottom {
-      margin: 28px auto 0 auto;
-    }
-    .newsletter-rule-top hr,
-    .newsletter-rule-bottom hr {
-      border: none;
-      border-top: 1px solid var(--accent);
-      height: 1px;
-      margin: 0;
-      background: none;
-      opacity: 0.84;
-    }
-    .newsletter-inner {
-      max-width: 520px;
-      margin: 0 auto;
-      padding: 0 22px;
-      text-align: center;
-    }
-    .newsletter-title {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 2.4rem;
-      color: var(--text-main);
-      margin-bottom: 9px;
-      font-weight: 400;
-      
-      letter-spacing: -0.02em;
-    }
-    .newsletter-tagline {
-      color: #888;
-      font-size: 1rem;
-      margin-bottom: 14px;
-      font-family: 'Inter', Arial, sans-serif;
-    }
-    .newsletter-desc {
-      margin-bottom: 28px;
-      font-size: 1.09rem;
-      color: #292929;
-    }
-    .newsletter-form {
-      display: flex;
-      border-radius: 0;
-      border: none;
-      overflow: visible;
-      width: 100%;
-      background: none;
-      box-shadow: none;
-      align-items: flex-end;
-      gap: 0;
-      justify-content: center;
-      margin-bottom: 0;
-    }
-    .newsletter-form input[type=email] {
-      flex: 1;
-      padding: 14px 16px 10px 16px;
-      font-size: 16px;
-      border: none;
-      border-bottom: 1.8px solid var(--accent);
-      color: var(--text-main);
-      background: transparent;
-      outline: none;
-      border-radius: 0;
-      font-family: 'Inter', Arial, sans-serif;
-      margin-right: 10px;
-      transition: border-color 0.25s;
-    }
-    .newsletter-form input[type=email]:focus {
-      border-bottom: 2.5px solid #c32121;
-    }
-    .newsletter-form button {
-      background: var(--accent);
-      color: #fff;
-      font-weight: 600;
-      border: none;
-      padding: 8px 24px;
-      font-size: 16px;
-      letter-spacing: 0.05em;
-      cursor: pointer;
-      transition: background 0.25s;
-      outline: none;
-      border-radius: 4px;
-    }
-    .newsletter-form button:hover {
-      background: #641616;
-    }
-    /* ABOUT SECTION */
-    .about {
-      background: var(--section-alt);
-      padding: 72px 0 44px 0;
-      border-bottom: none;
-      position: relative;
-      overflow: visible;
-      z-index: 0;
-    }
-    .about-inner {
-      max-width: 710px;
-      margin: 0 auto;
-      padding: 0 22px;
-      position: relative;
-      z-index: 1;
-    }
-    .about-title {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 2.6rem;
-      margin-bottom: 18px;
-      font-weight: 400;
-      color: var(--text-main);
-      letter-spacing: -0.01em;
-      position: relative;
-      z-index: 2;
-    }
-    .about-body {
-      font-size: 18px;
-      color: #373737;
-      margin-bottom: 0;
-      position: relative;
-      z-index: 2;
-      padding-left: 46px;
-    }
-    .about-body-quote {
-      position: absolute;
-      left: -16px;
-      top: -18px;
-      color: var(--accent);
-      font-size: 80px;
-      font-family: 'Pinyon Script', cursive;
-      opacity: 0.15;
-      line-height: 0.72;
-      z-index: 1;
-      pointer-events: none;
-      user-select: none;
-    }
-    .about-body em {
-      font-style: italic;
-    }
-    .about-staff {
-      margin: 21px 0 4px 0;
-      display: flex;
-      gap: 18px;
-      font-size: 1.06em;
-      color: #653c3c;
-      font-family: 'Inter', Arial, sans-serif;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-    }
-    .about-staff-label {
-      color: var(--accent);
-      font-weight: 600;
-      font-style: normal;
-      margin-right: 4px;
-    }
-    .about-neighborhoods {
-      margin-top: 16px;
-      font-size: 16px;
-      color: #555;
-    }
-    /* CONTACT SECTION */
-    .contact {
-      background: var(--white);
-      padding: 72px 0 52px 0;
-      border-bottom: none;
-    }
-    .contact-inner {
-      max-width: 750px;
-      margin: 0 auto;
-      padding: 0 22px;
-      display: flex;
-      flex-direction: row;
-      gap: 42px;
-      align-items: flex-start;
-    }
-    .contact-left, .contact-right {
-      flex: 1 1 0;
-    }
-    .contact-title {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 2.5rem;
-      margin-bottom: 19px;
-      font-weight: 400;
-      color: var(--text-main);
-    }
-    .contact-info {
-      margin-bottom: 18px;
-      font-size: 16px;
-      color: #373737;
-    }
-    .contact-list {
+    .latest-list {
       list-style: none;
-      margin: 0;
-      padding: 0;
-      font-size: 15px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
     }
-    .contact-list li {
-      margin-bottom: 14px;
+    .latest-item {
       display: flex;
-      align-items: center;
-      font-size: 17px;
-      color: #383838;
-    }
-    .contact-icon {
-      vertical-align: text-bottom;
-      margin-right: 8px;
-      width: 19px;
-      height: 19px;
-      display: inline-block;
-      flex-shrink: 0;
-    }
-    .contact-tiptext {
-      max-width: 300px;
-      background: var(--accent-fade08);
-      color: var(--accent);
-      font-size: 16px;
-      font-weight: 600;
-      padding: 18px 15px 15px 22px;
-      border-radius: 7px;
-      margin-top: 19px;
-      box-shadow: 0 4px 20px 0 rgba(139,26,26,0.02);
-    }
-    @media (max-width: 830px) {
-      .contact-inner { flex-direction: column; gap: 22px; }
-      .contact-tiptext { margin-top: 12px; }
-    }
-    /* FOOTER */
-    .footer-top-stripe {
-      width: 100%;
-      height: 3px;
-      background: var(--accent);
-      position: relative;
-      top: 0;
-      left: 0;
-    }
-    .footer {
-      background: var(--footer-bg);
-      color: #fafafa;
-      padding: 62px 0 33px 0;
-      font-size: 15px;
-      letter-spacing: 0.02em;
-      border-top: none;
-      position: relative;
-      z-index: 3;
-    }
-    .footer-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 22px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 38px 24px;
-    }
-    .footer-block {
-      min-width: 220px;
-      margin-bottom: 18px;
-    }
-    .footer-logo {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 2rem;
-      color: #fff;
-      font-weight: 400;
-    }
-    .footer-nav {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      margin: 9px 0 2px 0;
-      justify-content: center;
-    }
-    .footer-link {
-      color: #ddd;
-      text-decoration: none;
-      transition: color 0.22s;
-      font-size: 14px;
-    }
-    .footer-link:hover {
-      color: #fff;
-    }
-    .footer-social {
-      margin-top: 13px;
-      display: flex;
-      gap: 13px;
-    }
-    .footer-social a {
-      display: inline-block;
-      color: #fafafa;
-      opacity: 0.76;
-      transition: opacity 0.16s;
-    }
-    .footer-social a:hover {
-      opacity: 1;
-    }
-    .footer-copyright {
-      margin-top: 36px;
-      font-size: 14px;
-      color: #acacac;
-      text-align: center;
-      width: 100%;
-      letter-spacing: 0.02em;
-      display: block;
-    }
-    .footer-right {
-      font-size: 15px;
-      color: #ccc;
-      line-height: 1.69;
-    }
-    .back-to-top {
-      display: block;
-      color: var(--accent);
-      text-align: right;
-      font-size: 15px;
-      margin-top: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.22s;
-    }
-    .back-to-top:hover { color: #fff; text-decoration: underline; }
-    @media (max-width: 900px) {
-      .footer-inner { flex-direction: column; gap: 30px; align-items: flex-start; }
-      .footer-block { min-width: unset; width: 100%; }
-    }
-    /* ARTICLE MODAL */
-    .article-modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 9000;
-      background: rgba(20,10,10,0.55);
-      backdrop-filter: blur(2px);
-      overflow-y: auto;
-    }
-    .article-modal-overlay.open { display: block; }
-    .article-modal {
-      background: var(--white);
-      max-width: 740px;
-      margin: 60px auto 80px auto;
-      border-radius: 3px;
-      overflow: hidden;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.22);
-      position: relative;
-      animation: modalIn 0.22s ease;
-    }
-    @keyframes modalIn {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .article-modal-close {
-      position: absolute;
-      top: 18px;
-      right: 22px;
-      background: none;
-      border: none;
-      font-size: 26px;
+      flex-direction: column;
+      padding: 18px 0 24px 20px;
+      border-left: 1px solid #ccc;
       cursor: pointer;
-      color: var(--meta);
-      line-height: 1;
-      z-index: 10;
-      transition: color 0.18s;
+      transition: background 0.12s;
     }
-    .article-modal-close:hover { color: var(--accent); }
-    .article-modal-img {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-      display: block;
-    }
-    .article-modal-body {
-      padding: 38px 44px 44px 44px;
-    }
-    .article-modal-category {
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      font-weight: 700;
+    .latest-item:first-child { border-left: none; padding-left: 0; }
+    .latest-item:hover { background: #F5F5F5; }
+    .latest-item-photo { margin-bottom: 12px; }
+    .latest-item-photo .photo-placeholder { height: 110px; }
+    .latest-item-meta {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 9.5px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 14px;
+      color: #777;
+      margin-bottom: 6px;
     }
-    .article-modal-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 2rem;
+    .latest-item-headline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 15px;
       font-weight: 700;
       line-height: 1.25;
-      color: var(--text-main);
+      color: #111;
+      margin-bottom: 6px;
+      flex: 1;
+    }
+    .latest-item-deck {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 14px;
+      color: #444;
+      line-height: 1.4;
+    }
+    @media (max-width: 860px) {
+      .latest-list { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .latest-list { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ─── UPCOMING EVENTS ──────────────────────────────────────── */
+    .events {
+      padding: 28px 0 0;
+      border-bottom: 1px solid #111;
+    }
+    .events-list { list-style: none; margin-top: 16px; }
+    .events-item {
+      display: grid;
+      grid-template-columns: 64px 1fr auto;
+      gap: 0 20px;
+      align-items: start;
+      padding: 14px 0;
+      border-top: 1px solid #ccc;
+    }
+    .events-item:first-child { border-top: none; }
+    .events-date-block {
+      text-align: center;
+      border: 1px solid #111;
+      padding: 6px 4px;
+      line-height: 1;
+    }
+    .events-date-month {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #111;
+      display: block;
+    }
+    .events-date-day {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #111;
+      display: block;
+      line-height: 1;
+      margin-top: 2px;
+    }
+    .events-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #111;
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+    .events-detail {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 14px;
+      color: #555;
+    }
+    .events-venue {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #777;
+      text-align: right;
+      padding-top: 4px;
+    }
+    @media (max-width: 560px) {
+      .events-item { grid-template-columns: 54px 1fr; }
+      .events-venue { grid-column: 2; text-align: left; }
+    }
+
+    /* ─── MAN ON THE STREET ────────────────────────────────────── */
+    /* (removed — merged into three-panel row below) */
+
+    /* ─── SUBSCRIBE STRIP ──────────────────────────────────────── */
+    /* (removed — merged into three-panel row below) */
+
+    /* ─── THREE-PANEL ROW (Events | MoT | Stay Connected) ─────── */
+    .three-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-top: 1px solid #111;
+      border-bottom: 1px solid #111;
+    }
+    .three-panel-col {
+      padding: 24px 28px 28px;
+      border-right: 1px solid #111;
+    }
+    .three-panel-col:last-child { border-right: none; }
+    .three-panel-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    /* Stay Connected col */
+    .stay-connected-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(18px, 2vw, 24px);
+      font-weight: 400;
+      line-height: 1.25;
+      color: #111;
+      margin-bottom: 8px;
+    }
+    .stay-connected-sub {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .stay-connected-form {
+      display: flex;
+      gap: 0;
+      margin-bottom: 20px;
+    }
+    .stay-connected-form input[type=email] {
+      flex: 1;
+      border: 1px solid #111;
+      border-right: none;
+      padding: 9px 12px;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 15px;
+      background: #FFFFFF;
+      color: #111;
+      outline: none;
+      border-radius: 0;
+      min-width: 0;
+    }
+    .stay-connected-form input[type=email]::placeholder { color: #999; }
+    .stay-connected-form button {
+      background: #111;
+      color: #FFFFFF;
+      border: 1px solid #111;
+      padding: 9px 16px;
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 0;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    .stay-connected-form button:hover { background: #FFFFFF; color: #111; }
+    .stay-connected-photo .photo-placeholder { height: 180px; }
+    /* MoT photo full height */
+    .mot-photo-full .photo-placeholder { height: 320px; }
+    @media (max-width: 860px) {
+      .three-panel { grid-template-columns: 1fr 1fr; }
+      .three-panel-col:nth-child(2) { border-right: none; }
+      .three-panel-col:nth-child(3) { grid-column: 1 / -1; border-right: none; border-top: 1px solid #111; }
+    }
+    @media (max-width: 560px) {
+      .three-panel { grid-template-columns: 1fr; }
+      .three-panel-col { border-right: none; border-top: 1px solid #111; }
+      .three-panel-col:first-child { border-top: none; }
+    }
+
+    /* ─── BOTTOM PANELS (Current Issue + Archive) ──────────────── */
+    /* (removed — now part of footer) */
+
+    /* ─── ARCHIVE DROPDOWN ─────────────────────────────────────── */
+    /* (removed — now part of footer) */
+
+    /* ─── FOOTER ───────────────────────────────────────────────── */
+    .footer {
+      background: #FFFFFF;
+      color: #111;
+      border-top: 3px solid #111;
+      padding: 36px 0 0;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 0;
+    }
+    .footer-col {
+      padding: 0 32px 36px 0;
+      border-right: 1px solid #CCC;
+    }
+    .footer-col:last-child { border-right: none; padding-right: 0; padding-left: 32px; }
+    .footer-col:not(:first-child):not(:last-child) { padding-left: 32px; }
+    .footer-col:nth-child(2) { padding-left: 32px; }
+    .footer-heading {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #111;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #111;
+    }
+    .footer-nav-list { list-style: none; }
+    .footer-nav-list li { margin-bottom: 8px; }
+    .footer-nav-list a {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 16px;
+      color: #111;
+      text-decoration: none;
+    }
+    .footer-nav-list a:hover { text-decoration: underline; }
+    .footer-instagram {
+      margin-top: 16px;
+      color: #111;
+    }
+    .footer-archive-select {
+      border: 1px solid #999;
+      background: #FFFFFF;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 15px;
+      color: #111;
+      padding: 8px 10px;
+      border-radius: 0;
+      outline: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    .footer-archive-label {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #777;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .footer-subscribe-form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .footer-subscribe-form input {
+      width: 100%;
+      border: 1px solid #999;
+      background: #FFFFFF;
+      color: #111;
+      padding: 9px 12px;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 15px;
+      outline: none;
+      border-radius: 0;
+    }
+    .footer-subscribe-form input::placeholder { color: #999; }
+    .footer-subscribe-form button {
+      background: #111;
+      color: #FFFFFF;
+      border: 1px solid #111;
+      padding: 11px 14px;
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 0;
+      transition: background 0.15s, color 0.15s;
+      width: 100%;
+    }
+    .footer-subscribe-form button:hover { background: #333; }
+    .footer-subscribe-desc {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 15px;
+      color: #555;
+      line-height: 1.5;
       margin-bottom: 12px;
     }
-    .article-modal-meta {
-      font-size: 14px;
-      color: var(--meta);
-      margin-bottom: 28px;
-      border-bottom: 1px solid var(--divider);
-      padding-bottom: 20px;
+    .footer-copyright {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      border-top: 1px solid #CCC;
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: #777;
+      text-align: center;
     }
-    .article-modal-content {
-      font-size: 17px;
-      line-height: 1.8;
-      color: #2e2e2e;
+    @media (max-width: 860px) {
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-col { border-right: none; padding: 0 0 28px 0 !important; border-bottom: 1px solid #CCC; }
+      .footer-col:last-child { border-bottom: none; }
     }
-    .article-modal-content p { margin: 0 0 18px 0; }
-    .article-modal-placeholder {
-      display: inline-block;
-      background: var(--accent-fade08);
-      color: var(--accent);
-      font-size: 13px;
-      font-weight: 600;
-      padding: 10px 16px;
-      border-radius: 4px;
-      border: 1px dashed rgba(139,26,26,0.25);
-      margin-top: 8px;
+    @media (max-width: 500px) {
+      .footer-inner { grid-template-columns: 1fr; }
     }
-    @media (max-width: 680px) {
-      .article-modal { margin: 0; border-radius: 0; min-height: 100vh; }
-      .article-modal-body { padding: 28px 20px 36px 20px; }
-      .article-modal-img { height: 200px; }
-      .article-modal-title { font-size: 1.55rem; }
-    }
-    /* INFO MODAL (Current Issue / Archive) */
-    .info-modal-overlay {
+
+    /* ─── ARTICLE MODAL ────────────────────────────────────────── */
+    .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 9000;
-      background: rgba(20,10,10,0.55);
-      backdrop-filter: blur(2px);
-      align-items: center;
-      justify-content: center;
+      background: rgba(0,0,0,0.6);
+      overflow-y: auto;
     }
-    .info-modal-overlay.open { display: flex; }
-    .info-modal {
-      background: var(--white);
-      max-width: 480px;
-      width: 92%;
-      border-radius: 6px;
-      padding: 44px 40px 40px 40px;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+    .modal-overlay.open { display: block; }
+    .modal {
+      background: #FFFFFF;
+      max-width: 720px;
+      margin: 60px auto 80px;
       position: relative;
-      animation: modalIn 0.22s ease;
+      animation: modalIn 0.2s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .modal-close {
+      position: absolute;
+      top: 14px; right: 18px;
+      background: none; border: none;
+      font-size: 22px; cursor: pointer;
+      color: #777; line-height: 1;
+      font-family: 'Inter', Arial, sans-serif;
+      z-index: 10;
+    }
+    .modal-close:hover { color: #111; }
+    .modal-photo .photo-placeholder { height: 280px; font-size: 11px; }
+    .modal-body { padding: 32px 40px 40px; }
+    .modal-category {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 9.5px; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: #777; margin-bottom: 10px;
+    }
+    .modal-headline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 28px; font-weight: 700;
+      line-height: 1.2; color: #111;
+      margin-bottom: 8px;
+    }
+    .modal-meta {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 10px; color: #999;
+      letter-spacing: 0.1em;
+      padding-bottom: 18px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #CCC;
+    }
+    .modal-content {
+      font-family: 'Bodoni Moda', Georgia, serif;
+      font-size: 18px; line-height: 1.8; color: #222;
+    }
+    .modal-content p { margin-bottom: 16px; }
+    .modal-demo-badge {
+      display: inline-block;
+      border: 1px dashed #AAA;
+      background: #EEE;
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 9.5px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #888;
+      padding: 8px 14px; margin-top: 8px;
+    }
+    @media (max-width: 680px) {
+      .modal { margin: 0; min-height: 100vh; }
+      .modal-body { padding: 24px 18px 32px; }
+      .modal-headline { font-size: 22px; }
+    }
+
+    /* ─── CLICKABLE STORY ROWS ──────────────────────────────────── */
+    .latest-item { cursor: pointer; transition: background 0.12s; }
+    .latest-item:hover { background: #F5F5F5; }
+    .events-item { cursor: pointer; transition: background 0.12s; }
+    .events-item:hover { background: #F5F5F5; }
+
+    /* ─── AD PLACEHOLDER ───────────────────────────────────────── */
+    .ad-strip {
+      border-bottom: 1px solid #111;
+      padding: 14px 0;
       text-align: center;
     }
-    .info-modal-close {
-      position: absolute;
-      top: 14px;
-      right: 18px;
-      background: none;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      color: var(--meta);
-      transition: color 0.18s;
+    .ad-placeholder {
+      background: #EBEBEB;
+      border: 1px dashed #AAA;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 9.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #AAA;
+      max-width: 728px;
+      margin: 0 auto;
     }
-    .info-modal-close:hover { color: var(--accent); }
-    .info-modal-icon { font-size: 2.4rem; margin-bottom: 14px; }
-    .info-modal-title {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 1.9rem;
-      font-weight: 400;
-      color: var(--text-main);
-      margin-bottom: 12px;
+
+    /* ─── Advertising Section ─── */
+    .ad-section {
+      padding: 48px 40px;
+      border-top: 2px solid #111;
+      background: #FFFFFF;
     }
-    .info-modal-desc {
-      font-size: 15.5px;
+    .ad-section-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
       color: #555;
-      line-height: 1.7;
-      margin-bottom: 22px;
+      text-align: center;
+      margin: 0 0 28px 0;
     }
-    .info-modal-badge {
-      display: inline-block;
-      background: var(--accent-fade08);
-      color: var(--accent);
+    .ad-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .ad-box {
+      border: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 140px;
+      background: #fff;
+    }
+    .ad-box.ad-wide {
+      grid-column: 1 / -1;
+      min-height: 120px;
+    }
+    .ad-placeholder {
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 13px;
       font-weight: 600;
-      padding: 9px 18px;
-      border-radius: 4px;
-      border: 1px dashed rgba(139,26,26,0.3);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #bbb;
     }
+
+    /* ══ EDITORIAL REDESIGN ══════════════════════════════════════ */
+
+    /* Warmer background */
+    body { background: #FAF8F3; }
+
+    /* Section label upgrade */
+    .section-label {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: #555;
+    }
+
+    /* Thick rule under section headers */
+    .rule--thick {
+      border: none; border-top: 2px solid #111;
+      margin: 6px 0 18px;
+    }
+
+    /* ── Story cards (latest items) ── */
+    .latest-item {
+      cursor: pointer;
+      transition: background .18s;
+    }
+    .latest-item:hover { background: #f2efe8; }
+    .latest-item-photo {
+      margin-bottom: 10px; overflow: hidden;
+    }
+    .latest-item-photo img {
+      width: 100%; aspect-ratio: 16/9;
+      object-fit: cover; display: block;
+      transition: transform .38s ease;
+    }
+    .latest-item:hover .latest-item-photo img { transform: scale(1.04); }
+    .latest-item-headline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 17px; font-weight: 700; line-height: 1.28;
+      color: #111; margin-bottom: 4px;
+    }
+    .latest-item-deck {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 14px; color: #555; line-height: 1.45;
+    }
+    .latest-item-meta {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 10px; letter-spacing: .1em;
+      text-transform: uppercase; color: #999;
+      margin-bottom: 5px;
+    }
+
+    /* ── Hero ── */
+    .hero-photo { overflow: hidden; }
+    .hero-photo img {
+      width: 100%; height: 100%; min-height: 280px;
+      object-fit: cover; display: block;
+      transition: transform .5s ease;
+    }
+    .hero-photo:hover img { transform: scale(1.02); }
+
+    /* ── More-strip (below hero) ── */
+    .more-strip {
+      border-top: 1px solid #ccc;
+      border-bottom: 2px solid #111;
+      background: #FAF8F3;
+    }
+    .more-strip-inner {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+    }
+    .more-strip-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 15px 20px; border-right: 1px solid #ddd;
+      text-decoration: none; color: inherit;
+      transition: background .18s;
+    }
+    .more-strip-item:last-child { border-right: none; }
+    .more-strip-item:hover { background: #f2efe8; }
+    .more-strip-item img {
+      width: 72px; height: 54px; object-fit: cover; flex-shrink: 0;
+    }
+    .more-strip-cat {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+      color: #888; margin: 0 0 3px; display: block;
+    }
+    .more-strip-hed {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 14px; font-weight: 700; line-height: 1.28;
+      color: #111; margin: 0;
+    }
+
+    /* ── Art pullout ── */
+    .art-pullout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-top: 2px solid #111;
+      border-bottom: 1px solid #ccc;
+    }
+    .art-pullout-img { overflow: hidden; min-height: 360px; }
+    .art-pullout-img img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+
+    /* Right side: Editor's Picks */
+    .editors-picks {
+      background: #FAF8F3;
+      border-left: 1px solid #111;
+      display: flex; flex-direction: column;
+    }
+    .editors-picks-header {
+      padding: 20px 28px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .editors-picks-label {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 9px; font-weight: 700; letter-spacing: .25em;
+      text-transform: uppercase; color: #888;
+      margin: 0 0 8px; display: block;
+    }
+    .editors-picks-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 13px; font-style: italic; color: #555;
+      margin: 0 0 16px;
+    }
+    .picks-list {
+      flex: 1; list-style: none; margin: 0; padding: 0;
+    }
+    .picks-item {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 16px 28px; border-bottom: 1px solid #e8e3d8;
+      text-decoration: none; color: inherit;
+      transition: background .18s;
+    }
+    .picks-item:last-child { border-bottom: none; }
+    .picks-item:hover { background: #f2efe8; }
+    .picks-item img {
+      width: 80px; height: 62px; object-fit: cover;
+      flex-shrink: 0;
+    }
+    .picks-item-body {}
+    .picks-item-cat {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+      color: #888; margin: 0 0 4px; display: block;
+    }
+    .picks-item-hed {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 15px; font-weight: 700; line-height: 1.3;
+      color: #111; margin: 0 0 4px;
+    }
+    .picks-item-deck {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 13px; color: #666; line-height: 1.4; margin: 0;
+    }
+
+    /* ── Mot photo ── */
+    .mot-photo-full img {
+      width: 100%; height: 100%;  min-height: 300px; object-fit: cover; display: block;
+    }
+
+    /* ── Stay Connected photo ── */
+    .sc-photo img {
+      width: 100%; height: 110px; object-fit: cover; display: block;
+      margin-bottom: 16px;
+    }
+
+    /* ── Ad section refinement ── */
+    .ad-section-title {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+      color: #bbb; text-align: center; margin: 0 0 12px;
+    }
+
+
+    /* ── Editors picks bottom tile row ── */
+    .picks-bottom-tiles {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-top: 1px solid #ddd;
+      flex-shrink: 0;
+    }
+    .picks-bottom-tile {
+      display: flex; flex-direction: column; overflow: hidden;
+      text-decoration: none; color: inherit;
+      border-right: 1px solid #ddd;
+      transition: background .18s;
+    }
+    .picks-bottom-tile:last-child { border-right: none; }
+    .picks-bottom-tile:hover { background: #f2efe8; }
+    .picks-bottom-tile img {
+      width: 100%; height: 80px; object-fit: cover; display: block;
+      transition: transform .35s ease;
+    }
+    .picks-bottom-tile:hover img { transform: scale(1.04); }
+    .picks-bottom-tile-body { padding: 10px 14px 14px; }
+    .picks-bottom-tile-cat {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+      color: #888; margin: 0 0 4px; display: block;
+    }
+    .picks-bottom-tile-hed {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 14px; font-weight: 700; line-height: 1.28; color: #111; margin: 0;
+    }
+
   </style>
 </head>
 <body>
-  <div class="top-stripe"></div>
 
   <!-- ARTICLE MODAL -->
-  <div class="article-modal-overlay" id="articleModalOverlay" role="dialog" aria-modal="true" aria-labelledby="articleModalTitle">
-    <div class="article-modal" id="articleModal">
-      <button class="article-modal-close" id="articleModalClose" aria-label="Close article">&times;</button>
-      <img class="article-modal-img" id="articleModalImg" src="" alt="">
-      <div class="article-modal-body">
-        <div class="article-modal-category" id="articleModalCategory"></div>
-        <div class="article-modal-title" id="articleModalTitle"></div>
-        <div class="article-modal-meta" id="articleModalMeta"></div>
-        <div class="article-modal-content" id="articleModalContent"></div>
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div class="modal-photo"><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=700&q=80" alt="Story photo" style="width:100%;height:280px;object-fit:cover;display:block;">
+      </div>
+      <div class="modal-body">
+        <div class="modal-category" id="modalCategory"></div>
+        <div class="modal-headline" id="modalHeadline"></div>
+        <div class="modal-meta" id="modalMeta"></div>
+        <div class="modal-content" id="modalContent"></div>
       </div>
     </div>
   </div>
 
-  <!-- INFO MODAL (Current Issue / Archive) -->
-  <div class="info-modal-overlay" id="infoModalOverlay" role="dialog" aria-modal="true">
-    <div class="info-modal">
-      <button class="info-modal-close" id="infoModalClose" aria-label="Close">&times;</button>
-      <div class="info-modal-icon" id="infoModalIcon"></div>
-      <div class="info-modal-title" id="infoModalTitle"></div>
-      <div class="info-modal-desc" id="infoModalDesc"></div>
-      <div class="info-modal-badge" id="infoModalBadge"></div>
-    </div>
+  <!-- DATE BAR -->
+  <div class="datebar">
+    <span>Lower Manhattan's Newspaper Since 1997</span>
+    <span>Tuesday, May 27, 2026 &nbsp;·&nbsp; Vol. 30, No. 9</span>
   </div>
-  <nav class="nav" role="navigation">
-    <div class="nav-logo">
-      <span class="nav-logo-monogram">B</span>
-      <div class="nav-logo-text">
-        <span class="nav-logo-main">The Broadsheet</span>
-        <span class="nav-logo-sub">Lower Manhattan's Newspaper · Est. 1997</span>
+
+  <!-- NAV -->
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <span class="masthead-the">The</span>
+    <span class="masthead-title">Broadsheet</span>
+    <span class="masthead-est">Est. 1997</span>
+    <div class="masthead-rules">
+      <hr class="rule--double">
+    </div>
+  </header>
+
+  <!-- CURRENT ISSUE HERO -->
+  <section class="hero" id="current">
+    <div class="page">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="hero-label">
+            <span class="section-label" style="letter-spacing:0.18em;">CURRENT ISSUE</span>
+          </div>
+          <div class="hero-date" style="font-size:13px; color:#555; margin-bottom:10px; font-family:serif; letter-spacing:0.04em;">May 21, 2026</div>
+          <hr class="rule" style="margin-bottom:16px;">
+          <h1 class="hero-headline">Come Sail Away</h1>
+          <p class="hero-deck">A Pair of Historic Vessels Offer Summer Boating in New York Harbor</p>
+          <a href="#" class="hero-readmore">Read the Story &rarr;</a>
+        </div>
+        <div class="hero-photo">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=85" alt="Lower Manhattan waterfront">
+        </div>
       </div>
     </div>
-    <div class="nav-links">
-      <a href="#" class="nav-link active">Home</a>
-      <a href="#current" class="nav-link">Current Issue</a>
-      <a href="#about" class="nav-link">About</a>
-      <a href="#" class="nav-link" data-info="archive">Archive</a>
-      <a href="#contact" class="nav-link">Contact</a>
-      <a href="#newsletter" class="nav-link">Subscribe</a>
-    </div>
-    <button class="nav-hamburger" id="navToggle" aria-label="Open menu">
-      <svg viewBox="0 0 28 28"><rect width="28" height="4" y="2" rx="2"></rect><rect width="28" height="4" y="12" rx="2"></rect><rect width="28" height="4" y="22" rx="2"></rect></svg>
-    </button>
-    <div class="mobile-nav" id="mobileNav">
-      <a href="#" class="nav-link active">Home</a>
-      <a href="#current" class="nav-link">Current Issue</a>
-      <a href="#about" class="nav-link">About</a>
-      <a href="#" class="nav-link" data-info="archive">Archive</a>
-      <a href="#contact" class="nav-link">Contact</a>
-      <a href="#newsletter" class="nav-link">Subscribe</a>
-    </div>
-  </nav>
-  <section class="hero" id="hero">
-    <div class="hero-divider-top"><hr></div>
-    <div class="hero-inner">
-      <span class="section-label">City Hall</span>
-      <h1 class="hero-headline">Four Yeses, Six Maybes, and Thirty Nos</h1>
-      <p class="hero-excerpt">Most Common City Hall Answer to CB1's Wish List Is 'Get Lost'</p>
-      <div class="hero-meta">By Matthew Fenton &middot; Vol. 30 No. 9 &middot; May 16–31, 2026</div>
-      <a href="#latest" class="hero-readmore">Read More &rarr;</a>
-    </div>
-    <div class="hero-gradient"></div>
   </section>
-  <section class="grid-section" id="latest">
-    <div class="grid-section-inner">
-      <span class="section-label" style="margin-bottom:37px;">Latest Stories</span>
-      <div class="articles-grid">
-        <div class="article-card featured"
-          data-article="true"
-          data-title="Four Yeses, Six Maybes, and Thirty Nos"
-          data-category="City Hall"
-          data-meta="By Matthew Fenton &middot; May 16, 2026"
-          data-img=""
-          data-excerpt="Most Common City Hall Answer to CB1's Wish List Is 'Get Lost'"
-          data-body="Community Board 1 recently received official replies to the 40 budget requests it submitted to the Mamdani administration for spending priorities in Lower Manhattan in fiscal year 2027, which begins July 1.\n\nThe City answered 'yes' on four requests — including a crosswalk and pedestrian safety improvements near P.S. 150, beautification of Barnett Newman Triangle in Tribeca, and an ADA-accessible beach get-down at the Brooklyn Bridge. Six proposals received a 'maybe' of various diplomatic flavors. The remaining 30 were denied, including proposals for a new public library, an outdoor public pool, and improvements at Bowling Green Park, City Hall Park, Duane Park, and Collect Pond Park.\n\nThe City's reply to CB1's request for funding the Estuarium at Pier 26 in Hudson River Park read: 'the agency does not understand the request as written and requires more clarification' — a particularly puzzling response given that the Estuarium is a longstanding, well-documented local priority.">
-          <div class="article-img" style="background:#e8e8e8;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:13px;color:#999;letter-spacing:0.05em;font-style:italic;">Insert Photo</div>
-          <span class="section-label">City Hall</span>
-          <div class="article-headline">Four Yeses, Six Maybes, and Thirty Nos</div>
-          <div class="article-excerpt">Most Common City Hall Answer to CB1's Wish List Is 'Get Lost'</div>
-          <div class="article-meta">By Matthew Fenton &middot; May 16, 2026</div>
-          <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
-        </div>
-        <div class="article-card"
-          data-article="true"
-          data-title="DOE on AI School in FiDi: NVM"
+
+
+  <!-- MORE STORIES STRIP -->
+  <div class="more-strip">
+    <div class="page" style="padding:0;">
+      <div class="more-strip-inner">
+        <a href="#" class="more-strip-item">
+          <img src="https://images.unsplash.com/photo-1560969184-10fe8719e047?w=200&q=80" alt="">
+          <div><span class="more-strip-cat">Business</span><p class="more-strip-hed">The Revel is in the Retails</p></div>
+        </a>
+        <a href="#" class="more-strip-item">
+          <img src="https://images.unsplash.com/photo-1543158181-e6f9f6712055?w=200&q=80" alt="">
+          <div><span class="more-strip-cat">Crime</span><p class="more-strip-hed">When Loyalty is the New Currency</p></div>
+        </a>
+        <a href="#" class="more-strip-item">
+          <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=200&q=80" alt="">
+          <div><span class="more-strip-cat">Community</span><p class="more-strip-hed">A Seventh Moment of Silence</p></div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE LATEST -->
+  <section class="latest" id="latest">
+    <div class="page" style="padding-top:28px; padding-bottom:28px;">
+      <div class="section-header">
+        <span class="section-label" style="font-size:12px; letter-spacing:0.2em;">The Latest</span>
+        <a href="#" class="view-all">View All News &rarr;</a>
+      </div>
+      <hr class="rule--thick" style="margin-bottom:0;">
+      <ul class="latest-list">
+        <li class="latest-item"
+          data-headline="The Revel is in the Retails"
+          data-category="Business"
+          data-meta="May 21, 2026"
+          data-body="Downtown's Storefront Incubator Program has selected six new retail concepts for a summer debut across Lower Manhattan. The program, run by the Downtown Alliance, gives emerging entrepreneurs a chance to lease storefronts at reduced rates for a 90-day trial period.\n\nThis year's cohort includes a zero-waste home goods shop, a Caribbean bakery, a vintage map dealer, a bespoke stationery studio, a plant-based bodega, and a local sports memorabilia collector. Storefronts are expected to open between June 15 and July 1.">
+          <div class="latest-item-photo"><img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=700&q=80" alt="Story photo"></div>
+          <div class="latest-item-meta">May 21, 2026</div>
+          <div class="latest-item-headline">The Revel is in the Retails</div>
+          <div class="latest-item-deck">Downtown Storefront Incubator Program Selects Six Concepts for Summer Debut</div>
+        </li>
+        <li class="latest-item"
+          data-headline="Riding the Current"
+          data-category="Transportation"
+          data-meta="May 21, 2026"
+          data-body="A proposed state law would create new incentives for New York City to accelerate its transition to electric-powered ferries on the East River and in New York Harbor.\n\nThe bill, sponsored by State Senator Brian Kavanagh and Assemblymember Yuh-Line Niou, would require the city to electrify at least 30 percent of its ferry fleet by 2030 and 100 percent by 2035. Advocates say it would dramatically cut emissions in waterfront neighborhoods that already bear a disproportionate pollution burden.">
+          <div class="latest-item-photo"><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=700&q=80" alt="Story photo"></div>
+          <div class="latest-item-meta">May 21, 2026</div>
+          <div class="latest-item-headline">Riding the Current</div>
+          <div class="latest-item-deck">Proposed Law Would Spur New York City's Transition to Electric Ferries</div>
+        </li>
+        <li class="latest-item"
+          data-headline="Diversity, Equity, or Exclusion?"
           data-category="Education"
-          data-meta="By Matthew Fenton &middot; May 16, 2026"
-          data-img=""
-          data-excerpt="Local Parents and Community Leaders Push Back as DOE Withdraws Controversial AI High School Proposal"
-          data-body="The City's Department of Education has withdrawn its controversial proposal to create a new high school in the Financial District with a curriculum focused on artificial intelligence, rather than expand an existing, highly regarded middle school, as many local families want.\n\nAt the April 29 meeting of the Panel for Educational Policy, Schools Chancellor Kamar Samuels announced: 'I want to acknowledge that some of the proposals that were intended for tonight's agenda have been pulled down — specifically the Next Generation High School proposal.'\n\nThe announcement came after a wave of pushback from parents at the Lower Manhattan Community Middle School (LMC) at 26 Broadway, who want to expand their school through grade 12. Community Board 1 had also passed a resolution urging the DOE to reconsider. Parent leader Anne Hager called it 'a huge relief,' adding: 'this is a vestige of the Adams/Banks administration and how they managed major decisions about our schools.'">
-          <div class="article-img" style="background:#e8e8e8;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:13px;color:#999;letter-spacing:0.05em;font-style:italic;">Insert Photo</div>
-          <span class="section-label">Education</span>
-          <div class="article-headline">DOE on AI School in FiDi: NVM</div>
-          <div class="article-excerpt">Local Parents and Community Leaders Push Back as DOE Withdraws Controversial AI High School Proposal</div>
-          <div class="article-meta">By Matthew Fenton &middot; May 16, 2026</div>
-          <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
-        </div>
-        <div class="article-card"
-          data-article="true"
-          data-title="(Too Many) Caps For Sale"
+          data-meta="May 20, 2026"
+          data-body="A lawsuit filed in federal court alleges that Stuyvesant High School's admissions process illegally considers race as a factor, in violation of the Supreme Court's 2023 ruling in Students for Fair Admissions v. Harvard.\n\nThe plaintiffs, represented by a coalition of parent groups, argue that the school's outreach and recruitment programs effectively constitute race-conscious admissions by targeting students from specific ZIP codes and schools with high minority enrollment. The city's Law Department says it intends to defend the admissions policy.">
+          <div class="latest-item-photo"><img src="https://images.unsplash.com/photo-1560969184-10fe8719e047?w=700&q=80" alt="Story photo"></div>
+          <div class="latest-item-meta">May 20, 2026</div>
+          <div class="latest-item-headline">Diversity, Equity, or Exclusion?</div>
+          <div class="latest-item-deck">Lawsuit Alleges that Stuyvesant High School Illegally Considers Race in Admissions Decisions</div>
+        </li>
+        <li class="latest-item"
+          data-headline="When Loyalty is the New Currency, Larceny is the New Counterfeiting"
+          data-category="Crime"
+          data-meta="May 18, 2026"
+          data-body="The founder of a Financial District-based financial technology company pleaded guilty last week to federal securities fraud charges, admitting he defrauded investors out of more than $4 million by falsifying revenue figures and customer contracts.\n\nThe defendant, whose firm marketed a loyalty-points exchange platform to regional banks, faces up to 20 years in prison. Sentencing is scheduled for September. Federal prosecutors said the case is part of a broader crackdown on fintech fraud in New York.">
+          <div class="latest-item-photo"><img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=700&q=80" alt="Story photo"></div>
+          <div class="latest-item-meta">May 18, 2026</div>
+          <div class="latest-item-headline">When Loyalty is the New Currency, Larceny is the New Counterfeiting</div>
+          <div class="latest-item-deck">Founder of FiDi-Based Financial Tech Company Pleads Guilty to Securities Fraud</div>
+        </li>
+        <li class="latest-item"
+          data-headline="A Seventh Moment of Silence"
           data-category="Community"
-          data-meta="By Matthew Fenton, Photo by Cora Fung &middot; May 16, 2026"
-          data-img=""
-          data-excerpt="City Hall Park Advocates Want Fewer Vendors Crowding the East Plaza"
-          data-body="While much of City Hall Park enjoys a renaissance thanks to nonprofits such as the City Hall Park Conservancy, one corner remains stubbornly blighted. The plaza at the edge of Centre Street, adjacent to the Brooklyn Bridge, has become overrun with food and souvenir vendors — many of whom were evicted from the Brooklyn Bridge walkway by then-Mayor Adams in 2024 and simply relocated to the plaza.\n\nIn a survey conducted by CB1's Urban Planning Fellow Jonathan Stirling, more than 60 percent of respondents described moving through the space as 'difficult' or 'very difficult.' More than 80 percent suggested 'managing or relocating vendors' as a prime area of improvement.\n\nMr. Stirling described it as both a design and a management problem — the pavement is broken, a construction fence has been there for years, and enforcement is nearly absent. He urged CB1 to explore a formal partnership between the Parks Department and a nonprofit, similar to the Battery Conservancy model.">
-          <div class="article-img" style="background:#e8e8e8;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:13px;color:#999;letter-spacing:0.05em;font-style:italic;">Insert Photo</div>
-          <span class="section-label">Community</span>
-          <div class="article-headline">(Too Many) Caps For Sale</div>
-          <div class="article-excerpt">City Hall Park Advocates Want Fewer Vendors Crowding the East Plaza</div>
-          <div class="article-meta">By Matthew Fenton, Photo by Cora Fung &middot; May 16, 2026</div>
-          <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
-        </div>
-        <div class="article-card"
-          data-article="true"
-          data-title="Come Sail Away"
-          data-category="Harbor Life"
-          data-meta="By Matthew Fenton &middot; May 16, 2026"
-          data-img=""
-          data-excerpt="A Pair of Historic Vessels Offer Summer Boating in New York Harbor"
-          data-body="Two vessels from the South Street Seaport Museum's historic working fleet — the 1885 schooner Pioneer and the 1930 tugboat W.O. Decker, both moored at Pier 16 — have embarked on their 2026 sailing season.\n\nPioneer is the oldest working boat of any kind in New York Harbor and the only iron-hulled American merchant sailing vessel still in existence. Built of riveted iron plates in Marcus Hook, Pennsylvania, she plied the Delaware River carrying sand and heavy cargo. W.O. Decker, now listed on the National Register of Historic Places, was built in Long Island City and later hauled coal barges along the Housatonic River and pulled steel beams into place for bridges on the New Jersey Turnpike.\n\nW.O. Decker departs at 1:45pm and 2:45pm on Saturdays and Sundays; tickets $25–$40. Pioneer's daytime sails depart at 1pm and 4pm on Saturdays and Sundays, priced from $5 to $50. Pioneer also offers sunset sails on Fridays, Saturdays, and Sundays at $15–$70. More info at southstreetseaportmuseum.org/visit/sails_cruises/">
-          <div class="article-img" style="background:#e8e8e8;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:13px;color:#999;letter-spacing:0.05em;font-style:italic;">Insert Photo</div>
-          <span class="section-label">Harbor Life</span>
-          <div class="article-headline">Come Sail Away</div>
-          <div class="article-excerpt">A Pair of Historic Vessels Offer Summer Boating in New York Harbor</div>
-          <div class="article-meta">By Matthew Fenton &middot; May 16, 2026</div>
-          <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
-        </div>
-        <div class="article-card"
-          data-article="true"
-          data-title="The Write Stuff"
-          data-category="Arts &amp; Culture"
-          data-meta="The Broadsheet &middot; May 16, 2026"
-          data-img=""
-          data-excerpt="Seaport Museum Opens Rare Constitutional Documents Exhibit on May 27"
-          data-body="On May 27, the South Street Seaport Museum will open a new exhibit, 'The Promise of Liberty: Words That Shaped a Nation,' a showing of rare and historical documents marking a defining moment ahead of America's upcoming 250th anniversary.\n\nThe exhibit will include a rare copy of the 1787 'Official Edition' of the United States Constitution, made available by financier and philanthropist Ken Griffin. One of just 14 surviving copies, this document was printed for delegates to the Constitutional Convention and Confederation Congress.\n\nAdditional highlights include a rare July 1776 broadside of the Declaration of Independence and a 1789 printing of the Bill of Rights owned by one of the Representatives who helped shape it in the First Federal Congress. Tickets: $10. southstreetseaportmuseum.org/promise-of-liberty/">
-          <div class="article-img" style="background:#e8e8e8;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:13px;color:#999;letter-spacing:0.05em;font-style:italic;">Insert Photo</div>
-          <span class="section-label">Arts &amp; Culture</span>
-          <div class="article-headline">The Write Stuff</div>
-          <div class="article-excerpt">Seaport Museum Opens Rare Constitutional Documents Exhibit on May 27</div>
-          <div class="article-meta">The Broadsheet &middot; May 16, 2026</div>
-          <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
-        </div>
-        <div class="article-card"
-          data-article="true"
-          data-title="Ebony and Ivory"
-          data-category="Events"
-          data-meta="The Broadsheet &middot; May 16, 2026"
-          data-img=""
-          data-excerpt="Sing for Hope Brings 25 Artist-Designed Pianos to Fosun Plaza on May 18"
-          data-body="Sing for Hope, an arts nonprofit, will kick off its 25th anniversary year on Monday, May 18, with the return of its signature activation: Sing for Hope Pianos NYC, at Fosun Plaza at 28 Liberty Street.\n\nFrom 9am to 3pm, the space will become an interactive, open-air gallery where members of the public are invited to play and engage with 25 new artist-designed Sing for Hope pianos. At noon, the Sing for Hope HandaHarmony Youth Chorus — young people ages six to 18 — will perform with the Marching Cobras.\n\nAfter the event, the Sing for Hope pianos will be deployed to New York City parks and public spaces across all five boroughs for a three-week citywide residency. More info: singforhope.org/pianos/nyc26">
-          <div class="article-img" style="background:#e8e8e8;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:13px;color:#999;letter-spacing:0.05em;font-style:italic;">Insert Photo</div>
-          <span class="section-label">Events</span>
-          <div class="article-headline">Ebony and Ivory</div>
-          <div class="article-excerpt">Sing for Hope Brings 25 Artist-Designed Pianos to Fosun Plaza on May 18</div>
-          <div class="article-meta">The Broadsheet &middot; May 16, 2026</div>
-          <a class="article-readlink" href="#" data-open-article>Read &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- CURRENT ISSUE PREVIEW -->
-  <section class="current-issue" id="current">
-    <div class="current-issue-inner">
-      <div class="current-issue-header">
-        <span class="section-label">Current Issue</span>
-        <span class="current-issue-vol">Volume 30, Number 9 &nbsp;&middot;&nbsp; May 16&ndash;31, 2026 &nbsp;&middot;&nbsp; Published every two weeks</span>
-      </div>
-      <div class="current-issue-grid">
-        <div class="current-issue-card">
-          <span class="section-label">City Hall</span>
-          <div class="current-issue-card-title">Four Yeses, Six Maybes, and Thirty Nos</div>
-          <div class="current-issue-card-deck">Most Common City Hall Answer to CB1's Wish List Is 'Get Lost'</div>
-          <button class="current-issue-card-read"
-            data-article="true"
-            data-title="Four Yeses, Six Maybes, and Thirty Nos"
-            data-category="City Hall"
-            data-meta="By Matthew Fenton &middot; May 16, 2026"
-            data-img=""
-            data-excerpt="Most Common City Hall Answer to CB1's Wish List Is 'Get Lost'"
-            data-body="Community Board 1 recently received official replies to the 40 budget requests it submitted to the Mamdani administration for spending priorities in Lower Manhattan in fiscal year 2027.\n\nThe City answered 'yes' on four requests. Six proposals received a 'maybe.' The remaining 30 were denied, including proposals for a new public library, outdoor pool, and park improvements. The City's reply to CB1's request for funding the Estuarium at Pier 26 read: 'the agency does not understand the request as written' — a puzzling response given that the Estuarium is a longstanding local priority.">Read full story &rarr;</button>
-        </div>
-        <div class="current-issue-card">
-          <span class="section-label">Education</span>
-          <div class="current-issue-card-title">DOE on AI School in FiDi: NVM</div>
-          <div class="current-issue-card-deck">Local Parents and Community Leaders Push Back as DOE Withdraws Controversial AI High School Proposal</div>
-          <button class="current-issue-card-read"
-            data-article="true"
-            data-title="DOE on AI School in FiDi: NVM"
-            data-category="Education"
-            data-meta="By Matthew Fenton &middot; May 16, 2026"
-            data-img=""
-            data-excerpt="Local Parents and Community Leaders Push Back"
-            data-body="The Department of Education has withdrawn its controversial proposal to create a new AI-focused high school in the Financial District, after pushback from parents at the Lower Manhattan Community Middle School at 26 Broadway.\n\nChancellor Kamar Samuels: 'We heard you loud and clear, and we are listening.' Parent leader Anne Hager called it 'a huge relief.'">Read full story &rarr;</button>
-        </div>
-        <div class="current-issue-card">
-          <span class="section-label">Community</span>
-          <div class="current-issue-card-title">(Too Many) Caps For Sale</div>
-          <div class="current-issue-card-deck">City Hall Park Advocates Want Fewer Vendors Crowding the East Plaza</div>
-          <button class="current-issue-card-read"
-            data-article="true"
-            data-title="(Too Many) Caps For Sale"
-            data-category="Community"
-            data-meta="By Matthew Fenton, Photo by Cora Fung &middot; May 16, 2026"
-            data-img=""
-            data-excerpt="City Hall Park Advocates Want Fewer Vendors Crowding the East Plaza"
-            data-body="The east plaza of City Hall Park has been overrun with vendors displaced from the Brooklyn Bridge walkway since 2024. A CB1 survey found 60% of users describe navigating the space as 'difficult.' CB1's Urban Planning Fellow urged a Battery Conservancy-style partnership to restore order and fund maintenance.">Read full story &rarr;</button>
-        </div>
-        <div class="current-issue-card">
-          <span class="section-label">Harbor Life</span>
-          <div class="current-issue-card-title">Come Sail Away</div>
-          <div class="current-issue-card-deck">Pioneer and W.O. Decker Embark on 2026 Season at Pier 16</div>
-          <button class="current-issue-card-read"
-            data-article="true"
-            data-title="Come Sail Away"
-            data-category="Harbor Life"
-            data-meta="By Matthew Fenton &middot; May 16, 2026"
-            data-img=""
-            data-excerpt="A Pair of Historic Vessels Offer Summer Boating in New York Harbor"
-            data-body="The 1885 schooner Pioneer and the 1930 tugboat W.O. Decker have both embarked on their 2026 sailing seasons from Pier 16 at South Street Seaport. Pioneer is the oldest working boat of any kind in New York Harbor. Public sails are available weekends; tickets from $5. See southstreetseaportmuseum.org/visit/sails_cruises/ for details.">Read full story &rarr;</button>
-        </div>
-      </div>
-      <div class="current-issue-banner">&#128240; Next issue: May 31, 2026 &nbsp;&middot;&nbsp; Ad deadline: May 27 &nbsp;&middot;&nbsp; Published every two weeks</div>
+          data-meta="May 17, 2026"
+          data-body="An upcoming ceremony at the National September 11 Memorial will, for the first time, include a seventh moment of silence — one dedicated specifically to the thousands of people who have died of illnesses caused by exposure to the toxic dust cloud that engulfed Lower Manhattan after the 2001 attacks.\n\nThe addition was approved following years of advocacy by first responder and survivor groups, who argued that the illness deaths deserve the same formal recognition as those who died on the day itself. More than 4,000 people have died of 9/11-related illnesses to date.">
+          <div class="latest-item-photo"><img src="https://images.unsplash.com/photo-1518391846015-55a9cc003b25?w=700&q=80" alt="Story photo"></div>
+          <div class="latest-item-meta">May 17, 2026</div>
+          <div class="latest-item-headline">A Seventh Moment of Silence</div>
+          <div class="latest-item-deck">Upcoming Anniversary Ceremony will Acknowledge People Who have Died of 9/11 Illnesses</div>
+        </li>
+      </ul>
     </div>
   </section>
 
-  <!-- RIVERWATCH -->
-  <section class="riverwatch" id="riverwatch">
-    <div class="riverwatch-inner">
-      <span class="section-label" style="margin-bottom:18px;">RiverWatch</span>
-      <p class="riverwatch-note">Cruise ships navigate through New York Harbor on their way to and from the midtown Passenger Ship Terminal, Cape Liberty Cruise Port in Bayonne, NJ, and the docks in Red Hook, Brooklyn. Estimated times are based on sighting histories, published schedules, and intuition &mdash; they are also subject to tides, fog, winds, freak waves, hurricanes, and the whims of upper management.</p>
-      <table class="riverwatch-table">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Ship</th>
-            <th>Arriving</th>
-            <th>Departing</th>
-            <th>Dock</th>
-            <th>Destination</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>May 16</td><td>Norwegian Aqua</td><td>6:15am</td><td>4:45pm</td><td>Manhattan</td><td>Bermuda</td></tr>
-          <tr><td>May 17</td><td>ACL American Patriot</td><td>6:30am</td><td>3:30pm</td><td>Brooklyn</td><td>Boston</td></tr>
-          <tr><td>May 23</td><td>Norwegian Aqua</td><td>6:15am</td><td>4:45pm</td><td>Manhattan</td><td>Bermuda</td></tr>
-          <tr><td>May 28</td><td>Carnival Venezia</td><td>6:30am</td><td>3:30pm</td><td>Bayonne</td><td>Halifax</td></tr>
-          <tr><td>May 29</td><td>Queen Mary 2</td><td>6:00am</td><td>5:30pm</td><td>Brooklyn</td><td>Le Havre, Paris</td></tr>
-        </tbody>
-      </table>
-      <div class="riverwatch-source">Source: <a href="https://www.worldshipny.com" target="_blank" rel="noopener">worldshipny.com</a></div>
+  <!-- THREE-PANEL ROW: Events | Man on the Street | Stay Connected -->
+  <div class="three-panel">
+    <!-- Col 1: Upcoming Events (reuse existing events section content) -->
+    <div class="three-panel-col">
+      <div class="three-panel-header">
+        <span class="section-label" style="font-size:11px; letter-spacing:0.2em;">Upcoming Events</span>
+      </div>
+      <hr class="rule--thick" style="margin-bottom:0;">
+      <ul class="events-list">
+        <li class="events-item">
+          <div class="events-date-block">
+            <span class="events-date-month">May</span>
+            <span class="events-date-day">24</span>
+          </div>
+          <div>
+            <div class="events-name">Seaport Museum Family Day</div>
+            <div class="events-detail">11:00 AM – 4:00 PM</div>
+            <div class="events-venue" style="text-align:left; padding-top:2px;">Seaport Museum</div>
+          </div>
+        </li>
+        <li class="events-item">
+          <div class="events-date-block">
+            <span class="events-date-month">May</span>
+            <span class="events-date-day">26</span>
+          </div>
+          <div>
+            <div class="events-name">Memorial Day Ceremony</div>
+            <div class="events-detail">11:00 AM</div>
+            <div class="events-venue" style="text-align:left; padding-top:2px;">Battery Park</div>
+          </div>
+        </li>
+        <li class="events-item">
+          <div class="events-date-block">
+            <span class="events-date-month">Jun</span>
+            <span class="events-date-day">5</span>
+          </div>
+          <div>
+            <div class="events-name">Ales &amp; Tales: NYC Brewing History</div>
+            <div class="events-detail">6:30 PM</div>
+            <div class="events-venue" style="text-align:left; padding-top:2px;">Fraunces Tavern</div>
+          </div>
+        </li>
+      </ul>
+      <a href="#" class="view-all" style="display:inline-block; margin-top:16px;">View Full Calendar &rarr;</a>
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="Lower Manhattan neighborhood" style="width:100%;height:160px;object-fit:cover;display:block;margin-top:20px;">
     </div>
-  </section>
 
-  <!-- CLASSIFIEDS -->
-  <section class="classifieds" id="classifieds">
-    <div class="classifieds-inner">
-      <span class="section-label" style="margin-bottom:12px;">Classifieds &amp; Personals</span>
-      <p class="classifieds-note"><strong>Respectable Employment &amp; Services &nbsp;&middot;&nbsp; Items for Sale</strong><br>Up to 25 words. Six placements. FREE. Write to <a href="mailto:editor@ebroadsheet.com" style="color:var(--accent);">editor@ebroadsheet.com</a></p>
-      <div class="classifieds-grid">
-        <div class="classified-item">
-          <span class="section-label">Community</span>
-          <div class="classified-item-body"><strong>Senior Walking Group</strong> &mdash; Looking to create a walking group for seniors on Tuesdays or Thursdays around noon in Rockefeller Park and north Battery Park City. Please reach out <a href="mailto:rvc212@hotmail.com">rvc212@hotmail.com</a></div>
-        </div>
-        <div class="classified-item">
-          <span class="section-label">For Sale</span>
-          <div class="classified-item-body"><strong>Small, Beautiful Paintings</strong> for sale ($50&ndash;$100) by local artist Owen Gray. Landscapes painted in NYC and Italy. Independence Plaza, 310 Greenwich St. Text Jane, <a href="tel:646-334-5726">646-334-5726</a>, for appointment.</div>
-        </div>
-        <div class="classified-item">
-          <span class="section-label">Wildlife</span>
-          <div class="classified-item-body"><strong>Baby Falcon Alert</strong> &mdash; First Lower Manhattan baby falcon in years! See the one-month-old miracle on the live Falcon Cam at the top of 55 Water Street. <a href="https://55water.com/falcon-cam" target="_blank" rel="noopener">55water.com/falcon-cam</a></div>
-        </div>
-        <div class="classified-item">
-          <span class="section-label">Rental</span>
-          <div class="classified-item-body"><strong>Berkshire Rental</strong> &mdash; One level, 4 bedroom, steps from the lake with a large screened-in porch. Hiking, swimming, fishing, watersports and close to cultural activities. <a href="https://24downsroad.com" target="_blank" rel="noopener">24downsroad.com</a></div>
-        </div>
-        <div class="classified-item">
-          <span class="section-label">Services</span>
-          <div class="classified-item-body"><strong>Notary Public in BPC</strong> &mdash; Text Paula at <a href="tel:917-836-8802">917-836-8802</a></div>
-        </div>
-        <div class="classified-item">
-          <span class="section-label">Services</span>
-          <div class="classified-item-body"><strong>Pet Sitter &amp; End-of-Life Pet Doula</strong> &mdash; Caring for Lower Manhattan pets since 1998. Call/text Laura at <a href="tel:646-450-2337">646-450-2337</a>; send a message via <a href="https://CityCats.nyc" target="_blank" rel="noopener">CityCats.nyc</a></div>
-        </div>
+    <!-- Col 2: Man on the Street -->
+    <div class="three-panel-col">
+      <div class="three-panel-header">
+        <span class="section-label" style="font-size:11px; letter-spacing:0.2em;">Man on the Street</span>
+        <a href="#" class="view-all">View All Interviews &rarr;</a>
+      </div>
+      <hr class="rule--thick" style="margin-bottom:16px;">
+      <div class="mot-photo-full"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=700&q=80" alt="Man on the street interview">
       </div>
     </div>
-  </section>
 
-  <section class="newsletter" id="newsletter">
-    <div class="newsletter-rule-top"><hr></div>
-    <div class="newsletter-inner">
-      <div class="newsletter-title">The Daily</div>
-      <div class="newsletter-tagline">Delivered to your inbox every weekday</div>
-      <div class="newsletter-desc">Sign up for Lower Manhattan's essential newsletter. Stay connected to local stories, events, and community updates from The Broadsheet — delivered every weekday morning.</div>
-      <form class="newsletter-form" autocomplete="off" onsubmit="return false;">
-        <input type="email" placeholder="Enter your email" required name="email">
+    <!-- Col 3: Stay Connected -->
+    <div class="three-panel-col"><div class="sc-photo"><img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=600&q=80" alt="Manhattan"></div>
+      <p class="stay-connected-title">Stay Connected<br>to Lower Manhattan</p>
+      <p class="stay-connected-sub">News, neighborhood stories,<br>and events delivered to you.</p>
+      <form class="stay-connected-form subscribe-form" onsubmit="return false;">
+        <input type="email" placeholder="Your email">
         <button type="submit">Subscribe</button>
       </form>
+      <a href="#" style="display:block;margin-top:20px;text-decoration:none;color:inherit;border-top:1px solid #ddd;padding-top:16px;">
+        <img src="https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?w=600&q=80" alt="Lower Manhattan" style="width:100%;height:130px;object-fit:cover;display:block;margin-bottom:10px;">
+        <span style="font-family:'Inter',Arial,sans-serif;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#888;display:block;margin-bottom:4px;">From the Archive</span>
+        <p style="font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;font-weight:700;line-height:1.3;color:#111;margin:0;">The Streets That Shaped Lower Manhattan</p>
+      </a>
+
     </div>
-    <div class="newsletter-rule-bottom"><hr></div>
-  </section>
-  <section class="about" id="about">
-    <div class="about-inner">
-      <div class="about-title">About The Broadsheet</div>
-      <div class="about-body" style="position: relative;">
-        <span class="about-body-quote">&ldquo;</span>
-        <span style="position:relative;z-index:2;"> <em>Founded in 1997</em>, <strong>The Broadsheet</strong> is Lower Manhattan’s independent, hyper-local newspaper. We serve the neighborhoods at the southern tip of Manhattan, covering news that matters most to residents and workers alike — from city planning and schools to small business, local history, and waterfront life.</span>
+  </div>
+
+
+  <!-- ADVERTISING SECTION -->
+
+  <!-- ART PULLOUT -->
+  <div class="page" style="padding:0;">
+    <div class="art-pullout">
+      <div class="art-pullout-img">
+        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=900&q=85" alt="Featured artwork">
       </div>
-      <div class="about-staff">
-        <span class="about-staff-label">Editor:</span> Matthew Fenton &nbsp;&nbsp;
-        <span class="about-staff-label">Publisher:</span> Alison Simko &nbsp;&nbsp;
-        <span class="about-staff-label">Contributors:</span> Cora Fung, Grace Glukhov, Isabella Seepersaud
-      </div>
-      <div class="about-neighborhoods"><span style="color:var(--accent);font-weight:500">Neighborhoods we cover:</span> Battery Park City, Tribeca, South Street Seaport, Financial District.</div>
-    </div>
-  </section>
-  <section class="contact" id="contact">
-    <div class="contact-inner">
-      <div class="contact-left">
-        <div class="contact-title">Contact</div>
-        <div class="contact-info">Questions, tips or breaking news? Reach out and stay connected.</div>
-        <ul class="contact-list">
-          <li><span class="contact-icon" aria-hidden="true"><svg width="19" height="19" fill="none" viewBox="0 0 20 20"><path d="M4.8 4.873A8.496 8.496 0 0118 10.208c0 1.034-1.062 2.065-3.075 3.08l-.177.074-.111.183c-.28.46-.687 1.17-1.245 1.292-.29.061-.945.168-1.725.168a8.476 8.476 0 01-.05-16.952c.956 0 1.524.07 1.843.14.677.14 1.091.89 1.367 1.335l.07.113.165.182C16.235 4.828 15.25 4.799 14.18 4.799c-.153 0-.306.003-.46.008L4.8 4.873z" stroke="#8B1A1A" stroke-width="1.5" fill="none"/></svg></span>395 South End Avenue, NYC 10280</li>
-          <li><span class="contact-icon" aria-hidden="true"><svg width="19" height="19" fill="none" viewBox="0 0 20 20"><ellipse cx="10" cy="8.3" rx="4.6" ry="4.1" stroke="#8B1A1A" stroke-width="1.4" fill="none"/><path d="M4.3 14.1c.3.4 1.1 1.2 2.6 1.5a14.9 14.9 0 007.2 0c1.5-.3 2.3-1.1 2.6-1.5" stroke="#8B1A1A" stroke-width="1.4" fill="none"/></svg></span><a href="mailto:alison@ebroadsheet.com" style="color:inherit; text-decoration:underline;">alison@ebroadsheet.com</a></li>
-          <li><span class="contact-icon" aria-hidden="true"><svg width="19" height="19" fill="none" viewBox="0 0 19 19"><path d="M4.5 6.7A2.1 2.1 0 018.9 2c.1.9.2 1.7.5 2.5-.1.1-.2.2-.4.4a2.5 2.5 0 00-.7 1.5c-.7.3-1.4.7-2.1.3zM15.5 12.8c1 1.2.8 3-.4 4-.9.7-2 1.2-3.2 1.7-.2-1-.6-2.1-1.1-3 .7-.8 1.3-1.5 2.3-2 .6-.3 1.5-.5 2.1-.7zm-4.2 1.2c.4 1 .8 2.1 1.1 3.2-1 .2-2 .3-2.9.3s-1.9-.1-2.9-.3c.3-1.1.7-2.2 1.1-3.2.7-.1 1.6-.1 2.5 0zm-6.7-2c.7.1 1.6.4 2.3.7 1 .5 1.5 1.2 2.2 2-.5 1-1 2.1-1.1 3.1-1.2-.5-2.3-1.1-3.2-1.7-1.2-1-1.4-2.8-.4-4z" stroke="#8B1A1A" stroke-width="1.3" fill="none"/></svg></span><a href="tel:917-929-8375" style="color:inherit; text-decoration:underline;">917-929-8375</a></li>
+      <div class="editors-picks">
+        <div class="editors-picks-header">
+          <span class="editors-picks-label">Editor&#39;s Picks</span>
+          <p class="editors-picks-title">Stories worth returning to this week</p>
+        </div>
+        <ul class="picks-list">
+          <li><a href="#" class="picks-item">
+            <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=200&q=80" alt="">
+            <div class="picks-item-body">
+              <span class="picks-item-cat">Business</span>
+              <p class="picks-item-hed">The Revel is in the Retails</p>
+              <p class="picks-item-deck">How small shops are redefining Lower Manhattan&#39;s commercial corridors.</p>
+            </div>
+          </a></li>
+          <li><a href="#" class="picks-item">
+            <img src="https://images.unsplash.com/photo-1543158181-e6f9f6712055?w=200&q=80" alt="">
+            <div class="picks-item-body">
+              <span class="picks-item-cat">Education</span>
+              <p class="picks-item-hed">Diversity, Equity, or Exclusion?</p>
+              <p class="picks-item-deck">A federal lawsuit challenges Stuyvesant&#39;s admissions process.</p>
+            </div>
+          </a></li>
+          <li><a href="#" class="picks-item">
+            <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=200&q=80" alt="">
+            <div class="picks-item-body">
+              <span class="picks-item-cat">Transportation</span>
+              <p class="picks-item-hed">Riding the Current</p>
+              <p class="picks-item-deck">A proposed law would push NYC toward all-electric ferries.</p>
+            </div>
+          </a></li>
+          <li><a href="#" class="picks-item">
+            <img src="https://images.unsplash.com/photo-1518391846015-55a9cc003b25?w=200&q=80" alt="">
+            <div class="picks-item-body">
+              <span class="picks-item-cat">Community</span>
+              <p class="picks-item-hed">A Seventh Moment of Silence</p>
+              <p class="picks-item-deck">Lower Manhattan marks another anniversary with remembrance and resolve.</p>
+            </div>
+          </a></li>
         </ul>
-      </div>
-      <div class="contact-right">
-        <div class="contact-tiptext">Send us a tip — confidentially or on the record &mdash; we’d love to hear from you.</div>
-      </div>
-    </div>
-  </section>
-  <div class="footer-top-stripe"></div>
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-block">
-        <div class="footer-logo">The Broadsheet</div>
-        <div style="margin:7px 0 0 0;font-size:14px;color:#aaa;">Lower Manhattan’s Newspaper<br>Est. 1997</div>
-      </div>
-      <div class="footer-block">
-        <nav class="footer-nav">
-          <a href="#" class="footer-link">Home</a>
-          <a href="#current" class="footer-link">Current Issue</a>
-          <a href="#about" class="footer-link">About</a>
-          <a href="#" class="footer-link" data-info="archive">Archive</a>
-          <a href="#contact" class="footer-link">Contact</a>
-          <a href="#newsletter" class="footer-link">Subscribe</a>
-        </nav>
-        <div class="footer-social">
-          <a href="mailto:alison@ebroadsheet.com" title="Email">
-            <svg height="20" width="20" fill="none" viewBox="0 0 20 20"><rect x="2.2" y="4" width="15.5" height="12" rx="2.1" stroke="#fafafa" stroke-width="1.25"/><path d="M3.2 5.9l6.7 6.2a1.4 1.4 0 001.93 0l6.67-6.2" stroke="#fafafa" stroke-width="1.25" fill="none"/></svg>
+        <div class="picks-bottom-tiles">
+          <a href="#" class="picks-bottom-tile">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="">
+            <div class="picks-bottom-tile-body">
+              <span class="picks-bottom-tile-cat">Culture</span>
+              <p class="picks-bottom-tile-hed">The Streets Remember</p>
+            </div>
           </a>
-          <a href="tel:917-929-8375" title="Phone">
-            <svg height="20" width="20" fill="none" viewBox="0 0 22 22"><path d="M6.6 4.6c0-.7.46-1.1 1.13-1.34.36-.13.7-.18 1.05-.18C17.51 3.08 18.93 13.9 12.1 19.3a.89.89 0 01-.99.05c-1.37-.81-2.6-1.88-3.74-3.07C5.41 15.01 5.37 13.59 5.1 12.18c-.1-.56.12-1.17.42-1.6l.73-1A2 2 0 017 8a9.41 9.41 0 01-.4-1.4z" stroke="#fafafa" stroke-width="1.35" fill="none"/></svg>
+          <a href="#" class="picks-bottom-tile">
+            <img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=400&q=80" alt="">
+            <div class="picks-bottom-tile-body">
+              <span class="picks-bottom-tile-cat">History</span>
+              <p class="picks-bottom-tile-hed">A Block That Built a Borough</p>
+            </div>
           </a>
-          <a href="https://instagram.com/thebroadsheet" title="Instagram" target="_blank" rel="noopener">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" stroke="#fafafa" stroke-width="1.6"/><circle cx="12" cy="12" r="5" stroke="#fafafa" stroke-width="1.6"/><circle cx="18" cy="6" r="1" fill="#fafafa"/></svg>
+          <a href="#" class="picks-bottom-tile">
+            <img src="https://images.unsplash.com/photo-1560969184-10fe8719e047?w=400&q=80" alt="">
+            <div class="picks-bottom-tile-body">
+              <span class="picks-bottom-tile-cat">Crime</span>
+              <p class="picks-bottom-tile-hed">When Loyalty is the New Currency</p>
+            </div>
+          </a>
+          <a href="#" class="picks-bottom-tile">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80" alt="">
+            <div class="picks-bottom-tile-body">
+              <span class="picks-bottom-tile-cat">Environment</span>
+              <p class="picks-bottom-tile-hed">The Waterfront Reclaimed</p>
+            </div>
           </a>
         </div>
       </div>
-      <div class="footer-block footer-right">
-        <div>Email: <a href="mailto:alison@ebroadsheet.com" class="footer-link">alison@ebroadsheet.com</a></div>
-        <div>Call: <a href="tel:917-929-8375" class="footer-link">917-929-8375</a></div>
-        <div>Address: 395 South End Avenue, NYC 10280</div>
-        <a href="#" class="back-to-top">Back to top</a>
+    </div>
+  </div>
+
+  <section class="ad-section">
+    <p class="ad-section-title">Advertisement</p>
+    <div class="ad-grid">
+      <div class="ad-box"><span class="ad-placeholder">Place Ad Here</span></div>
+      <div class="ad-box"><span class="ad-placeholder">Place Ad Here</span></div>
+      <div class="ad-box"><span class="ad-placeholder">Place Ad Here</span></div>
+      <div class="ad-box"><span class="ad-placeholder">Place Ad Here</span></div>
+      <div class="ad-box ad-wide"><span class="ad-placeholder">Place Ad Here</span></div>
+    </div>
+  </section>
+
+  <!-- FOOTER (light background, 4 columns) -->
+  <footer class="footer" id="archive">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-heading">Current Issue</div>
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Current Issue" style="width:100%;height:200px;object-fit:cover;display:block;">
+      </div>
+      <div class="footer-col">
+        <div class="footer-heading">Archive</div>
+        <span class="footer-archive-label">Archive</span>
+        <select class="footer-archive-select">
+          <option>Select Month</option>
+          <option>May 2026</option>
+          <option>April 2026</option>
+          <option>March 2026</option>
+          <option>February 2026</option>
+          <option>January 2026</option>
+        </select>
+      </div>
+      <div class="footer-col" id="contact">
+        <div class="footer-heading">Navigate</div>
+        <ul class="footer-nav-list">
+          <li><a href="#">Home</a></li>
+          <li><a href="#current">Current Issue</a></li>
+          <li><a href="#advertise">Advertise</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#archive">Archive</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+        <div class="footer-instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-label="Instagram">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+      </div>
+      <div class="footer-col" id="about">
+        <div class="footer-heading">Subscribe</div>
+        <p class="footer-subscribe-desc">To receive the BroadsheetDAILY</p>
+        <form class="footer-subscribe-form" onsubmit="return false;">
+          <input type="email" placeholder="Email">
+          <input type="text" placeholder="First Name">
+          <input type="text" placeholder="Last Name">
+          <button type="submit">Subscribe</button>
+        </form>
       </div>
     </div>
-    <div class="footer-copyright">&copy; 1997–2026 The Broadsheet. All rights reserved.</div>
+    <div class="footer-copyright">© 2026 The Broadsheet. All rights reserved.</div>
   </footer>
+
   <script>
-    // Hamburger nav toggle
-    const navToggle = document.getElementById('navToggle');
-    const mobileNav = document.getElementById('mobileNav');
-    navToggle.addEventListener('click', function() {
-      mobileNav.classList.toggle('open');
-    });
-    document.addEventListener('click', function(e) {
-      if (!mobileNav.contains(e.target) && !navToggle.contains(e.target)) {
-        mobileNav.classList.remove('open');
-      }
-    });
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        let href = this.getAttribute('href');
-        if (href.length > 1 && document.querySelector(href)) {
-          e.preventDefault();
-          document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
-    // Newsletter form demo interaction
-    document.querySelector('.newsletter-form').addEventListener('submit', function(e){
-      e.preventDefault();
-      let input = this.querySelector('input[type=email]');
-      input.value = '';
-      this.querySelector('button').innerText = 'Thank you!';
-      setTimeout(()=>{this.querySelector('button').innerText = 'Subscribe';},1400);
-    });
-    // Fade-in intersection observer for article cards
-    function fadeInCards() {
-      const cards = document.querySelectorAll('.article-card');
-      const fadeOptions = { threshold: 0.16 };
-      const fadeIn = (entries, obs) => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting){
-            entry.target.classList.add('fade-in');
-            obs.unobserve(entry.target);
-          }
-        });
-      };
-      const observer = new IntersectionObserver(fadeIn, fadeOptions);
-      cards.forEach(card => observer.observe(card));
-    }
-    window.addEventListener('DOMContentLoaded', fadeInCards);
+    // ── MODAL ──────────────────────────────────────────────────────
+    const overlay = document.getElementById('modalOverlay');
 
-    // ── ARTICLE MODAL ──────────────────────────────────────────────────────────
-    const articleOverlay = document.getElementById('articleModalOverlay');
-    const articleModal   = document.getElementById('articleModal');
-
-    function openArticleModal(card) {
-      document.getElementById('articleModalCategory').textContent = card.dataset.category || '';
-      document.getElementById('articleModalTitle').textContent    = card.dataset.title    || '';
-      document.getElementById('articleModalMeta').textContent     = card.dataset.meta     || '';
-      const img = document.getElementById('articleModalImg');
-      img.src = card.dataset.img || '';
-      img.alt = card.dataset.title || '';
-      // Build body paragraphs + placeholder badge
-      const body     = card.dataset.body || '';
-      const excerptEl = document.getElementById('articleModalContent');
-      excerptEl.innerHTML = '';
-      body.split('\n\n').forEach(para => {
-        if (!para.trim()) return;
-        const p = document.createElement('p');
-        p.textContent = para.trim();
-        excerptEl.appendChild(p);
+    function openModal(data) {
+      document.getElementById('modalCategory').textContent = data.category || '';
+      document.getElementById('modalHeadline').textContent = data.headline || '';
+      document.getElementById('modalMeta').textContent = data.meta || '';
+      const content = document.getElementById('modalContent');
+      content.innerHTML = '';
+      (data.body || '').split('\n\n').forEach(p => {
+        if (!p.trim()) return;
+        const el = document.createElement('p');
+        el.textContent = p.trim();
+        content.appendChild(el);
       });
       const badge = document.createElement('div');
-      badge.className = 'article-modal-placeholder';
-      badge.textContent = '📝 Full article coming soon — placeholder for demo';
-      excerptEl.appendChild(badge);
-      articleOverlay.classList.add('open');
+      badge.className = 'modal-demo-badge';
+      badge.textContent = 'Full article — placeholder for demo';
+      content.appendChild(badge);
+      overlay.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
 
-    function closeArticleModal() {
-      articleOverlay.classList.remove('open');
+    function closeModal() {
+      overlay.classList.remove('open');
       document.body.style.overflow = '';
     }
 
-    // Clicking a "Read →" link or anywhere on an article card opens modal
-    document.querySelectorAll('[data-article="true"]').forEach(card => {
-      card.addEventListener('click', function(e) {
-        e.preventDefault();
-        openArticleModal(card);
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    // Wire up latest-item rows
+    document.querySelectorAll('.latest-item[data-headline]').forEach(item => {
+      item.addEventListener('click', () => openModal({
+        headline: item.dataset.headline,
+        category: item.dataset.category,
+        meta:     item.dataset.meta,
+        body:     item.dataset.body,
+      }));
+    });
+
+    // Wire up hero read more
+    document.querySelector('.hero-readmore').addEventListener('click', e => {
+      e.preventDefault();
+      openModal({
+        headline: 'Come Sail Away',
+        category: 'Harbor Life',
+        meta: 'By Matthew Fenton · May 21, 2026',
+        body: "Two vessels from the South Street Seaport Museum's historic working fleet — the 1885 schooner Pioneer and the 1930 tugboat W.O. Decker, both moored at Pier 16 — have embarked on their 2026 sailing season.\n\nPioneer is the oldest working boat of any kind in New York Harbor and the only iron-hulled American merchant sailing vessel still in existence. Built of riveted iron plates in Marcus Hook, Pennsylvania, she plied the Delaware River carrying sand and heavy cargo.\n\nW.O. Decker departs at 1:45pm and 2:45pm on Saturdays and Sundays; tickets $25–$40. Pioneer's daytime sails depart at 1pm and 4pm on Saturdays and Sundays, priced from $5 to $50. Pioneer also offers sunset sails on Fridays, Saturdays, and Sundays at $15–$70. More info at southstreetseaportmuseum.org/visit/sails_cruises/"
       });
     });
 
-    document.getElementById('articleModalClose').addEventListener('click', closeArticleModal);
-    articleOverlay.addEventListener('click', function(e) {
-      if (e.target === articleOverlay) closeArticleModal();
-    });
-
-    // ── INFO MODAL (Current Issue / Archive) ──────────────────────────────────
-    const infoOverlay = document.getElementById('infoModalOverlay');
-    const infoData = {
-      issue: {
-        icon: '📰',
-        title: 'Current Issue',
-        desc:  'The latest print edition of The Broadsheet — covering Battery Park City, Tribeca, South Street Seaport, and the Financial District. Pick up a copy at newsstands across Lower Manhattan, or subscribe to have it delivered.',
-        badge: 'Digital edition coming soon'
-      },
-      archive: {
-        icon: '🗂️',
-        title: 'Archive',
-        desc:  'Browse every issue of The Broadsheet going back to 1997. Our full archive covers nearly three decades of Lower Manhattan history — from the World Trade Center attacks to the waterfront renaissance of the 2010s and beyond.',
-        badge: 'Full archive coming soon'
-      }
-    };
-
-    function openInfoModal(type) {
-      const d = infoData[type];
-      if (!d) return;
-      document.getElementById('infoModalIcon').textContent  = d.icon;
-      document.getElementById('infoModalTitle').textContent = d.title;
-      document.getElementById('infoModalDesc').textContent  = d.desc;
-      document.getElementById('infoModalBadge').textContent = d.badge;
-      infoOverlay.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeInfoModal() {
-      infoOverlay.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    document.querySelectorAll('[data-info]').forEach(link => {
-      link.addEventListener('click', function(e) {
+    // ── SUBSCRIBE FORMS ────────────────────────────────────────────
+    document.querySelectorAll('.subscribe-form, .footer-subscribe-form').forEach(form => {
+      form.addEventListener('submit', function(e) {
         e.preventDefault();
-        openInfoModal(this.dataset.info);
+        const btn = this.querySelector('button');
+        const orig = btn.textContent;
+        btn.textContent = 'Thank you!';
+        this.querySelectorAll('input').forEach(inp => inp.value = '');
+        setTimeout(() => btn.textContent = orig, 2000);
       });
     });
 
-    document.getElementById('infoModalClose').addEventListener('click', closeInfoModal);
-    infoOverlay.addEventListener('click', function(e) {
-      if (e.target === infoOverlay) closeInfoModal();
-    });
-
-    // Close any modal on Escape
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') { closeArticleModal(); closeInfoModal(); }
+    // ── STICKY NAV SHADOW ──────────────────────────────────────────
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+      nav.style.boxShadow = window.scrollY > 40 ? '0 2px 8px rgba(0,0,0,0.08)' : '';
     });
   </script>
 </body>
