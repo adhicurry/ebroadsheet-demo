@@ -1196,7 +1196,7 @@
 
 
   <!-- THE GRAPEVINE -->
-  <section style="background:#fdf8f3;border-bottom:3px double #111;padding:40px 24px;">
+  <section style="background:#fdf8f3;border-bottom:3px double #111;padding:40px 24px;overflow:hidden;box-sizing:border-box;width:100%;">
     <div class="page">
       <div style="text-align:center;margin-bottom:24px;border-bottom:2px solid #111;padding-bottom:20px;">
         <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11px;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:#888;margin-bottom:8px;">Community Bulletin Board</div>
@@ -1208,7 +1208,8 @@
         </div>
         <p style="font-family:'EB Garamond',Georgia,serif;font-size:15px;font-style:italic;color:#555;margin:0;">News, notices, opportunities, and messages from our Lower Manhattan community.</p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <div style="display:grid;grid-template-columns:repeat(8,220px);gap:16px;padding-bottom:8px;">
         <div style="background:#fff;border:1px solid #ddd;border-top:3px solid #111;padding:18px;position:relative;">
           <div style="font-family:'Inter',Arial,sans-serif;font-size:8.5px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#888;margin-bottom:8px;">📌 Community Notice</div>
           <p style="font-family:'EB Garamond',Georgia,serif;font-size:14px;color:#333;margin:0;line-height:1.5;">Notice text goes here. Short community announcement for Lower Manhattan residents.</p>
@@ -1242,12 +1243,11 @@
           <p style="font-family:'EB Garamond',Georgia,serif;font-size:14px;color:#333;margin:0;line-height:1.5;">General neighborhood news or announcement from a local resident or group.</p>
         </div>
       </div>
+      </div><!-- end scroll wrapper -->
     </div>
   </section>
 
   <!-- ADVERTISING SECTION -->
-
-  <!-- ART PULLOUT -->
   <div class="page" style="padding:0;">
     <div class="art-pullout">
       <div class="art-pullout-img">
