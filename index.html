@@ -182,7 +182,7 @@
       font-weight: 500;
       letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: #555;
+      color: #111;
       display: block;
       margin-top: 6px;
     }
@@ -962,6 +962,56 @@
       font-size: 14px; font-weight: 700; line-height: 1.28; color: #111; margin: 0;
     }
 
+
+    /* ─── BROADSHEET NAV ────────────────────────────────────────── */
+    .broadsheet-nav {
+      background: #ffffff;
+      border-top: 3px double #111;
+      border-bottom: 1px solid #111;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .broadsheet-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .broadsheet-nav-link {
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #111;
+      text-decoration: none;
+      padding: 4px 14px;
+      border-right: 1px solid #ccc;
+      white-space: nowrap;
+      transition: background 0.12s;
+    }
+    .broadsheet-nav-link:first-child { padding-left: 0; }
+    .broadsheet-nav-link:last-child { border-right: none; }
+    .broadsheet-nav-link:hover { text-decoration: underline; }
+    .broadsheet-nav-social {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .broadsheet-nav-social-link {
+      color: #111;
+      display: flex;
+      align-items: center;
+    }
+    .broadsheet-nav-social-link:hover { color: #555; }
+    @media (max-width: 720px) {
+      .broadsheet-nav { justify-content: center; }
+      .broadsheet-nav-link { font-size: 9px; padding: 4px 10px; }
+    }
   </style>
 </head>
 <body>
@@ -984,10 +1034,8 @@
   <!-- DATE BAR -->
   <div class="datebar">
     <span>Lower Manhattan's Newspaper Since 1997</span>
-    <span>Tuesday, May 27, 2026 &nbsp;·&nbsp; Vol. 30, No. 9</span>
+    <span>Tuesday, May 27, 2026</span>
   </div>
-
-  <!-- NAV -->
 
   <!-- MASTHEAD -->
   <header class="masthead">
@@ -996,17 +1044,42 @@
     <span class="masthead-est">Est. 1997</span>
   </header>
 
+  <!-- NAV BAR (beneath masthead) -->
+  <nav class="broadsheet-nav">
+    <div class="broadsheet-nav-links">
+      <a href="#" class="broadsheet-nav-link">Home</a>
+      <a href="#current" class="broadsheet-nav-link">Current Issue</a>
+      <a href="#" class="broadsheet-nav-link">Advertise</a>
+      <a href="#" class="broadsheet-nav-link">About</a>
+      <a href="#archive" class="broadsheet-nav-link">Archive</a>
+      <a href="#" class="broadsheet-nav-link">Contact Us</a>
+      <a href="#" class="broadsheet-nav-link">Events Calendar</a>
+    </div>
+    <div class="broadsheet-nav-social">
+      <a href="#" class="broadsheet-nav-social-link" aria-label="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="#" class="broadsheet-nav-social-link" aria-label="X (Twitter)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.734-8.835L2.25 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="#" class="broadsheet-nav-social-link" aria-label="Facebook">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+    </div>
+  </nav>
+
   <!-- CURRENT ISSUE HERO -->
   <section class="hero" id="current">
     <div class="page">
       <div class="hero-inner">
         <div class="hero-text">
           <div class="hero-label">
-            <span class="section-label" style="letter-spacing:0.18em;">CURRENT ISSUE</span>
+            <span class="section-label" style="letter-spacing:0.18em;display:block;text-align:center;width:100%;">TODAY'S STORY</span>
           </div>
           <div class="hero-date" style="font-size:13px; color:#555; margin-bottom:10px; font-family:serif; letter-spacing:0.04em;">May 21, 2026</div>
           <hr class="rule" style="margin-bottom:16px;">
           <h1 class="hero-headline">Come Sail Away</h1>
+          <p style="font-family:'Inter',Arial,sans-serif;font-size:11px;letter-spacing:0.08em;color:#555;margin-bottom:8px;">By: [Author Name]</p>
           <p class="hero-deck">A Pair of Historic Vessels Offer Summer Boating in New York Harbor</p>
           <a href="#" class="hero-readmore">Read the Story &rarr;</a>
         </div>
@@ -1018,32 +1091,20 @@
   </section>
 
 
-  <!-- MORE STORIES STRIP -->
-  <div class="more-strip">
-    <div class="page" style="padding:0;">
-      <div class="more-strip-inner">
-        <a href="#" class="more-strip-item">
-          <div class="photo-placeholder">INSERT PHOTO</div>
-          <div><span class="more-strip-cat">Business</span><p class="more-strip-hed">The Revel is in the Retails</p></div>
-        </a>
-        <a href="#" class="more-strip-item">
-          <div class="photo-placeholder">INSERT PHOTO</div>
-          <div><span class="more-strip-cat">Crime</span><p class="more-strip-hed">When Loyalty is the New Currency</p></div>
-        </a>
-        <a href="#" class="more-strip-item">
-          <div class="photo-placeholder">INSERT PHOTO</div>
-          <div><span class="more-strip-cat">Community</span><p class="more-strip-hed">A Seventh Moment of Silence</p></div>
-        </a>
-      </div>
-    </div>
+
+  <!-- AD ROW (4 boxes beneath hero) -->
+  <div class="ad-row-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid #111;">
+    <div class="ad-box-simple" style="border-right:1px solid #111;padding:32px 16px;text-align:center;font-family:'Inter',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#bbb;background:#fafafa;min-height:100px;display:flex;align-items:center;justify-content:center;">AD.</div>
+    <div class="ad-box-simple" style="border-right:1px solid #111;padding:32px 16px;text-align:center;font-family:'Inter',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#bbb;background:#fafafa;min-height:100px;display:flex;align-items:center;justify-content:center;">AD.</div>
+    <div class="ad-box-simple" style="border-right:1px solid #111;padding:32px 16px;text-align:center;font-family:'Inter',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#bbb;background:#fafafa;min-height:100px;display:flex;align-items:center;justify-content:center;">AD.</div>
+    <div class="ad-box-simple" style="padding:32px 16px;text-align:center;font-family:'Inter',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#bbb;background:#fafafa;min-height:100px;display:flex;align-items:center;justify-content:center;">AD.</div>
   </div>
 
   <!-- THE LATEST -->
   <section class="latest" id="latest">
     <div class="page" style="padding-top:28px; padding-bottom:28px;">
-      <div class="section-header">
-        <span class="section-label" style="font-size:12px; letter-spacing:0.2em;">The Latest</span>
-        <a href="#" class="view-all">View All News &rarr;</a>
+      <div class="section-header" style="justify-content:center;">
+        <span class="section-label" style="font-size:12px; letter-spacing:0.2em; text-align:center;">View All Stories</span>
       </div>
       <hr class="rule--thick" style="margin-bottom:0;">
       <ul class="latest-list">
@@ -1055,6 +1116,7 @@
           <div class="latest-item-photo"><div class="photo-placeholder">INSERT PHOTO</div></div>
           <div class="latest-item-meta">May 21, 2026</div>
           <div class="latest-item-headline">The Revel is in the Retails</div>
+          <div style="font-family:'Inter',Arial,sans-serif;font-size:10px;color:#777;margin-bottom:4px;">By: [Author Name]</div>
           <div class="latest-item-deck">Downtown Storefront Incubator Program Selects Six Concepts for Summer Debut</div>
         </li>
         <li class="latest-item"
@@ -1065,6 +1127,7 @@
           <div class="latest-item-photo"><div class="photo-placeholder">INSERT PHOTO</div></div>
           <div class="latest-item-meta">May 21, 2026</div>
           <div class="latest-item-headline">Riding the Current</div>
+          <div style="font-family:'Inter',Arial,sans-serif;font-size:10px;color:#777;margin-bottom:4px;">By: [Author Name]</div>
           <div class="latest-item-deck">Proposed Law Would Spur New York City's Transition to Electric Ferries</div>
         </li>
         <li class="latest-item"
@@ -1075,6 +1138,7 @@
           <div class="latest-item-photo"><div class="photo-placeholder">INSERT PHOTO</div></div>
           <div class="latest-item-meta">May 20, 2026</div>
           <div class="latest-item-headline">Diversity, Equity, or Exclusion?</div>
+          <div style="font-family:'Inter',Arial,sans-serif;font-size:10px;color:#777;margin-bottom:4px;">By: [Author Name]</div>
           <div class="latest-item-deck">Lawsuit Alleges that Stuyvesant High School Illegally Considers Race in Admissions Decisions</div>
         </li>
         <li class="latest-item"
@@ -1085,6 +1149,7 @@
           <div class="latest-item-photo"><div class="photo-placeholder">INSERT PHOTO</div></div>
           <div class="latest-item-meta">May 18, 2026</div>
           <div class="latest-item-headline">When Loyalty is the New Currency, Larceny is the New Counterfeiting</div>
+          <div style="font-family:'Inter',Arial,sans-serif;font-size:10px;color:#777;margin-bottom:4px;">By: [Author Name]</div>
           <div class="latest-item-deck">Founder of FiDi-Based Financial Tech Company Pleads Guilty to Securities Fraud</div>
         </li>
         <li class="latest-item"
@@ -1095,87 +1160,90 @@
           <div class="latest-item-photo"><div class="photo-placeholder">INSERT PHOTO</div></div>
           <div class="latest-item-meta">May 17, 2026</div>
           <div class="latest-item-headline">A Seventh Moment of Silence</div>
+          <div style="font-family:'Inter',Arial,sans-serif;font-size:10px;color:#777;margin-bottom:4px;">By: [Author Name]</div>
           <div class="latest-item-deck">Upcoming Anniversary Ceremony will Acknowledge People Who have Died of 9/11 Illnesses</div>
         </li>
       </ul>
     </div>
   </section>
 
-  <!-- THREE-PANEL ROW: Events | Man on the Street | Stay Connected -->
-  <div class="three-panel">
-    <!-- Col 1: Upcoming Events (reuse existing events section content) -->
-    <div class="three-panel-col">
-      <div class="three-panel-header">
-        <span class="section-label" style="font-size:11px; letter-spacing:0.2em;">Upcoming Events</span>
-      </div>
-      <hr class="rule--thick" style="margin-bottom:0;">
-      <ul class="events-list">
-        <li class="events-item">
-          <div class="events-date-block">
-            <span class="events-date-month">May</span>
-            <span class="events-date-day">24</span>
-          </div>
-          <div>
-            <div class="events-name">Seaport Museum Family Day</div>
-            <div class="events-detail">11:00 AM – 4:00 PM</div>
-            <div class="events-venue" style="text-align:left; padding-top:2px;">Seaport Museum</div>
-          </div>
-        </li>
-        <li class="events-item">
-          <div class="events-date-block">
-            <span class="events-date-month">May</span>
-            <span class="events-date-day">26</span>
-          </div>
-          <div>
-            <div class="events-name">Memorial Day Ceremony</div>
-            <div class="events-detail">11:00 AM</div>
-            <div class="events-venue" style="text-align:left; padding-top:2px;">Battery Park</div>
-          </div>
-        </li>
-        <li class="events-item">
-          <div class="events-date-block">
-            <span class="events-date-month">Jun</span>
-            <span class="events-date-day">5</span>
-          </div>
-          <div>
-            <div class="events-name">Ales &amp; Tales: NYC Brewing History</div>
-            <div class="events-detail">6:30 PM</div>
-            <div class="events-venue" style="text-align:left; padding-top:2px;">Fraunces Tavern</div>
-          </div>
-        </li>
-      </ul>
-      <a href="#" class="view-all" style="display:inline-block; margin-top:16px;">View Full Calendar &rarr;</a>
-      <div class="photo-placeholder">INSERT PHOTO</div>
-    </div>
 
-    <!-- Col 2: Man on the Street -->
-    <div class="three-panel-col">
-      <div class="three-panel-header">
-        <span class="section-label" style="font-size:11px; letter-spacing:0.2em;">Man on the Street</span>
+  <!-- MAN ON THE STREET (full-width) -->
+  <section style="border-bottom:1px solid #111;padding:28px 24px;">
+    <div class="page">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px;">
+        <span class="section-label" style="font-size:12px;letter-spacing:0.2em;">Man on the Street</span>
         <a href="#" class="view-all">View All Interviews &rarr;</a>
       </div>
-      <hr class="rule--thick" style="margin-bottom:16px;">
-      <div class="mot-photo-full"><div class="photo-placeholder">INSERT PHOTO</div>
+      <hr class="rule--thick" style="margin-bottom:20px;">
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;">
+        <div style="display:flex;flex-direction:column;gap:10px;"><div class="photo-placeholder" style="height:200px;">INSERT PHOTO</div></div>
+        <div style="display:flex;flex-direction:column;gap:10px;"><div class="photo-placeholder" style="height:200px;">INSERT PHOTO</div></div>
+        <div style="display:flex;flex-direction:column;gap:10px;"><div class="photo-placeholder" style="height:200px;">INSERT PHOTO</div></div>
+        <div style="display:flex;flex-direction:column;gap:10px;"><div class="photo-placeholder" style="height:200px;">INSERT PHOTO</div></div>
+        <div style="display:flex;flex-direction:column;gap:10px;"><div class="photo-placeholder" style="height:200px;">INSERT PHOTO</div></div>
       </div>
     </div>
+  </section>
 
-    <!-- Col 3: Stay Connected -->
-    <div class="three-panel-col"><div class="sc-photo"><div class="photo-placeholder">INSERT PHOTO</div></div>
-      <p class="stay-connected-title">Stay Connected<br>to Lower Manhattan</p>
-      <p class="stay-connected-sub">News, neighborhood stories,<br>and events delivered to you.</p>
-      <form class="stay-connected-form subscribe-form" onsubmit="return false;">
-        <input type="email" placeholder="Your email">
-        <button type="submit">Subscribe</button>
-      </form>
-      <a href="#" style="display:block;margin-top:20px;text-decoration:none;color:inherit;border-top:1px solid #ddd;padding-top:16px;">
-        <div class="photo-placeholder">INSERT PHOTO</div>
-        <span style="font-family:'Inter',Arial,sans-serif;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#888;display:block;margin-bottom:4px;">From the Archive</span>
-        <p style="font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;font-weight:700;line-height:1.3;color:#111;margin:0;">The Streets That Shaped Lower Manhattan</p>
-      </a>
-
-    </div>
+  <!-- AD ROW (4 boxes beneath MOTS) -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid #111;">
+    <div style="border-right:1px solid #111;padding:32px 16px;text-align:center;font-family:'Inter',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#bbb;background:#fafafa;min-height:100px;display:flex;align-items:center;justify-content:center;">AD.</div>
+    <div style="border-right:1px solid #111;padding:32px 16px;text-align:center;font-family:'Inter',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#bbb;background:#fafafa;min-height:100px;display:flex;align-items:center;justify-content:center;">AD.</div>
+    <div style="border-right:1px solid #111;padding:32px 16px;text-align:center;font-family:'Inter',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#bbb;background:#fafafa;min-height:100px;display:flex;align-items:center;justify-content:center;">AD.</div>
+    <div style="padding:32px 16px;text-align:center;font-family:'Inter',Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#bbb;background:#fafafa;min-height:100px;display:flex;align-items:center;justify-content:center;">AD.</div>
   </div>
 
+
+  <!-- THE GRAPEVINE -->
+  <section style="background:#fdf8f3;border-bottom:3px double #111;padding:40px 24px;">
+    <div class="page">
+      <div style="text-align:center;margin-bottom:24px;border-bottom:2px solid #111;padding-bottom:20px;">
+        <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:11px;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:#888;margin-bottom:8px;">Community Bulletin Board</div>
+        <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(32px,5vw,52px);font-weight:900;letter-spacing:0.04em;color:#111;margin:0 0 10px;">The Grapevine</h2>
+        <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:10px;">
+          <hr style="flex:1;border:none;border-top:1px solid #111;max-width:80px;">
+          <span style="font-size:18px;">&#x2767;</span>
+          <hr style="flex:1;border:none;border-top:1px solid #111;max-width:80px;">
+        </div>
+        <p style="font-family:'EB Garamond',Georgia,serif;font-size:15px;font-style:italic;color:#555;margin:0;">News, notices, opportunities, and messages from our Lower Manhattan community.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+        <div style="background:#fff;border:1px solid #ddd;border-top:3px solid #111;padding:18px;position:relative;">
+          <div style="font-family:'Inter',Arial,sans-serif;font-size:8.5px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#888;margin-bottom:8px;">📌 Community Notice</div>
+          <p style="font-family:'EB Garamond',Georgia,serif;font-size:14px;color:#333;margin:0;line-height:1.5;">Notice text goes here. Short community announcement for Lower Manhattan residents.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #ddd;border-top:3px solid #111;padding:18px;position:relative;">
+          <div style="font-family:'Inter',Arial,sans-serif;font-size:8.5px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#888;margin-bottom:8px;">🔍 Lost &amp; Found</div>
+          <p style="font-family:'EB Garamond',Georgia,serif;font-size:14px;color:#333;margin:0;line-height:1.5;">Lost item description or found item notice. Contact info goes here.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #ddd;border-top:3px solid #111;padding:18px;position:relative;">
+          <div style="font-family:'Inter',Arial,sans-serif;font-size:8.5px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#888;margin-bottom:8px;">🏪 Local Business</div>
+          <p style="font-family:'EB Garamond',Georgia,serif;font-size:14px;color:#333;margin:0;line-height:1.5;">Local business announcement or promotion. Grand opening, new hours, special offer.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #ddd;border-top:3px solid #111;padding:18px;position:relative;">
+          <div style="font-family:'Inter',Arial,sans-serif;font-size:8.5px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#888;margin-bottom:8px;">🙋 Volunteers Needed</div>
+          <p style="font-family:'EB Garamond',Georgia,serif;font-size:14px;color:#333;margin:0;line-height:1.5;">Volunteer opportunity description. Organization name, time commitment, contact.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #ddd;border-top:3px solid #111;padding:18px;position:relative;">
+          <div style="font-family:'Inter',Arial,sans-serif;font-size:8.5px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#888;margin-bottom:8px;">📅 Events</div>
+          <p style="font-family:'EB Garamond',Georgia,serif;font-size:14px;color:#333;margin:0;line-height:1.5;">Upcoming community event. Date, time, location, and brief description here.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #ddd;border-top:3px solid #111;padding:18px;position:relative;">
+          <div style="font-family:'Inter',Arial,sans-serif;font-size:8.5px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#888;margin-bottom:8px;">🎨 Calling Artists</div>
+          <p style="font-family:'EB Garamond',Georgia,serif;font-size:14px;color:#333;margin:0;line-height:1.5;">Open call or artist opportunity. Submission deadline, requirements, contact info.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #ddd;border-top:3px solid #111;padding:18px;position:relative;">
+          <div style="font-family:'Inter',Arial,sans-serif;font-size:8.5px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#888;margin-bottom:8px;">💛 Thank You Note</div>
+          <p style="font-family:'EB Garamond',Georgia,serif;font-size:14px;color:#333;margin:0;line-height:1.5;">Personal thank you from a community member. Brief, warm, neighborhood spirit.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #ddd;border-top:3px solid #111;padding:18px;position:relative;">
+          <div style="font-family:'Inter',Arial,sans-serif;font-size:8.5px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#888;margin-bottom:8px;">📢 Neighborhood Announcement</div>
+          <p style="font-family:'EB Garamond',Georgia,serif;font-size:14px;color:#333;margin:0;line-height:1.5;">General neighborhood news or announcement from a local resident or group.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ADVERTISING SECTION -->
 
