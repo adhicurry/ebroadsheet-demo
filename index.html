@@ -284,7 +284,7 @@
     .latest-item {
       display: flex;
       flex-direction: column;
-      padding: 18px 0 24px 20px;
+      padding: 22px 0 28px 24px;
       border-left: 1px solid #ccc;
       cursor: pointer;
       transition: background 0.12s;
@@ -292,7 +292,7 @@
     .latest-item:first-child { border-left: none; padding-left: 0; }
     .latest-item:hover { background: #F5F5F5; }
     .latest-item-photo { margin-bottom: 12px; }
-    .latest-item-photo .photo-placeholder { height: 110px; }
+    .latest-item-photo .photo-placeholder { height: 130px; }
     .latest-item-meta {
       font-family: 'Inter', Arial, sans-serif;
       font-size: 9.5px;
@@ -303,7 +303,7 @@
     }
     .latest-item-headline {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 15px;
+      font-size: 17px;
       font-weight: 700;
       line-height: 1.25;
       color: #111;
@@ -1075,7 +1075,7 @@
       <div class="hero-inner">
         <div class="hero-text">
           <div class="hero-label">
-            <span class="section-label" style="font-family:'Tangerine',cursive;font-size:clamp(36px,5vw,54px);font-weight:700;letter-spacing:0.06em;text-transform:none;display:block;text-align:center;width:100%;">Today's Story</span>
+            <span class="section-label" style="font-family:'Tangerine',cursive;font-size:clamp(40px,5.5vw,60px);font-weight:700;letter-spacing:0.06em;text-transform:none;color:#111;display:block;text-align:center;width:100%;margin-bottom:12px;">Today's Story</span>
           </div>
           <div class="hero-date" style="font-size:13px; color:#555; margin-bottom:10px; font-family:serif; letter-spacing:0.04em;">May 21, 2026</div>
           <hr class="rule" style="margin-bottom:16px;">
@@ -1104,8 +1104,9 @@
   <!-- THE LATEST -->
   <section class="latest" id="latest">
     <div class="page" style="padding-top:28px; padding-bottom:28px;">
-      <div class="section-header" style="justify-content:center;">
-        <span class="section-label" style="font-family:'Tangerine',cursive;font-size:clamp(36px,5vw,54px);font-weight:700;letter-spacing:0.06em;text-transform:none;text-align:center;">View All Stories</span>
+      <div class="section-header" style="display:flex;align-items:center;justify-content:space-between;">
+        <div></div>
+        <a href="#" style="font-family:'Inter',Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#555;text-decoration:none;white-space:nowrap;" onmouseover="this.style.color='#111'" onmouseout="this.style.color='#555'">View All Stories &rarr;</a>
       </div>
       <hr class="rule--thick" style="margin-bottom:0;">
       <ul class="latest-list">
